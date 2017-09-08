@@ -1,0 +1,29 @@
+{
+    "update_url": "https://clients2.google.com/service/update2/crx",
+    "manifest_version": 2,
+    "name": "Steemit More Info",
+    "description": "Shows more info while you are on steemit.com",
+    "icons":{
+        "16" : "smi16.png",
+        "48" : "smi48.png",
+        "128" : "smi.png"
+        },
+    "version": "0.9.0",
+    "content_scripts": [{
+        "js": ["chrome.ext.js"],
+        "matches": ["https://steemit.com/*"]
+    }],
+    "web_accessible_resources": [
+        "vendor/steem.min.js",
+        "vendor/jquery-3.2.1.min.js",
+        "vendor/lodash.min.js",
+        "vendor/history-events.js",
+        "vendor/jquery.livequery.min.js",
+        "vendor/moment.min.js",
+        "src/utils.js",
+        "src/events.js",
+        "src/main.js"],
+    "permissions": [
+        "activeTab"
+    ]
+}
