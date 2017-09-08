@@ -8,9 +8,11 @@
         "48" : "smi48.png",
         "128" : "smi.png"
         },
-    "version": "0.9.0",
+    "version": "0.9.1",
+    "homepage_url": "https://steemit.com/steem-dev/@armandocat/steemit-more-info-chrome-extension",
+
     "content_scripts": [{
-        "js": ["chrome.ext.js"],
+        "js": ["vendor/jquery-3.2.1.min.js","chrome.ext.js"],
         "matches": ["https://steemit.com/*"]
     }],
     "web_accessible_resources": [
@@ -20,9 +22,15 @@
         "vendor/history-events.js",
         "vendor/jquery.livequery.min.js",
         "vendor/moment.min.js",
+        "vendor/compare-versions.js",
+        "vendor/toastr.min.css",
+        "vendor/toastr.min.js",
+        "src/notification_popup.js",
         "src/utils.js",
         "src/events.js",
-        "src/main.js"],
+        "src/main.js",
+        "src/check_update.js"
+    ],
     "permissions": [
         "activeTab"
     ]
