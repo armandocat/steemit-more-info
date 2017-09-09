@@ -94,6 +94,22 @@
   $("body").on('DOMSubtreeModified', ".weight-display", function() {
     triggerEvent(window, 'voting-weight-change', $(this));
   });
+
+
+
+  $('body').on('click', 'div.Voting__voters_list > a', function(){
+    var votersButton = $(this);
+    console.log('Voters list button clicked: ', votersButton);
+    setTimeout(function() {
+      if(votersButton.parent().hasClass('show')){
+        var ul = votersButton.parent().find('ul.VerticalMenu');      
+        triggerEvent(window, 'voters-list-show', ul);
+      }
+    }, 1);
+  });
+
+
+
   
   window.SteemMoreInfo = window.SteemMoreInfo || {};
   window.SteemMoreInfo.Events = Events;

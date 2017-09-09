@@ -75,3 +75,12 @@
 .UserProfile__tab_content_VotesTab .VotesTab .vote .vote-dollar {
 }
 
+.Voting__voters_list ul.VerticalMenu li {
+  display: flex;
+}
+.Voting__voters_list ul.VerticalMenu li span.vote-weight,
+.Voting__voters_list ul.VerticalMenu li span.vote-dollar {
+  padding: 0px;
+  padding-top: 2px;
+  padding-left: 5px;
+}

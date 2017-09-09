@@ -268,45 +268,16 @@
           if(!result){
             return;
           }
-          if(result.last_payout === '1970-01-01T00:00:00'){
-            //not paid out yet!
-            _.each(result.active_votes, function(vote) {
-              var voter = vote.voter;
-              var rshares = vote.rshares;
+          _.each(result.active_votes, function(vote) {
+            var voter = vote.voter;
+            var voteDollar = vote.voteDollar;
+            if(voteDollar){
               var voteEls = target.voteEls[voter];
               _.each(voteEls, function(voteEl) {
-                var voteValue = window.SteemMoreInfo.Utils.getVotingDollarsPerShares(rshares);
-                if(typeof voteValue !== 'undefined') {
-                  var voteDollar = voteValue.toFixed(2);
-                  voteEl.find('.vote-dollar').text(' ≈ ' + voteDollar + '$');
-                }
+                voteEl.find('.vote-dollar').text(' ≈ ' + voteDollar + '$');
               });
-            });
-          }else{
-            //already paid out
-            var totalShares = 0;
-            _.each(result.active_votes, function(vote) {
-              var rshares = vote.rshares;
-              totalShares += parseInt(rshares, 10);
-            });
-            var totalDollars = parseFloat(result.total_payout_value.replace(" SBD", "")) + parseFloat(result.curator_payout_value.replace(" SBD", ""));
-            if(totalDollars <= 0){
-              totalDollars = 0;
-              totalShares = 1;
             }
-            _.each(result.active_votes, function(vote) {
-              var voter = vote.voter;
-              var rshares = vote.rshares;
-              var voteEls = target.voteEls[voter];
-              _.each(voteEls, function(voteEl) {
-                var voteValue = totalDollars * rshares / totalShares;
-                if(typeof voteValue !== 'undefined') {
-                  var voteDollar = voteValue.toFixed(2);
-                  voteEl.find('.vote-dollar').text(' ≈ ' + voteDollar + '$');
-                }
-              });
-            });
-          }
+          });
         });
       });
     });
@@ -317,6 +288,7 @@
     resetBannerIfNeeded();
     addVotesMenuButton();
   });
+
 
   window.SteemMoreInfo.Events.addEventListener(window, 'voting-weight-change', function(e) {
     var weightDisplay = e.state;
@@ -332,6 +304,73 @@
       weightDisplay.after(weightDollars);
     }
     weightDollars.text(dollars.toFixed(2) + '$');
+  });
+
+
+  window.SteemMoreInfo.Events.addEventListener(window, 'voters-list-show', function(e) {
+    var votersList = e.state;
+    if(!votersList.hasClass('smi-voting-info-shown')){
+
+      var author;
+      var permlink;
+
+      var hentry = votersList.closest('.hentry');
+      if(hentry.is('article')){
+        var url = window.location.pathname;
+        var match = url.match(/\/[^\/]*\/@([^\/]*)\/(.*)$/);
+        author = match[1];
+        permlink = match[2];
+      }else{
+        var id = hentry.attr('id');
+        var match = id.match(/\#@([^\/]*)\/(.*)$/);
+        author = match[1];
+        permlink = match[2];
+      }
+      if(!author || !permlink){
+        return;
+      }
+
+      votersList.addClass('smi-voting-info-shown');
+      var moreButtonLi;
+      var voteElsByVoter = {};
+
+      votersList.children().each(function(){
+        var li = $(this);
+        if(!li.has('a').length){
+          moreButtonLi = li;
+          return;
+        }
+        var voteWeigth = $('<span class="vote-weight"></span>');
+        var voteDollar = $('<span class="vote-dollar"></span>');
+        li.append(voteWeigth);
+        li.append(voteDollar);
+
+        var href = li.find('a').attr('href');
+        var voter = href.substring(2);
+
+        voteElsByVoter[voter] = voteElsByVoter[voter] || [];
+        voteElsByVoter[voter].push(li);
+      });
+
+      window.SteemMoreInfo.Utils.getContent(author, permlink, function(err, result){
+        if(!result){
+          return;
+        }
+        _.each(result.active_votes, function(vote) {
+          var voter = vote.voter;
+          var voteDollar = vote.voteDollar;
+          var votePercent = Math.round(vote.percent / 100);
+          if(voteDollar){
+            var voteEls = voteElsByVoter[voter];
+            _.each(voteEls, function(voteEl) {
+              voteEl.find('.vote-weight').text(votePercent + '%');
+              voteEl.find('.vote-dollar').text('≈ ' + voteDollar + '$');
+            });
+          }
+        });
+      });
+
+    }
   });
 
 

@@ -157,7 +157,40 @@
   };
 
   var getContent = function(author, permlink, cb){
-    steem.api.getContent(author, permlink, cb);
+    steem.api.getContent(author, permlink, function(err, result){
+      if(result){
+        if(result.last_payout === '1970-01-01T00:00:00'){
+          //not paid out yet!
+          _.each(result.active_votes, function(vote) {
+            var voter = vote.voter;
+            var rshares = vote.rshares;
+            var voteValue = window.SteemMoreInfo.Utils.getVotingDollarsPerShares(rshares);
+            if(typeof voteValue !== 'undefined') {
+              vote.voteDollar = voteValue.toFixed(2);
+            }
+          });
+        }else{
+          //already paid out
+          var totalShares = 0;
+          _.each(result.active_votes, function(vote) {
+            var rshares = vote.rshares;
+            totalShares += parseInt(rshares, 10);
+          });
+          var totalDollars = parseFloat(result.total_payout_value.replace(" SBD", "")) + parseFloat(result.curator_payout_value.replace(" SBD", ""));
+          if(totalDollars <= 0){
+            totalDollars = 0;
+            totalShares = 1;
+          }
+          _.each(result.active_votes, function(vote) {
+            var voter = vote.voter;
+            var rshares = vote.rshares;
+            var voteValue = totalDollars * rshares / totalShares;
+            vote.voteDollar = voteValue.toFixed(2);
+          });
+        }
+      }
+      cb(err, result);
+    });
   };
 
 
