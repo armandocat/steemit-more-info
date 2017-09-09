@@ -1,4 +1,4 @@
-# Steemit More Info - Chrome Extension
+# Steemit More Info - Chrome Extension + Firefox Extension
 
 <center>
     
@@ -13,7 +13,7 @@ That's why you need to use tools like https://steemd.com/, https://steemdb.com/,
 A lot of tools!
 
 **_So why another tool???_**
-Because this is a chrome extension that you install on your browser, and then **all the informations you need will be available to you directly on steemit.com!**
+Because this is a Chrome and Firefox extension that you install on your browser, and then **all the informations you need will be available to you directly on steemit.com!**
 
 
 _Please take into consideration that this is a new project that I just started, and the features are limited to just a few so far! I'm planning to add more and more features in the next versions. Every suggestion and idea is very much appreciated!_
@@ -30,7 +30,7 @@ _Please take into consideration that this is a new project that I just started, 
 ---
 
 * A new tab _'Votes'_ is added, where you may see the **latest upvotes done or received** by that user
-
+# TODO: CAMBIARE FOTO E DIRE CHE ORA FA VEDERE ANCHE LA STIMA IN $ DEL VOTO
   ![](https://i.imgsafe.org/29/29b0ccb03d.png)
 
 ---
@@ -64,13 +64,17 @@ This process doesn't involve any private key! In fact, you can see informations 
 
 ## Installation
 
-_(Currently you will need to install it yourself until it is added to the Chrome store)_
+_(Currently you will need to install it yourself)_
 
-- Download and unzip the extension. LINK: https://github.com/armandocat/steemit-more-info/archive/master.zip
-- Open your Chrome Extentions by typing `chrome://extensions` in your Chrome Browser.
-- Drag and drop the root folder of the project you just unzipped _(steemit-more-info)_ inside the chrome extension page.
+- Download and unzip the extension. LINK: <a href="https://github.com/armandocat/steemit-more-info/archive/master.zip">https://github.com/armandocat/steemit-more-info/archive/master.zip</a>
+- _If you are using Chrome_
+  - Open the Chrome Extentions page by typing `chrome://extensions` in your Chrome Browser.
+  - Drag and drop the root folder of the project you just unzipped _(steemit-more-info)_ inside the chrome extension page.
+- _If you are using Firefox_
+  - Open `about:debugging` in Firefox, click "Load Temporary Add-on" and select any file in the extension's directory.
 - Go to [Steemit](https://www.steemit.com)!
 
+_When a new version of the extension is available, a popup in the top right corner of the page will appear with a link where you can read about the update and download the new version. Unfortunatelly, auto update is not available right now, but this way, you have the option to look at the code before installing it ;)_
 
 ## Bugs and new features requests
 

@@ -34,6 +34,8 @@
         "src/check_update.js"
     ],
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "webRequest",
+        "https://raw.githubusercontent.com/armandocat/steemit-more-info/master/manifest.json"
     ]
 }

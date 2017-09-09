@@ -4,14 +4,17 @@ function checkUpdate(){
   var currentVersion = manifestData.version;
   document.body.dataset.SteemitMoreInfoCurrentVersion = currentVersion;
 
-  $.get('https://raw.githubusercontent.com/armandocat/steemit-more-info/master/manifest.json', function(data){
-    
-    document.body.dataset.SteemitMoreInfoNewVersionManifest = data;
+  $.get('https://raw.githubusercontent.com/armandocat/steemit-more-info/master/manifest.json')
+    .done(function(data) {
+      document.body.dataset.SteemitMoreInfoNewVersionManifest = data;
 
-    var s = document.createElement('script');
-    s.src = chrome.extension.getURL('src/check_update.js');
-    document.body.appendChild(s);    
-  });
+      var s = document.createElement('script');
+      s.src = chrome.extension.getURL('src/check_update.js');
+      document.body.appendChild(s);    
+    })
+    .fail(function(err) {
+      console.log('checkUpdate error:', err);
+    });
 }
 
 
