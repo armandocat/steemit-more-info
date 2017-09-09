@@ -75,6 +75,10 @@
 .UserProfile__tab_content_VotesTab .VotesTab .vote .vote-dollar {
 }
 
+.Voting__voters_list ul.VerticalMenu {
+  max-height: 350px;
+  overflow-y: auto;
+}
 .Voting__voters_list ul.VerticalMenu li {
   display: flex;
 }

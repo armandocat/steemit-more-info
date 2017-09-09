@@ -356,18 +356,37 @@
         if(!result){
           return;
         }
-        _.each(result.active_votes, function(vote) {
+        var newElCount = 0;
+        var active_votes = _.sortBy(result.active_votes, function(v){
+          return parseInt(v.rshares);
+        });
+        _.each(active_votes, function(vote) {
           var voter = vote.voter;
           var voteDollar = vote.voteDollar;
           var votePercent = Math.round(vote.percent / 100);
           if(voteDollar){
-            var voteEls = voteElsByVoter[voter];
+            var voteEls = voteElsByVoter[voter] || [];
+            if(!voteEls.length){
+              var newEl = $('<li>' +
+                '<a href="/@' + voter + '">' +
+                (votePercent >= 0 ? '+' : '-') + ' ' + voter + 
+                '</a>' +
+                '<span class="vote-weight"></span>' +
+                '<span class="vote-dollar"></span>' +
+                '</li>');
+              votersList.append(newEl);
+              newElCount++;
+              voteEls.push(newEl);
+            }
             _.each(voteEls, function(voteEl) {
               voteEl.find('.vote-weight').text(votePercent + '%');
               voteEl.find('.vote-dollar').text('≈ ' + voteDollar + '$');
             });
           }
         });
+        if(newElCount && moreButtonLi){
+          moreButtonLi.remove();
+        }
       });
 
     }
