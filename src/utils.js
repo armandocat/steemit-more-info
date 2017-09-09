@@ -58,6 +58,7 @@
   var rewardBalance;
   var recentClaims;
   var currentUserAccount;
+  var votePowerReserveRate;
   function updateSteemVariables() {
     steem.api.getRewardFund("post", function(e, t) {
       rewardBalance = parseFloat(t.reward_balance.replace(" STEEM", ""));
@@ -66,6 +67,10 @@
     steem.api.getCurrentMedianHistoryPrice(function(e, t) {
       steemPrice = parseFloat(t.base.replace(" SBD", "")) / parseFloat(t.quote.replace(" STEEM", ""));
     });
+    steem.api.getDynamicGlobalProperties(function(e, t){
+      votePowerReserveRate = t.vote_power_reserve_rate;
+    });
+
     var loggedUserName = getLoggedUserName()
     if(loggedUserName){
       var _loggedUserName = loggedUserName;
@@ -83,28 +88,54 @@
 
 
 
-  var getVotingDollars = function(voteWeight, account) {
+  var getVotingDollarsPerShares = function(rshares) {
+    if(rewardBalance && recentClaims && steemPrice){
+      var voteValue = rshares 
+        * rewardBalance / recentClaims
+        * steemPrice;
+  
+      return voteValue;
+    } 
+  }
+
+
+  var getVotingDollarsPerAccount = function(voteWeight, account) {
     if(!account){
       account = currentUserAccount;
     }
     if(!account){
       return;
     }
-    if(rewardBalance && recentClaims && steemPrice){
-      var v = 1e4;
-      var h = 432e3;
-      var I = rewardBalance / recentClaims;
-      var L = steemPrice;
+    if(rewardBalance && recentClaims && steemPrice && votePowerReserveRate){
 
-      var s = account.voting_power
-        , l = (new Date - new Date((account.last_vote_time) + 'Z')) / 1e3;
-      s = (s = (s + v * l / h) / 100) > 100 ? 100 : s.toFixed(2);
-      var c = parseInt(100 * s * (100 * voteWeight) / v);
-      c = parseInt((c + 49) / 50);                
-      var voteValue = parseInt(
-        (parseInt(account.vesting_shares.replace(" VESTS", "")) + parseInt(account.received_vesting_shares.replace(" VESTS", "")) - parseInt(account.delegated_vesting_shares.replace(" VESTS", ""))
-        ) * c * 100) * I * L;
+
+      var STEEMIT_100_PERCENT = 10000;
+      var STEEMIT_VOTE_REGENERATION_SECONDS = (5*60*60*24); // 5 day
+
+      var effective_vesting_shares = Math.round((parseFloat(account.vesting_shares.replace(" VESTS", "")) 
+        + parseFloat(account.received_vesting_shares.replace(" VESTS", "")) 
+        - parseFloat(account.delegated_vesting_shares.replace(" VESTS", ""))) * 1000000);
+      var voting_power = account.voting_power;
+      var weight = voteWeight * 100;
+      var last_vote_time = new Date((account.last_vote_time) + 'Z');
+
+
+      var elapsed_seconds = (new Date() - last_vote_time) / 1000;
+      var regenerated_power = Math.round((STEEMIT_100_PERCENT * elapsed_seconds) / STEEMIT_VOTE_REGENERATION_SECONDS);
+      var current_power = Math.min(voting_power + regenerated_power, STEEMIT_100_PERCENT);
+      var max_vote_denom = votePowerReserveRate * STEEMIT_VOTE_REGENERATION_SECONDS / (60*60*24);
+      var used_power = Math.round((current_power * weight) / STEEMIT_100_PERCENT);
+      used_power =  Math.round((used_power + max_vote_denom - 1) / max_vote_denom);
+
+      var rshares = Math.round((effective_vesting_shares * used_power) / (STEEMIT_100_PERCENT))
+
+
+      var voteValue = rshares 
+        * rewardBalance / recentClaims
+        * steemPrice;
+  
       return voteValue;
+
     }
   };
 
@@ -121,6 +152,15 @@
     });
   };
 
+  var getActiveVotes = function(author, permlink, cb){
+    steem.api.getActiveVotes(author, permlink, cb);
+  };
+
+  var getContent = function(author, permlink, cb){
+    steem.api.getContent(author, permlink, cb);
+  };
+
+
 
   var Utils = {
     getPageAccountName: getPageAccountName,
@@ -136,8 +176,11 @@
     getSteemPrice: function(){
       return steemPrice;
     },
-    getVotingDollars: getVotingDollars,
-    getUserHistory: getUserHistory
+    getVotingDollarsPerAccount: getVotingDollarsPerAccount,
+    getVotingDollarsPerShares: getVotingDollarsPerShares,
+    getUserHistory: getUserHistory,
+    getActiveVotes: getActiveVotes,
+    getContent: getContent
   };
 
 

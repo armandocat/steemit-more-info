@@ -15,8 +15,8 @@
 
         var votingPower = result[0].voting_power / Math.pow(10,2);
         var votingDollars;
-        var voteValue = window.SteemMoreInfo.Utils.getVotingDollars(100, result[0]);
-        if(voteValue) {
+        var voteValue = window.SteemMoreInfo.Utils.getVotingDollarsPerAccount(100, result[0]);
+        if(typeof voteValue !== 'undefined') {
           var voteValueText = voteValue.toFixed(2);
           votingDollars = voteValueText;
         }
@@ -29,7 +29,7 @@
           'Voting Power decreases with each vote. It is based upon how much Steem Power (aka vesting STEEM) an account holds as well as how much voting an account has done recently.\n\n'+
           'The amount in dollars is approximately how much reward will give a vote from this user if he/she uses a 100% of his/her current Voting Power.');
 
-        var votingPowerEl = $('<span class="UserProfile__rep" id="Voting__power" style="font-size: 0.6em;"></span>');
+        var votingPowerEl = $('<span class="UserProfile__rep" id="Voting__power"></span>');
         votingPowerEl.text(`(${votingPower}% VP` + 
           (typeof votingDollars !== 'undefined' ? (' ≈ ' + votingDollars + '$') : '') 
           + ')');
@@ -123,8 +123,8 @@
       container.append(votesTab);
     }
     votesTab.html('<div class="row">\
-       <div class="UserProfile__tab_content column" style="padding-bottom: 60px;">\
-          <div class="VotesTab" style="display: none; padding-bottom: 20px;">\
+       <div class="UserProfile__tab_content UserProfile__tab_content_VotesTab column">\
+          <div class="VotesTab" style="display: none;">\
              <div class="row">\
                 <div class="column small-12">\
                    <h4 class="uppercase">Votes History</h4>\
@@ -139,17 +139,7 @@
              </div>\
           </center>\
           <center class="VotesTabLoadMore" style="display: none;">\
-             <button style="\
-              background-color: transparent;\
-              border-radius: 6px;\
-              border: 1px solid rgb(220, 220, 220);\
-              display: inline-block;\
-              cursor: pointer;\
-              color: rgb(119, 119, 119);\
-              font-family: Arial;\
-              font-size: 17px;\
-              padding: 10px 24px;\
-              text-decoration: none;">\
+             <button>\
               Load more... \
             </button>\
           </center>\
@@ -221,18 +211,21 @@
     var timeagoTitle = mdate.format();
     var timeago = mdate.fromNow();
 
-    var el = $('<div class="vote" style="display: flex; align-items: center;">\
+    var el = $('<div class="vote">\
       <a href="/@' + voter + '">\
-        <img class="Userpic" style="margin: 5px; border: solid 1px #cacaca;" src="https://img.steemconnect.com/@' + voter + '?s=48" alt="' + voter + '">\
+        <img class="Userpic" src="https://img.steemconnect.com/@' + voter + '?s=48" alt="' + voter + '">\
       </a>\
-      <span class="action" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 10; padding: 0px 10px;">\
-        <a class="account" href="/@' + voter + '">' + voter + '</a>\
-        upvoted <a href="/@' + author + '/' + permlink + '" title="@' + author + '/' + permlink + '">@' + author + '/' + permlink + '</a>\
-      </span>\
-      <span class="vote-weight" style="white-space: nowrap;">\
-        (' + weight + '%)\
-      </span>\
-      <span class="timeago" style="white-space: nowrap; padding: 0px 0px 0px 20px;" title="' + timeagoTitle + '">' + timeago + '</span>\
+      <div class="vote-info">\
+        <span class="action">\
+          <a class="account" href="/@' + voter + '">' + voter + '</a>\
+          upvoted <a href="/@' + author + '/' + permlink + '" title="@' + author + '/' + permlink + '">@' + author + '/' + permlink + '</a>\
+        </span>\
+        <span class="timeago" title="' + timeagoTitle + '">' + timeago + '</span>\
+        <span class="vote-weight">\
+          Weight: ' + weight + '%\
+          <span class="vote-dollar"></span>\
+        </span>\
+      </div>\
     </div>');
 
     return el;
@@ -240,14 +233,25 @@
 
   var getVotes = function(votesTab, name, fromOrNull) {
     window.SteemMoreInfo.Utils.getUserHistory(name, fromOrNull, function(err, result){
-      console.log(err, result);
       if(!result){
         return; //TODO: error
       }
+      var uniqueCommentTargets = {};
       for (var i = result.length - 1; i >= 0; i--) {
         var tx = result[i][1];
         if(tx && tx.op && tx.op[0] === 'vote'){
+          var voter = tx.op[1].voter;
+          var author = tx.op[1].author;
+          var permlink = tx.op[1].permlink;
+          var uniqueId = author + '__' + permlink;
+          uniqueCommentTargets[uniqueId] = uniqueCommentTargets[uniqueId] || {
+            author: author,
+            permlink: permlink,
+            voteEls: {}
+          };
           var voteEl = createVoteEl(tx);
+          uniqueCommentTargets[uniqueId].voteEls[voter] = uniqueCommentTargets[uniqueId].voteEls[voter] || [];
+          uniqueCommentTargets[uniqueId].voteEls[voter].push(voteEl);
           votesTab.find('.votes-container').append(voteEl);
         }
       }
@@ -259,6 +263,52 @@
         loadMore.data('from', from);
         loadMore.show();
       }
+      _.each(uniqueCommentTargets, function(target){
+        window.SteemMoreInfo.Utils.getContent(target.author, target.permlink, function(err, result){
+          if(!result){
+            return;
+          }
+          if(result.last_payout === '1970-01-01T00:00:00'){
+            //not paid out yet!
+            _.each(result.active_votes, function(vote) {
+              var voter = vote.voter;
+              var rshares = vote.rshares;
+              var voteEls = target.voteEls[voter];
+              _.each(voteEls, function(voteEl) {
+                var voteValue = window.SteemMoreInfo.Utils.getVotingDollarsPerShares(rshares);
+                if(typeof voteValue !== 'undefined') {
+                  var voteDollar = voteValue.toFixed(2);
+                  voteEl.find('.vote-dollar').text(' ≈ ' + voteDollar + '$');
+                }
+              });
+            });
+          }else{
+            //already paid out
+            var totalShares = 0;
+            _.each(result.active_votes, function(vote) {
+              var rshares = vote.rshares;
+              totalShares += parseInt(rshares, 10);
+            });
+            var totalDollars = parseFloat(result.total_payout_value.replace(" SBD", "")) + parseFloat(result.curator_payout_value.replace(" SBD", ""));
+            if(totalDollars <= 0){
+              totalDollars = 0;
+              totalShares = 1;
+            }
+            _.each(result.active_votes, function(vote) {
+              var voter = vote.voter;
+              var rshares = vote.rshares;
+              var voteEls = target.voteEls[voter];
+              _.each(voteEls, function(voteEl) {
+                var voteValue = totalDollars * rshares / totalShares;
+                if(typeof voteValue !== 'undefined') {
+                  var voteDollar = voteValue.toFixed(2);
+                  voteEl.find('.vote-dollar').text(' ≈ ' + voteDollar + '$');
+                }
+              });
+            });
+          }
+        });
+      });
     });
   };
 
@@ -271,25 +321,14 @@
   window.SteemMoreInfo.Events.addEventListener(window, 'voting-weight-change', function(e) {
     var weightDisplay = e.state;
     // console.log('weightDisplay: ', weightDisplay);
-    var dollars = window.SteemMoreInfo.Utils.getVotingDollars(parseInt(weightDisplay.text(), 10));
-    if(!dollars){
+    var dollars = window.SteemMoreInfo.Utils.getVotingDollarsPerAccount(parseInt(weightDisplay.text(), 10));
+    if(typeof dollars === 'undefined'){
       return;
     }
     weightDisplay.css('margin-top', '-10px');
     var weightDollars = weightDisplay.parent().find('.voting_weight_dollars');
     if(weightDollars.length === 0){
-      var weightDollarsCss = {
-        position: 'absolute',
-        'margin-left': '2rem',
-        'margin-top': '10px',
-        width: '3rem',
-        float: 'left',
-        'text-align': 'right',
-        color: '#8a8a8a',
-        'line-height': '2.6rem'
-      }
       var weightDollars = $('<div class="voting_weight_dollars"></div>');
-      weightDollars.css(weightDollarsCss);
       weightDisplay.after(weightDollars);
     }
     weightDollars.text(dollars.toFixed(2) + '$');

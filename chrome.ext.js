@@ -16,7 +16,8 @@ function checkUpdate(){
 
 
 [
-'vendor/toastr.min.css'
+'vendor/toastr.min.css',
+'src/main.css'
 ].reverse().reduce(function(next, href){
   return function(){
     var s = document.createElement('link');

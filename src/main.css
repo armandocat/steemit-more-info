@@ -1,0 +1,77 @@
+
+#Voting__power {
+  font-size: 0.6em;
+}
+
+.voting_weight_dollars {
+  position: 'absolute';
+  margin-left: '2rem';
+  margin-top: '10px';
+  width: '3rem';
+  float: 'left';
+  text-align: 'right';
+  color: '#8a8a8a';
+  line-height: '2.6rem';
+}
+
+.UserProfile__tab_content_VotesTab {
+  padding-bottom: 60px;
+}
+.UserProfile__tab_content_VotesTab .VotesTab {
+  padding-bottom: 20px;
+}
+.UserProfile__tab_content_VotesTab .VotesTabLoadMore button {
+  background-color: transparent;
+  border-radius: 6px;
+  border: 1px solid rgb(220, 220, 220);
+  display: inline-block;
+  cursor: pointer;
+  color: rgb(119, 119, 119);
+  font-family: Arial;
+  font-size: 17px;
+  padding: 10px 24px;
+  text-decoration: none;
+}
+.UserProfile__tab_content_VotesTab .VotesTab .vote {
+  display: flex;
+  align-items: center;
+}
+.UserProfile__tab_content_VotesTab .VotesTab .vote .Userpic {
+  margin: 5px; 
+  border: solid 1px #cacaca;
+  min-width: 48px;
+}
+.UserProfile__tab_content_VotesTab .VotesTab .vote .vote-info {
+  flex-shrink: 10; 
+  max-width: calc(100% - 55px);
+  display: inline-block;
+  padding: 0px 10px; 
+}
+.UserProfile__tab_content_VotesTab .VotesTab .vote .action {
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  display: block;
+  max-width: 100%;
+}
+.UserProfile__tab_content_VotesTab .VotesTab .vote .timeago {
+  white-space: nowrap;
+  padding: 0px;
+  color: #888;
+  display: inline-block;
+  font-size: 0.9em;
+  vertical-align: top;
+  margin-top: -5px;
+}
+.UserProfile__tab_content_VotesTab .VotesTab .vote .vote-weight {
+  white-space: nowrap;
+  padding-left: 20px;
+  color: #888;
+  display: inline-block;
+  font-size: 0.9em;
+  vertical-align: top;
+  margin-top: -5px;
+}
+.UserProfile__tab_content_VotesTab .VotesTab .vote .vote-dollar {
+}
+
