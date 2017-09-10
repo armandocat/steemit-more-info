@@ -211,6 +211,8 @@
     var timeagoTitle = mdate.format();
     var timeago = mdate.fromNow();
 
+    var verb = weight >= 0 ? 'upvoted' : 'downvoted';
+
     var el = $('<div class="vote">\
       <a href="/@' + voter + '">\
         <img class="Userpic" src="https://img.steemconnect.com/@' + voter + '?s=48" alt="' + voter + '">\
@@ -218,7 +220,7 @@
       <div class="vote-info">\
         <span class="action">\
           <a class="account" href="/@' + voter + '">' + voter + '</a>\
-          upvoted <a href="/@' + author + '/' + permlink + '" title="@' + author + '/' + permlink + '">@' + author + '/' + permlink + '</a>\
+          ' + verb +' <a href="/@' + author + '/' + permlink + '" title="@' + author + '/' + permlink + '">@' + author + '/' + permlink + '</a>\
         </span>\
         <span class="timeago" title="' + timeagoTitle + '">' + timeago + '</span>\
         <span class="vote-weight">\
@@ -334,6 +336,17 @@
       var moreButtonLi;
       var voteElsByVoter = {};
 
+      // prevent page scroll if mouse is no top of the list
+      votersList.bind('mousewheel DOMMouseScroll', function (e) {
+        var delta = e.wheelDelta || (e.originalEvent && e.originalEvent.wheelDelta) || -e.detail,
+            bottomOverflow = this.scrollTop + $(this).outerHeight() - this.scrollHeight >= 0,
+            topOverflow = this.scrollTop <= 0;
+
+        if ((delta < 0 && bottomOverflow) || (delta > 0 && topOverflow)) {
+            e.preventDefault();
+        }
+      });
+
       votersList.children().each(function(){
         var li = $(this);
         if(!li.has('a').length){
@@ -358,7 +371,7 @@
         }
         var newElCount = 0;
         var active_votes = _.sortBy(result.active_votes, function(v){
-          return parseInt(v.rshares);
+          return -parseInt(v.rshares);
         });
         _.each(active_votes, function(vote) {
           var voter = vote.voter;
