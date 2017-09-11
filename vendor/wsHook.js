@@ -35,8 +35,8 @@ var wsHook = {};
   var before = wsHook.before = function (data, url) {
     return data
   }
-  var after = wsHook.after = function (e, url) {
-    return e
+  var after = wsHook.after = function (e, url, cb) {
+    cb(e);
   }
   wsHook.resetHooks = function () {
     wsHook.before = before
@@ -52,7 +52,7 @@ var wsHook = {};
 
     var _send = WSObject.send
     WSObject.send = function (data) {
-      arguments[0] = wsHook.before(data, WSObject.url) || data
+      arguments[0] = wsHook.before.call(this, data, WSObject.url) || data
       _send.apply(this, arguments)
     }
 
@@ -64,8 +64,11 @@ var wsHook = {};
       if (arguments[0] === 'message') {
         arguments[1] = (function (userFunc) {
           return function instrumentAddEventListener () {
-            arguments[0] = wsHook.after(new MutableMessageEvent(arguments[0]), WSObject.url) || arguments[0]
-            userFunc.apply(eventThis, arguments)
+            var args = arguments;
+            wsHook.after.call(eventThis, new MutableMessageEvent(arguments[0]), WSObject.url, function(d) {
+              args[0] = d;
+              userFunc.apply(eventThis, args);
+            });
           }
         })(arguments[1])
       }
@@ -77,8 +80,11 @@ var wsHook = {};
         var eventThis = this
         var userFunc = arguments[0]
         var onMessageHandler = function () {
-          arguments[0] = wsHook.after(new MutableMessageEvent(arguments[0]), WSObject.url) || arguments[0]
-          userFunc.apply(eventThis, arguments)
+          var args = arguments;
+          wsHook.after.call(eventThis, new MutableMessageEvent(arguments[0]), WSObject.url, function(d) {
+            args[0] = d;
+            userFunc.apply(eventThis, args);
+          });
         }
         WSObject._addEventListener.apply(this, ['message', onMessageHandler, false])
       }

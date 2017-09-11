@@ -40,7 +40,8 @@
         "src/profile_banner.js",
         "src/votes_tab.js",
         "src/vote_weight_slider.js",
-        "src/post_votes_list.js"
+        "src/post_votes_list.js",
+        "src/favorite_tags.js"
     ],
     "permissions": [
         "activeTab",
