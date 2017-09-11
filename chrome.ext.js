@@ -1,4 +1,5 @@
 
+
 function checkUpdate(){
   var manifestData = chrome.runtime.getManifest();
   var currentVersion = manifestData.version;

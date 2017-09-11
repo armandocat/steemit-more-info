@@ -13,6 +13,10 @@
     "homepage_url": "https://steemit.com/steem-dev/@armandocat/steemit-more-info-chrome-extension",
 
     "content_scripts": [{
+        "js": ["document_start.js"],
+        "matches": ["https://steemit.com/*"],
+        "run_at": "document_start"
+    },{
         "js": ["vendor/jquery-3.2.1.min.js","chrome.ext.js"],
         "matches": ["https://steemit.com/*"]
     }],
@@ -26,12 +30,14 @@
         "vendor/compare-versions.js",
         "vendor/toastr.min.css",
         "vendor/toastr.min.js",
+        "vendor/wsHook.js",
         "src/main.css",
         "src/notification_popup.js",
         "src/utils.js",
         "src/events.js",
         "src/main.js",
-        "src/check_update.js"
+        "src/check_update.js",
+        "src/websocket_hook.js"
     ],
     "permissions": [
         "activeTab",
