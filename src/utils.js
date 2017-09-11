@@ -3,7 +3,7 @@
   var STEEMIT_100_PERCENT = 10000;
   var STEEMIT_VOTE_REGENERATION_SECONDS = (5*60*60*24); // 5 day
 
-  var pageAccountNameRegexp = /https:\/\/steemit.com\/@([a-z0-9\-]*)([\/\#].*)?$/;
+  var pageAccountNameRegexp = /https:\/\/steemit.com\/@([a-z0-9\-\.]*)([\/\#].*)?$/;
   var domCheckTimeout = 100;
 
   var getPageAccountName = function() {
