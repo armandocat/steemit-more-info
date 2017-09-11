@@ -13,7 +13,7 @@
     steem.api.getAccounts([name], function(err, result){
       window.SteemMoreInfo.Utils.getUserProfileBannerForAccountName(name, function(banner){
 
-        var votingPower = result[0].voting_power / Math.pow(10,2);
+        var votingPower = window.SteemMoreInfo.Utils.getVotingPowerPerAccount(result[0]) / 100;
         var votingDollars;
         var voteValue = window.SteemMoreInfo.Utils.getVotingDollarsPerAccount(100, result[0]);
         if(typeof voteValue !== 'undefined') {

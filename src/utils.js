@@ -1,5 +1,8 @@
 (function () {
 
+  var STEEMIT_100_PERCENT = 10000;
+  var STEEMIT_VOTE_REGENERATION_SECONDS = (5*60*60*24); // 5 day
+
   var pageAccountNameRegexp = /https:\/\/steemit.com\/@([a-z0-9\-]*)([\/\#].*)?$/;
   var domCheckTimeout = 100;
 
@@ -96,7 +99,17 @@
   
       return voteValue;
     } 
-  }
+  };
+
+
+  var getVotingPowerPerAccount = function(account) {
+      var voting_power = account.voting_power;
+      var last_vote_time = new Date((account.last_vote_time) + 'Z');
+      var elapsed_seconds = (new Date() - last_vote_time) / 1000;
+      var regenerated_power = Math.round((STEEMIT_100_PERCENT * elapsed_seconds) / STEEMIT_VOTE_REGENERATION_SECONDS);
+      var current_power = Math.min(voting_power + regenerated_power, STEEMIT_100_PERCENT);
+      return current_power;
+  };
 
 
   var getVotingDollarsPerAccount = function(voteWeight, account) {
@@ -107,10 +120,6 @@
       return;
     }
     if(rewardBalance && recentClaims && steemPrice && votePowerReserveRate){
-
-
-      var STEEMIT_100_PERCENT = 10000;
-      var STEEMIT_VOTE_REGENERATION_SECONDS = (5*60*60*24); // 5 day
 
       var effective_vesting_shares = Math.round((parseFloat(account.vesting_shares.replace(" VESTS", "")) 
         + parseFloat(account.received_vesting_shares.replace(" VESTS", "")) 
@@ -209,6 +218,7 @@
     getSteemPrice: function(){
       return steemPrice;
     },
+    getVotingPowerPerAccount: getVotingPowerPerAccount,
     getVotingDollarsPerAccount: getVotingDollarsPerAccount,
     getVotingDollarsPerShares: getVotingDollarsPerShares,
     getUserHistory: getUserHistory,
