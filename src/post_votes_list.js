@@ -73,7 +73,7 @@
             var voteEls = voteElsByVoter[voter] || [];
             if(!voteEls.length){
               var newEl = $('<li>' +
-                '<a href="/@' + voter + '">' +
+                '<a class="smi-navigate" href="/@' + voter + '">' +
                 (votePercent >= 0 ? '+' : '-') + ' ' + voter + 
                 '</a>' +
                 '<span class="vote-weight"></span>' +

@@ -136,13 +136,13 @@
     var verb = weight >= 0 ? 'upvoted' : 'downvoted';
 
     var el = $('<div class="vote">\
-      <a href="/@' + voter + '">\
+      <a class="smi-navigate" href="/@' + voter + '">\
         <img class="Userpic" src="https://img.steemconnect.com/@' + voter + '?s=48" alt="' + voter + '">\
       </a>\
       <div class="vote-info">\
         <span class="action">\
-          <a class="account" href="/@' + voter + '">' + voter + '</a>\
-          ' + verb +' <a href="/@' + author + '/' + permlink + '" title="@' + author + '/' + permlink + '">@' + author + '/' + permlink + '</a>\
+          <a class="account" class="smi-navigate" href="/@' + voter + '">' + voter + '</a>\
+          ' + verb +' <a class="smi-navigate" href="/@' + author + '/' + permlink + '" title="@' + author + '/' + permlink + '">@' + author + '/' + permlink + '</a>\
         </span>\
         <span class="timeago" title="' + timeagoTitle + '">' + timeago + '</span>\
         <span class="vote-weight">\

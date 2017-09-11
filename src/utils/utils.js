@@ -204,6 +204,26 @@
 
 
 
+  var navigate = function(url) {
+    //hack to use react to navigate 
+    var a = $('.smi-hack-navigate-a');
+    if(!a.length){
+      a = $('<a class="smi-hack-navigate-a" style="display: none;">');
+      $('.submit-story a').append(a);
+    }
+    a.attr('href', url);
+    var event = document.createEvent("HTMLEvents");
+    event.initEvent("click", true, true);
+    var target = a[0];
+    target.dispatchEvent(event);
+  };
+
+  $('body').on('click', 'a.smi-navigate', function(e) {
+    e.preventDefault();
+    navigate($(e.currentTarget).attr('href'));
+  });
+
+
   var Utils = {
     getPageAccountName: getPageAccountName,
     getLoggedUserName: getLoggedUserName,
@@ -223,7 +243,8 @@
     getVotingDollarsPerShares: getVotingDollarsPerShares,
     getUserHistory: getUserHistory,
     getActiveVotes: getActiveVotes,
-    getContent: getContent
+    getContent: getContent,
+    navigate: navigate
   };
 
 
