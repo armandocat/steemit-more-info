@@ -1,7 +1,7 @@
 
 [
 'vendor/wsHook.js',
-'src/websocket_hook.js'
+'src/utils/websocket_hook.js'
 ].reverse().reduce(function(next, script){
   return function(){
     var s = document.createElement('script');

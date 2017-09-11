@@ -10,7 +10,7 @@ function checkUpdate(){
       document.body.dataset.SteemitMoreInfoNewVersionManifest = data;
 
       var s = document.createElement('script');
-      s.src = chrome.extension.getURL('src/check_update.js');
+      s.src = chrome.extension.getURL('src/utils/check_update.js');
       document.body.appendChild(s);    
     })
     .fail(function(err) {
@@ -33,7 +33,7 @@ function checkUpdate(){
 }, null)();
 
 
-[
+var jsToLoad = [
 'vendor/steem.min.js',
 'vendor/jquery-3.2.1.min.js',
 'vendor/jquery.livequery.min.js',
@@ -42,11 +42,17 @@ function checkUpdate(){
 'vendor/history-events.js',
 'vendor/compare-versions.js',
 'vendor/toastr.min.js',
-'src/notification_popup.js',
-'src/utils.js',
-'src/events.js',
-'src/main.js'
-].reverse().reduce(function(next, script){
+'src/utils/notification_popup.js',
+'src/utils/utils.js',
+'src/utils/events.js'
+];
+
+jsToLoad.push('src/profile_banner.js');
+jsToLoad.push('src/votes_tab.js');
+jsToLoad.push('src/vote_weight_slider.js');
+jsToLoad.push('src/post_votes_list.js');
+
+jsToLoad.reverse().reduce(function(next, script){
   return function(){
     var s = document.createElement('script');
     s.src = chrome.extension.getURL(script);

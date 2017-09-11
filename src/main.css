@@ -4,14 +4,14 @@
 }
 
 .voting_weight_dollars {
-  position: 'absolute';
-  margin-left: '2rem';
-  margin-top: '10px';
-  width: '3rem';
-  float: 'left';
-  text-align: 'right';
-  color: '#8a8a8a';
-  line-height: '2.6rem';
+  position: absolute;
+  margin-left: 2rem;
+  margin-top: 10px;
+  width: 3rem;
+  float: left;
+  text-align: right;
+  color: #8a8a8a;
+  line-height: 2.6rem;
 }
 
 .UserProfile__tab_content_VotesTab {
