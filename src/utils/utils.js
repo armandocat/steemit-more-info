@@ -203,6 +203,19 @@
   };
 
 
+  var getLoadingHtml = function(options) {
+    var divClass = 'smi-spinner';
+    var bounceStyle = '';
+    if(options && options.text){
+      divClass += ' smi-spinner-text';
+    }
+    if(options && options.backgroundColor){
+      bounceStyle += 'background-color: ' + options.backgroundColor + ';';
+    }
+    return '<div class="' + divClass + '"><div class="smi-bounce1" style="' + bounceStyle + '"></div><div class="smi-bounce2" style="' + bounceStyle + '"></div><div class="smi-bounce3" style="' + bounceStyle + '"></div></div>';
+  };
+
+
 
   var navigate = function(url) {
     //hack to use react to navigate 
@@ -221,8 +234,7 @@
   $('body').on('click', 'a.smi-navigate', function(e) {
     e.preventDefault();
     navigate($(e.currentTarget).attr('href'));
-  });
-
+  });  
 
   var Utils = {
     getPageAccountName: getPageAccountName,
@@ -244,6 +256,7 @@
     getUserHistory: getUserHistory,
     getActiveVotes: getActiveVotes,
     getContent: getContent,
+    getLoadingHtml: getLoadingHtml,
     navigate: navigate
   };
 
