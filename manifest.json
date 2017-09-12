@@ -10,7 +10,7 @@
         },
 
     "version": "0.9.1",
-    "homepage_url": "https://steemit.com/steem-dev/@armandocat/steemit-more-info-chrome-extension",
+    "homepage_url": "https://steemit.com/@armandocat",
 
     "content_scripts": [{
         "js": ["document_start.js"],

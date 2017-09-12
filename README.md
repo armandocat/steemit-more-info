@@ -1,4 +1,4 @@
-# Steemit More Info - Chrome Extension + Firefox Extension
+# Steemit More Info 0.9.1 - Chrome Extension + Firefox Extension
 
 <center>
     
@@ -19,6 +19,10 @@ Because this is a Chrome and Firefox extension that you install on your browser,
 _Please take into consideration that this is a new project that I just started, and the features are limited to just a few so far! I'm planning to add more and more features in the next versions. Every suggestion and idea is very much appreciated!_
 
 
+### This is the second release with some bug fixes and a few ![](https://i.imgsafe.org/65/655926ba30.png) features added 
+
+<br>
+
 ## Features
 
 * In the profile page of any account, you will see a **Vote Power indicator** on top (next to the name and the reputation), with the reward that a 100% vote from that user will give in SBD ($)
@@ -30,14 +34,20 @@ _Please take into consideration that this is a new project that I just started, 
 ---
 
 * A new tab _'Votes'_ is added, where you may see the **latest upvotes done or received** by that user
-# TODO: CAMBIARE FOTO E DIRE CHE ORA FA VEDERE ANCHE LA STIMA IN $ DEL VOTO
-  ![](https://i.imgsafe.org/29/29b0ccb03d.png)
+  ![](https://i.imgsafe.org/65/655926ba30.png) Now it shows the estimate of the vote in $ too!
+  ![](https://i.imgsafe.org/79/799f83680d.png)
 
 ---
 
 * When you click upvote and the Vote Weight slider appears, not only you see the percentage of the vote, but you also see **the amount in $ that upvote will be valued**
 
   ![](https://i.imgsafe.org/29/29bcda41b5.png)
+
+---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) When you are looking at a post or comment and you click "votes" to see the **list of people that voted that post**, you now also see what was **their contribute to the total reward**!
+  ![](https://i.imgsafe.org/79/79a7ceb140.png)
+  ![](https://i.imgsafe.org/79/79a7ce65ef.png)
 
 
 <br>
@@ -47,7 +57,7 @@ _Please take into consideration that this is a new project that I just started, 
 ## Future development
 
 I'm planning to add more features like:
-* A panel that shows additional info about the users that upvoted a post, for instance what vote weight they used, how much shares they got, how much is their expected curation reward, ...
+* **COMING SOON: Trending of up to 5 favorite tags in one page.** You select your favorite tags and you'll see the list of the top trending of all the tags combined in one list. I'm not releasing this feature yet because it still has some bugs. 
 * A better follower page, where you can also sort the followers by date they added you.
 * **Notifications**, for instance if somebody replies on one of your posts or comments, if you get an upvote, ...
 * Maybe adding a page with some graphs of the stats of the account 
@@ -70,7 +80,7 @@ _(Currently you will need to install it yourself)_
 - _If you are using Chrome_
   - Open the Chrome Extentions page by typing `chrome://extensions` in your Chrome Browser.
   - Drag and drop the root folder of the project you just unzipped _(steemit-more-info)_ inside the chrome extension page.
-- _If you are using Firefox_
+- ![](https://i.imgsafe.org/65/655926ba30.png) _If you are using Firefox_
   - Open `about:debugging` in Firefox, click "Load Temporary Add-on" and select any file in the extension's directory.
 - Go to [Steemit](https://www.steemit.com)!
 
@@ -84,8 +94,8 @@ Please feel free to comment here or contact me on steemit.chat if you have sugge
 
 ### Please help me spread the word by resteem and upvote this post!
 I'm doing this project in my free time. The more interest I get from the community, the more I'll be devoted to improve it!
-
-_The code is based on the chrome extension "Steemit Voting Power" by @daynewr. I refactored (pretty much rewriting everything) and added new functionalities to it (like the votes page)_
+So if you like this project, help me in letting everyone know about it. 
+And follow me! I will post any update on this extension and other projects I'll work on! And you will also see some beautiful picture about myself 😹🐾
 
 
 Thanks!
