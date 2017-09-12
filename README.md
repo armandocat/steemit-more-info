@@ -2,7 +2,7 @@
 
 <center>
     
-![](https://i.imgsafe.org/2a/2a1e11099e.png)
+![](https://i.imgsafe.org/79/79ef9b1550.png)
 
 </center>
 

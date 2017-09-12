@@ -10,7 +10,7 @@
         },
 
     "version": "0.9.1",
-    "homepage_url": "https://steemit.com/@armandocat",
+    "homepage_url": "https://steemit.com/steem-dev/@armandocat/steemit-more-info-0-9-1-chrome-extension-firefox-extension",
 
     "content_scripts": [{
         "js": ["document_start.js"],
