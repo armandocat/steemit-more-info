@@ -27,9 +27,33 @@
           'The amount in dollars is approximately how much reward will give a vote from this user if he/she uses a 100% of his/her current Voting Power.');
 
         var votingPowerEl = $('<span class="UserProfile__rep" id="Voting__power"></span>');
-        votingPowerEl.text(`(${votingPower}% VP` + 
-          (typeof votingDollars !== 'undefined' ? (' ≈ ' + votingDollars + '$') : '') 
-          + ')');
+        
+        var setVotingPower = function() {
+          if(typeof votingDollars !== 'undefined'){
+            votingDollars = ' ≈ ' + votingDollars + '$';
+          }else{
+            votingDollars = window.SteemMoreInfo.Utils.getLoadingHtml({
+              text: true,
+              style: 'padding: 0px 8px;',
+              backgroundColor: '#aaa'
+            });
+            var retry = function() {
+              votingDollars = undefined;
+              voteValue = window.SteemMoreInfo.Utils.getVotingDollarsPerAccount(100, result[0]);
+              if(typeof voteValue !== 'undefined') {
+                var voteValueText = voteValue.toFixed(2);
+                votingDollars = voteValueText;
+                setVotingPower();
+              }
+              setTimeout(retry, 100);
+            };
+            setTimeout(retry, 100);
+          }
+          var html = '(' + votingPower + '% VP' + votingDollars + ')';
+          votingPowerEl.html(html);
+        };
+
+        setVotingPower();
 
         insertEl.append(votingPowerEl);
         el.append(insertEl);

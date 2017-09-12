@@ -24,7 +24,7 @@
     }catch(e){
       return data;
     }
-    console.log("Sending message to " + url + " : ", dataJson);
+    // console.log("Sending message to " + url + " : ", dataJson);
     dataJson = _before.reduce(function(d, cb) {
       return cb.call(ws, d, url) || d;
     }, dataJson);
@@ -41,7 +41,7 @@
       cb(messageEvent);
       return;
     }
-    console.log("Received message from " + url + " : ", dataJson);
+    // console.log("Received message from " + url + " : ", dataJson);
     var cb2 = function(d) {
       messageEvent.data = JSON.stringify(d);
       cb(messageEvent);

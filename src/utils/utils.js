@@ -205,14 +205,18 @@
 
   var getLoadingHtml = function(options) {
     var divClass = 'smi-spinner';
+    var style = '';
     var bounceStyle = '';
     if(options && options.text){
       divClass += ' smi-spinner-text';
     }
+    if(options && options.style){
+      style = options.style;
+    }
     if(options && options.backgroundColor){
       bounceStyle += 'background-color: ' + options.backgroundColor + ';';
     }
-    return '<div class="' + divClass + '"><div class="smi-bounce1" style="' + bounceStyle + '"></div><div class="smi-bounce2" style="' + bounceStyle + '"></div><div class="smi-bounce3" style="' + bounceStyle + '"></div></div>';
+    return '<div class="' + divClass + '" style="' + style + '"><div class="smi-bounce1" style="' + bounceStyle + '"></div><div class="smi-bounce2" style="' + bounceStyle + '"></div><div class="smi-bounce3" style="' + bounceStyle + '"></div></div>';
   };
 
 
