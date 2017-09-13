@@ -131,3 +131,160 @@
   padding-top: 2px;
   padding-left: 5px;
 }
+
+
+.smi-show-as-grid-buttons {
+  display: none;
+}
+@media screen and (min-width: 700px) {
+  .smi-show-as-grid-buttons {
+    display: block;
+  }
+
+  html.smi-show-posts-as-grid .PostsList__summaries > li {
+    width: 33%;
+    display: inline-block;
+    vertical-align: top;
+  }
+  html.smi-show-posts-as-grid .PostSummary {
+    padding: 1rem 0.5rem;
+    margin-bottom: 0;
+    border: none;
+    border-top: 1px solid #e6e6e6;
+  }
+  html.smi-show-posts-as-grid .PostsList__summaries > li:nth-child(1) .PostSummary,
+  html.smi-show-posts-as-grid .PostsList__summaries > li:nth-child(2) .PostSummary,
+  html.smi-show-posts-as-grid .PostsList__summaries > li:nth-child(3) .PostSummary {
+    border-top: none;
+  }
+  html.smi-show-posts-as-grid .PostSummary .show-for-small-only {
+    display: block !important;
+  }
+  html.smi-show-posts-as-grid .PostSummary .show-for-medium {
+    display: none !important
+  }
+  html.smi-show-posts-as-grid .PostSummary .VotesAndComments {
+    display: block;
+    width: auto;
+    float: right;
+  }
+  html.smi-show-posts-as-grid .PostSummary.with-image .PostSummary__reblogged_by .Icon.reblog {
+    margin-left: -22px;
+  }
+  html.smi-show-posts-as-grid .PostSummary__image {
+    float: none;
+    margin-top: 0.5rem;
+    background-size: contain;
+    display: block;
+    width: 100%;
+    height: 10rem;
+  }
+  html.smi-show-posts-as-grid .PostSummary__body {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    white-space: normal;
+    text-overflow: initial;
+    padding-bottom: 0.3rem;
+  }
+  html.smi-show-posts-as-grid .PostSummary__body a {
+    display: block;
+  }
+  html.smi-show-posts-as-grid .PostSummary.with-image .PostSummary__reblogged_by,
+  html.smi-show-posts-as-grid .PostSummary.with-image .PostSummary__content {
+    margin-left: 0;
+  }
+  html.smi-show-posts-as-grid .PostSummary__footer {
+    font-size: 0.85em;
+  }
+  html.smi-show-posts-as-grid .PostSummary__footer .Voting, .PostSummary__footer .Voting__inner {
+    border-right: none;
+  }
+  html.smi-show-posts-as-grid .PostSummary__time_author_category {
+    margin-left: 0;
+    border-left: 1px solid #cacaca;
+  }
+  html.smi-show-posts-as-grid .PostSummary__time_author_category .Reblog__button {
+    margin-right: 0px;
+    padding-right: 0px;
+    border-right: none;
+  }
+
+  .smi-show-as-grid-buttons a {
+    padding-right: 10px;
+  }
+
+  .list-grid-toggle {
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 200;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    user-select: none;
+    display: inline-block;
+    margin-top: 9px;
+  }
+  .list-grid-toggle .label {
+    display: none;
+  }
+  .list-grid-toggle .icon {
+    width: 24px;
+  }
+  .list-grid-toggle .icon-bar {
+    position: relative;
+    width: 24px;
+    height: 6px;
+    margin: 0 auto 2px auto;
+    background: #ddd;
+  }
+  .list-grid-toggle .icon-bar:last-child {
+    margin-bottom: 0;
+  }
+  .list-grid-toggle .icon-bar:before,
+  .list-grid-toggle .icon-bar:after { 
+    position: absolute;
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: #ddd;
+    content: '';
+    opacity: 0;
+  }
+  html.smi-show-posts-as-grid .smi-show-as-grid-button .list-grid-toggle .icon-bar,
+  html.smi-show-posts-as-grid .smi-show-as-grid-button .list-grid-toggle .icon-bar:before,
+  html.smi-show-posts-as-grid .smi-show-as-grid-button .list-grid-toggle .icon-bar:after { 
+    background: #8a8a8a;
+  }
+  html:not(.smi-show-posts-as-grid) .smi-show-as-list-button .list-grid-toggle .icon-bar,
+  html:not(.smi-show-posts-as-grid) .smi-show-as-list-button .list-grid-toggle .icon-bar:before,
+  html:not(.smi-show-posts-as-grid) .smi-show-as-list-button .list-grid-toggle .icon-bar:after { 
+    background: #8a8a8a;
+  }
+  .list-grid-toggle .icon-bar:before {
+    left: -12px;
+  }
+  .list-grid-toggle .icon-bar:after {
+    right: -12px;
+  }
+  .list-grid-toggle .icon-grid .icon-bar {
+    width: 6px;
+  }    
+  .list-grid-toggle .icon-grid .icon-bar:before,
+  .list-grid-toggle .icon-grid .icon-bar:after {
+    opacity: 1;
+  }
+  .list-grid-toggle .icon-grid .icon-bar:before {
+    left: 0;
+    transform: translateX(-9px);
+  }
+  .list-grid-toggle .icon-grid .icon-bar:after {
+    right: 0;
+    transform: translateX(9px);
+  }
+}
+

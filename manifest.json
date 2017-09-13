@@ -9,7 +9,7 @@
         "128" : "smi.png"
         },
 
-    "version": "0.9.1",
+    "version": "0.9.2",
     "homepage_url": "https://steemit.com/steem-dev/@armandocat/steemit-more-info-0-9-1-chrome-extension-firefox-extension",
 
     "content_scripts": [{
@@ -41,7 +41,8 @@
         "src/votes_tab.js",
         "src/vote_weight_slider.js",
         "src/post_votes_list.js",
-        "src/favorite_tags.js"
+        "src/favorite_tags.js",
+        "src/show_posts_as_grid.js"
     ],
     "permissions": [
         "activeTab",
