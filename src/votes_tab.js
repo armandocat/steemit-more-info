@@ -49,9 +49,19 @@
           <div class="VotesTab" style="display: none;">\
              <div class="row">\
                 <div class="column small-12">\
-                   <h4 class="uppercase">Votes History</h4>\
-                   <div class="votes-container">\
-                   </div>\
+                  <h4 class="uppercase">\
+                    Votes History\
+                    <div class="switch-field" style="margin-bottom: -4px; margin-left: 20px;">\
+                      <input type="radio" id="votes-history-type-incoming" name="votes-history-type" class="votes-history-type" value="0" checked/>\
+                      <label for="votes-history-type-incoming">Incoming</label>\
+                      <input type="radio" id="votes-history-type-outgoing" name="votes-history-type" class="votes-history-type" value="1" />\
+                      <label for="votes-history-type-outgoing">Outgoing</label>\
+                      <input type="radio" id="votes-history-type-both" name="votes-history-type" class="votes-history-type" value="2" />\
+                      <label for="votes-history-type-both">Both</label>\
+                    </div>\
+                  </h4>\
+                  <div class="votes-container show-incoming">\
+                  </div>\
                 </div>\
              </div>\
           </div>\
@@ -80,6 +90,21 @@
       votesTab.find('.VotesTabLoading').show();
       var from = parseInt(loadMore.data('from'), 10);
       getVotes(votesTab, window.SteemMoreInfo.Utils.getPageAccountName(), from);
+    });
+
+    votesTab.find('.votes-history-type').on('change', function(e) {
+      var v = $(e.target).val();
+      var container = votesTab.find('.votes-container');
+      if(v == 1){
+        container.removeClass('show-incoming');
+        container.addClass('show-outgoing');
+      }else if(v == 2){
+        container.addClass('show-incoming');
+        container.addClass('show-outgoing');
+      }else{
+        container.addClass('show-incoming');
+        container.removeClass('show-outgoing');
+      }
     });
 
     getVotes(votesTab, window.SteemMoreInfo.Utils.getPageAccountName());
@@ -134,8 +159,16 @@
     var timeago = mdate.fromNow();
 
     var verb = weight >= 0 ? 'upvoted' : 'downvoted';
+    var voteType = '';
 
-    var el = $('<div class="vote">\
+    var pageAccountName = window.SteemMoreInfo.Utils.getPageAccountName();
+    if(author === pageAccountName && voter !== pageAccountName){
+      voteType = 'vote-incoming';
+    }else if(author !== pageAccountName && voter === pageAccountName) {
+      voteType = 'vote-outgoing';
+    }
+
+    var el = $('<div class="vote ' + voteType + '">\
       <a class="smi-navigate" href="/@' + voter + '">\
         <img class="Userpic" src="https://img.steemconnect.com/@' + voter + '?s=48" alt="' + voter + '">\
       </a>\
