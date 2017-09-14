@@ -2,12 +2,12 @@
 (function () {
 
   var isShowAsGrid = function() {
-    return window.localStorage && window.localStorage.SteemMoreInfoShowPostsAsGrid || false;
+    return window.localStorage && window.localStorage.SteemMoreInfoShowPostsAsGrid === 'yes' || false;
   };
 
   var setShowAsGrid = function(v) {
     if(window.localStorage){
-      window.localStorage.SteemMoreInfoShowPostsAsGrid = v;
+      window.localStorage.SteemMoreInfoShowPostsAsGrid = v ? 'yes' : 'no';
     }
   };
 
