@@ -54,7 +54,7 @@
         getUserTopMenusForAccountName(accountName, cb);
       }, domCheckTimeout);
     }   
-  };
+  }; 
 
 
   var steemPrice;
@@ -210,6 +210,9 @@
     if(options && options.text){
       divClass += ' smi-spinner-text';
     }
+    if(options && options.center){
+      divClass += ' smi-spinner-center';
+    }
     if(options && options.style){
       style = options.style;
     }
@@ -238,7 +241,21 @@
   $('body').on('click', 'a.smi-navigate', function(e) {
     e.preventDefault();
     navigate($(e.currentTarget).attr('href'));
-  });  
+  });
+
+
+  var findReact = function(dom) {
+    for (var key in dom) {
+        if (key.startsWith("__reactInternalInstance$")) {
+            var compInternals = dom[key]._currentElement;
+            var compWrapper = compInternals._owner;
+            var comp = compWrapper._instance;
+            return comp;
+        }
+    }
+    return null;
+  };
+
 
   var Utils = {
     getPageAccountName: getPageAccountName,
@@ -261,7 +278,8 @@
     getActiveVotes: getActiveVotes,
     getContent: getContent,
     getLoadingHtml: getLoadingHtml,
-    navigate: navigate
+    navigate: navigate,
+    findReact: findReact
   };
 
 

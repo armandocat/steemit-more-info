@@ -45,7 +45,7 @@
       container.append(votesTab);
     }
     votesTab.html('<div class="row">\
-       <div class="UserProfile__tab_content UserProfile__tab_content_VotesTab column">\
+       <div class="UserProfile__tab_content UserProfile__tab_content_smi UserProfile__tab_content_VotesTab column">\
           <div class="VotesTab" style="display: none;">\
              <div class="row">\
                 <div class="column small-12">\

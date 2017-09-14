@@ -42,6 +42,10 @@ var jsToLoad = [
 'vendor/history-events.js',
 'vendor/compare-versions.js',
 'vendor/toastr.min.js',
+'vendor/Chart.min.js',
+'vendor/remarkable.min.js',
+'vendor/sanitize-html.min.js',
+'src/utils/sanitize.js',
 'src/utils/notification_popup.js',
 'src/utils/utils.js',
 'src/utils/events.js'
@@ -52,6 +56,7 @@ jsToLoad.push('src/votes_tab.js');
 jsToLoad.push('src/vote_weight_slider.js');
 jsToLoad.push('src/post_votes_list.js');
 // jsToLoad.push('src/favorite_tags.js');
+jsToLoad.push('src/blog_histogram.js');
 jsToLoad.push('src/show_posts_as_grid.js');
 
 jsToLoad.reverse().reduce(function(next, script){

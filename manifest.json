@@ -7,10 +7,10 @@
         "16" : "smi16.png",
         "48" : "smi48.png",
         "128" : "smi.png"
-        },
+    },
 
     "version": "0.9.2",
-    "homepage_url": "https://steemit.com/steem-dev/@armandocat/steemit-more-info-0-9-1-chrome-extension-firefox-extension",
+    "homepage_url": "https://steemit.com/@armandocat",
 
     "content_scripts": [{
         "js": ["document_start.js"],
@@ -31,7 +31,11 @@
         "vendor/toastr.min.css",
         "vendor/toastr.min.js",
         "vendor/wsHook.js",
+        "vendor/Chart.min.js",
+        "vendor/remarkable.min.js",
+        "vendor/sanitize-html.min.js",
         "src/utils/notification_popup.js",
+        "src/utils/sanitize.js",
         "src/utils/utils.js",
         "src/utils/events.js",
         "src/utils/check_update.js",
@@ -42,6 +46,7 @@
         "src/vote_weight_slider.js",
         "src/post_votes_list.js",
         "src/favorite_tags.js",
+        "src/blog_histogram.js",
         "src/show_posts_as_grid.js"
     ],
     "permissions": [

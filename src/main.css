@@ -19,6 +19,11 @@
   width: 0.7em;
   height: 0.7em;
 }
+.smi-spinner-center {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 27px);  
+}
 .smi-spinner .smi-bounce1 {
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
@@ -344,4 +349,62 @@
 .switch-field label:last-of-type {
   border-radius: 0 4px 4px 0;
 }
+
+
+.smi-posts-histogram-container {
+  position: relative;
+  width: 100%;
+  border-bottom: solid 1px #aaa;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+.smi-posts-histogram-container h6 {
+  text-align: center;
+}  
+.chartWrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.chartWrapper > canvas {
+  position: absolute;
+  left: 0;
+  top: 0;  
+  pointer-events:none;
+  background: white;
+}
+.chartAreaWrapper {
+  overflow-x: scroll;
+  position: relative;
+  width: 100%;
+}
+.chartAreaWrapper2 {
+  position: relative;
+  height: 200px;
+}
+
+.smi-posts-histogram-posts-container {
+  position: absolute;
+  width: 100%;
+  margin-top: 15px;
+  z-index: 200;
+}
+.smi-posts-histogram-posts-container2 {
+  position: relative;
+  border-radius: 3px;
+  max-width: 56rem;
+  box-shadow: 0 0 5px 0 #404040;
+  background: white;
+  padding: 20px;
+  margin: 0 auto;
+}
+.smi-posts-histogram-posts-container2 h5 {
+  margin-bottom: 22px;
+}
+.smi-posts-histogram-posts-container .close-button {
+  top: -3px;
+  right: -8px;
+}
+
 
