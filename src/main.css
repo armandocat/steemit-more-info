@@ -406,5 +406,10 @@
   top: -3px;
   right: -8px;
 }
-
-
+.smi-posts-histogram-posts-list {
+  max-height: 900px;
+  max-height: calc(100vh - 480px);
+  overflow-y: auto;
+  padding-top: 10px;
+  padding-bottom: 60px;
+}
