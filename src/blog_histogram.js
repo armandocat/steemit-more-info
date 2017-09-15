@@ -145,7 +145,7 @@
     postsContainer = $('<div class="smi-posts-histogram-posts-container">\
       <div class="smi-posts-histogram-posts-container2">\
         <button class="close-button" type="button"><span aria-hidden="true" class="">×</span></button>\
-        <h5># of Posts by @' + name + ' on ' + dateString + '</h5>\
+        <h5>Posts by @' + name + ' on ' + dateString + '</h5>\
         <ul class="smi-posts-histogram-posts-list PostsList__summaries hfeed" itemscope="" itemtype="http://schema.org/blogPosts">\
         </ul>\
       </div>\
