@@ -1,4 +1,4 @@
-# Steemit More Info 0.9.1 - Chrome Extension + Firefox Extension
+# Steemit More Info 0.9.2 - Chrome Extension + Firefox Extension
 
 <center>
     
@@ -19,7 +19,7 @@ Because this is a Chrome and Firefox extension that you install on your browser,
 _Please take into consideration that this is a new project that I just started, and the features are limited to just a few so far! I'm planning to add more and more features in the next versions. Every suggestion and idea is very much appreciated!_
 
 
-### This is the second release with some bug fixes and a few ![](https://i.imgsafe.org/65/655926ba30.png) features added 
+### This is version 0.9.2 with some bug fixes and a few ![](https://i.imgsafe.org/65/655926ba30.png) features added 
 
 <br>
 
@@ -33,9 +33,10 @@ _Please take into consideration that this is a new project that I just started, 
 
 ---
 
-* A new tab _'Votes'_ is added, where you may see the **latest upvotes done or received** by that user
-  ![](https://i.imgsafe.org/65/655926ba30.png) Now it shows the estimate of the vote in $ too!
-  ![](https://i.imgsafe.org/79/799f83680d.png)
+* A new tab _'Votes'_ is added, where you may see the **latest upvotes done or received** by that user.
+  It shows the estimate of the votes in $ too!
+  ![](https://i.imgsafe.org/65/655926ba30.png) You can now filter the votes between _incoming votes_ and _outgoing votes_
+  ![](https://i.imgsafe.org/94/9455d3ba4b.png)
 
 ---
 
@@ -45,9 +46,22 @@ _Please take into consideration that this is a new project that I just started, 
 
 ---
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) When you are looking at a post or comment and you click "votes" to see the **list of people that voted that post**, you now also see what was **their contribute to the total reward**!
+* When you are looking at a post or comment and you click "votes" to see the **list of people that voted that post**, you now also see what was **their contribute to the total reward**!
   ![](https://i.imgsafe.org/79/79a7ceb140.png)
   ![](https://i.imgsafe.org/79/79a7ce65ef.png)
+
+---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) You can see the posts with two different layouts: list (default) and grid! You can change to **grid layout** using on the buttons on the top-right corner of the page. 
+  ![](https://i.imgsafe.org/92/92cdbd3a63.png)
+
+---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) On the blog page of an user, you now see **an histogram of the posts of that user** based on the creation date. You can scroll horizontally to go back in time. 
+  ![](https://i.imgsafe.org/ba/ba6848f6a1.png)
+<br>
+  By clicking on one of the bars, you can **open the list of posts made on one specific date**. This makes it easier to look at old posts of an user!
+  ![](https://i.imgsafe.org/ba/ba6845e2c2.png)
 
 
 <br>
