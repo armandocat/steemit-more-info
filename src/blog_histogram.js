@@ -1,7 +1,11 @@
 
-// steem.api.getBlogEntries('mobbs', 0, 500, function(){console.log(arguments)})
-
 (function(){
+
+  var defaultBarBackgroundColor = '#1a5099';
+  var defaultBarBorderColor = '#133c73';
+  var selectedBarBackgroundColor = 'red';
+  var selectedBarBorderColor = 'red';
+
 
   var createHistogram = function(name) {
     var container = $('<div class="smi-posts-histogram-container">\
@@ -43,6 +47,8 @@
       }
 
       var labels = [];
+      var backgroundColors = [];
+      var borderColors = [];
       var dataset = [];
 
       var d = moment(min);
@@ -50,12 +56,14 @@
       while(d <= today){
         var dataString = d.format(format);
         labels.push(dataString);
+        backgroundColors.push(defaultBarBackgroundColor);
+        borderColors.push(defaultBarBorderColor);
         dataset.push(dataMap[dataString] ? dataMap[dataString].length : 0);
         d.add(1, 'd');
       }
       
-
-      var ctx = container.find('.smi-posts-histogram')[0].getContext("2d");
+      var histogram = container.find('.smi-posts-histogram');
+      var ctx = histogram[0].getContext("2d");
       var axis = container.find('.smi-posts-histogram-axis');
       container.append(ctx);
 
@@ -73,26 +81,9 @@
           data: {
               labels: labels,
               datasets: [{
-                  // label: '# of Posts',
                   data: dataset,
-                  backgroundColor: '#1a5099',
-                  borderColor: '#133c73',
-                  // backgroundColor: [
-                  //     'rgba(255, 99, 132, 0.2)',
-                  //     'rgba(54, 162, 235, 0.2)',
-                  //     'rgba(255, 206, 86, 0.2)',
-                  //     'rgba(75, 192, 192, 0.2)',
-                  //     'rgba(153, 102, 255, 0.2)',
-                  //     'rgba(255, 159, 64, 0.2)'
-                  // ],
-                  // borderColor: [
-                  //     'rgba(255,99,132,1)',
-                  //     'rgba(54, 162, 235, 1)',
-                  //     'rgba(255, 206, 86, 1)',
-                  //     'rgba(75, 192, 192, 1)',
-                  //     'rgba(153, 102, 255, 1)',
-                  //     'rgba(255, 159, 64, 1)'
-                  // ],
+                  backgroundColor: backgroundColors,
+                  borderColor: borderColors,
                   borderWidth: 1
               }]
           },
@@ -128,9 +119,17 @@
         if (item) {
           var label = item._model.label;
           var date = moment(label, format);
+          var index = item._index;
           openPostsListPerDate(name, date, dataMap[label], container);
+
+          chart.data.datasets[0].backgroundColor[index] = selectedBarBackgroundColor;
+          chart.data.datasets[0].borderColor[index] = selectedBarBorderColor;
+
+          chart.update();
         }
       };
+
+      histogram.data('chart', chart);
 
     });
 
@@ -141,7 +140,7 @@
 
   var openPostsListPerDate = function(name, date, posts, container) {
     var postsContainer = container.find('.smi-posts-histogram-posts-container');
-    postsContainer.remove();
+    closePostsList(postsContainer);
     var dateString = moment(date).format('dddd, MMMM Do YYYY'); // "Sunday, February 14th 2010"
     postsContainer = $('<div class="smi-posts-histogram-posts-container">\
       <div class="smi-posts-histogram-posts-container2">\
@@ -153,7 +152,7 @@
     </div>');
 
     postsContainer.find('.close-button').on('click', function(){
-      postsContainer.remove();
+      closePostsList(postsContainer);
     });
 
     postsList = postsContainer.find('.smi-posts-histogram-posts-list');
@@ -162,7 +161,31 @@
     });
 
     container.append(postsContainer);
+
+    $('html, body').animate({
+        scrollTop: $('.smi-posts-histogram-container').offset().top - 100
+    }, 400);
   };
+
+  var closePostsList = function(postsContainer) {
+    var histogram = postsContainer.closest('.smi-posts-histogram-container').find('.smi-posts-histogram');
+    if(histogram.length){
+      var chart = histogram.data('chart');
+      if(chart){
+
+        chart.data.datasets[0].backgroundColor = chart.data.datasets[0].backgroundColor.map(function(){
+          return defaultBarBackgroundColor;
+        });
+        chart.data.datasets[0].borderColor = chart.data.datasets[0].borderColor.map(function(){
+          return defaultBarBorderColor;
+        });
+
+        chart.update();
+      }
+    }
+    postsContainer.remove();
+  };
+
 
   var createPost = function(name, post) {
     var title = post.title;
@@ -396,10 +419,10 @@
     if(t.closest('.smi-posts-histogram-posts-container2').length){
       return;
     }
-    if(t.closest('#post_overlay')){
+    if(t.closest('#post_overlay').length){
       return;
     }
-    $('.smi-posts-histogram-posts-container').remove(); 
+    closePostsList($('.smi-posts-histogram-posts-container'));
   });
 
 
