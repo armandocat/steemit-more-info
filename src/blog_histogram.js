@@ -3,13 +3,15 @@
 
   var defaultBarBackgroundColor = '#1a5099';
   var defaultBarBorderColor = '#133c73';
+  var resteemBarBackgroundColor = '#008000';
+  var resteemBarBorderColor = '#006100';
   var selectedBarBackgroundColor = 'red';
   var selectedBarBorderColor = 'red';
 
 
   var createHistogram = function(name) {
     var container = $('<div class="smi-posts-histogram-container">\
-      <h6># of Posts by @' + name + '</h6>\
+      <h6 class="smi-posts-histogram-title">Posts by @' + name + '</h6>\
       <div class="chartWrapper">\
         <div class="chartAreaWrapper">\
           <div class="chartAreaWrapper2">\
@@ -35,30 +37,68 @@
       var dataMap = {};
       data.forEach(function(d) {
         var post = d.comment;
-        var date = new Date(post.created + 'Z');
+        var posted = d.reblog_on;
+        if(posted === '1970-01-01T00:00:00'){
+          posted = post.created;
+        }
+        var date = new Date(posted + 'Z');
         min = min && min <= date ? min : date;
         var m = moment(date);
         var dataString = m.format(format);
         dataMap[dataString] = dataMap[dataString] || [];
         dataMap[dataString].push(post);
       });
-      if(!min){
+      if(!min){        
         return;
       }
 
+
+      var numberOfPosts = (data.length === 500 ? 'Last ' : '') + data.length + (data.length === 1 ? ' post' : ' posts') + ' by @' + name;
+      numberOfPosts += '<span class="smi-posts-histogram-legend">\
+        <span style="background-color: ' +  defaultBarBackgroundColor + '; border-color: ' + defaultBarBorderColor + ';"></span>Posts \
+        <span style="background-color: ' +  resteemBarBackgroundColor + '; border-color: ' + resteemBarBorderColor + ';"></span>Resteem \
+      </span>';
+      container.find('.smi-posts-histogram-title').html(numberOfPosts);
+
       var labels = [];
-      var backgroundColors = [];
-      var borderColors = [];
-      var dataset = [];
+      var datasets = [{
+        // POSTS
+        label: 'Posts',
+        data: [],
+        backgroundColor: [],
+        borderColor: [],
+        borderWidth: 1
+      },{
+        // RESTEEMS
+        label: 'Resteem',
+        data: [],
+        backgroundColor: [],
+        borderColor: [],
+        borderWidth: 1
+      }];
 
       var d = moment(min);
       var today = moment().endOf('day');
       while(d <= today){
         var dataString = d.format(format);
         labels.push(dataString);
-        backgroundColors.push(defaultBarBackgroundColor);
-        borderColors.push(defaultBarBorderColor);
-        dataset.push(dataMap[dataString] ? dataMap[dataString].length : 0);
+        datasets[0].backgroundColor.push(defaultBarBackgroundColor);
+        datasets[0].borderColor.push(defaultBarBorderColor);
+        datasets[1].backgroundColor.push(resteemBarBackgroundColor);
+        datasets[1].borderColor.push(resteemBarBorderColor);
+        var p = 0;
+        var r = 0;
+        _.each(dataMap[dataString], function(post){
+          var author = post.author;
+          var isRepost = name !== author;
+          if(isRepost){
+            r++;
+          }else{
+            p++;
+          }
+        });
+        datasets[0].data.push(p);
+        datasets[1].data.push(r);
         d.add(1, 'd');
       }
       
@@ -80,22 +120,26 @@
           type: 'bar',
           data: {
               labels: labels,
-              datasets: [{
-                  data: dataset,
-                  backgroundColor: backgroundColors,
-                  borderColor: borderColors,
-                  borderWidth: 1
-              }]
+              datasets: datasets
           },
           options: {
               maintainAspectRatio: false,
               scales: {
+                  xAxes: [{
+                      stacked: true,
+                  }],
                   yAxes: [{
+                      stacked: true,
                       ticks: {
                           beginAtZero:true
                       }
                   }]
               },
+              tooltips: {
+                  mode: 'index',
+                  intersect: false
+              },
+              responsive: true,
               legend: {
                 display: false
               },
@@ -122,8 +166,16 @@
           var index = item._index;
           openPostsListPerDate(name, date, dataMap[label], container);
 
-          chart.data.datasets[0].backgroundColor[index] = selectedBarBackgroundColor;
-          chart.data.datasets[0].borderColor[index] = selectedBarBorderColor;
+          if(selectedBarBackgroundColor){
+            chart.data.datasets.forEach(function(ds) {
+              ds.backgroundColor[index] = selectedBarBackgroundColor;
+            });
+          }
+          if(selectedBarBorderColor){
+            chart.data.datasets.forEach(function(ds) {
+              ds.borderColor[index] = selectedBarBorderColor;
+            });
+          }
 
           chart.update();
         }
@@ -191,6 +243,13 @@
           return defaultBarBorderColor;
         });
 
+        chart.data.datasets[1].backgroundColor = chart.data.datasets[1].backgroundColor.map(function(){
+          return resteemBarBackgroundColor;
+        });
+        chart.data.datasets[1].borderColor = chart.data.datasets[1].borderColor.map(function(){
+          return resteemBarBorderColor;
+        });
+
         chart.update();
       }
     }
@@ -246,10 +305,12 @@
         dollars = '' + dollars.toFixed(2);
       }
     }else{
-      dollars = post.total_payout_value.replace(' SBD', '');
-      dollarsCurators = post.curator_payout_value.replace(' SBD', '');
-      dollarsAuthor = parseFloat(dollars) - parseFloat(dollarsCurators);
-      dollarsAuthor = '' + dollarsAuthor.toFixed(3);
+      dollars = parseFloat(post.total_payout_value.replace(' SBD', ''));
+      dollarsCurators = parseFloat(post.curator_payout_value.replace(' SBD', ''));
+      dollarsAuthor = dollars - dollarsCurators;
+      dollars = '' + dollars.toFixed(2);
+      dollarsCurators = '' + dollarsCurators.toFixed(2);
+      dollarsAuthor = '' + dollarsAuthor.toFixed(2);
     }
 
     var dsplit = dollars.split('.');

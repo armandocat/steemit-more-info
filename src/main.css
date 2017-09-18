@@ -358,9 +358,23 @@
   padding-bottom: 12px;
   margin-bottom: 20px;
 }
-.smi-posts-histogram-container h6 {
+.smi-posts-histogram-container .smi-posts-histogram-title {
   text-align: center;
 }  
+.smi-posts-histogram-container .smi-posts-histogram-legend {
+    font-size: 0.8em;
+    font-weight: 300;
+}
+.smi-posts-histogram-container .smi-posts-histogram-legend > span {
+  margin-left: 20px;
+  display: inline-block;
+  height: 8px;
+  width: 15px;
+  margin-bottom: 0px;
+  margin-right: 2px;
+  border: solid 1px;
+}
+
 .chartWrapper {
   position: relative;
   width: 100%;
