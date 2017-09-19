@@ -296,7 +296,7 @@
       var cashout_time = post.cashout_time;
       cashout_time = moment(cashout_time + 'Z');
       payoutDateString = cashout_time.format('DD/MM/YYYY hh:mm A');
-      payoutDateString2 = cashout_time.toNow();
+      payoutDateString2 = cashout_time.fromNow();
 
       var dollars = window.SteemMoreInfo.Utils.getVotingDollarsPerShares(rshare);
       if(typeof dollars === 'undefined'){
