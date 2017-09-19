@@ -305,9 +305,9 @@
         dollars = '' + dollars.toFixed(2);
       }
     }else{
-      dollars = parseFloat(post.total_payout_value.replace(' SBD', ''));
+      dollarsAuthor = parseFloat(post.total_payout_value.replace(' SBD', ''));
       dollarsCurators = parseFloat(post.curator_payout_value.replace(' SBD', ''));
-      dollarsAuthor = dollars - dollarsCurators;
+      dollars = dollarsAuthor + dollarsCurators;
       dollars = '' + dollars.toFixed(2);
       dollarsCurators = '' + dollarsCurators.toFixed(2);
       dollarsAuthor = '' + dollarsAuthor.toFixed(2);
