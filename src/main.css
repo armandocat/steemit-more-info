@@ -427,3 +427,18 @@
   padding-top: 10px;
   padding-bottom: 60px;
 }
+
+
+
+.smi-followers-table-wrapper .dataTables_length select {
+  width: 100px;
+  display: inline-block;
+}
+.smi-followers-table-wrapper .dataTables_filter input {
+  width: 200px;
+  display: inline-block;
+}
+.smi-followers-table-wrapper .dataTables_length,
+.smi-followers-table-wrapper .dataTables_filter {
+  padding-bottom: 10px;
+}

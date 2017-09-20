@@ -34,6 +34,9 @@
         "vendor/Chart.min.js",
         "vendor/remarkable.min.js",
         "vendor/sanitize-html.min.js",
+        "vendor/datatables.min.css",
+        "vendor/datatables.min.js",
+        "vendor/DataTables-1.10.16/images/*",
         "src/utils/notification_popup.js",
         "src/utils/sanitize.js",
         "src/utils/utils.js",
@@ -47,6 +50,7 @@
         "src/post_votes_list.js",
         "src/favorite_tags.js",
         "src/blog_histogram.js",
+        "src/followers_table.js",
         "src/show_posts_as_grid.js"
     ],
     "permissions": [

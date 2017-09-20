@@ -20,6 +20,7 @@ function checkUpdate(){
 
 
 [
+'vendor/datatables.min.css',
 'vendor/toastr.min.css',
 'src/main.css'
 ].reverse().reduce(function(next, href){
@@ -45,6 +46,7 @@ var jsToLoad = [
 'vendor/Chart.min.js',
 'vendor/remarkable.min.js',
 'vendor/sanitize-html.min.js',
+'vendor/datatables.min.js',
 'src/utils/sanitize.js',
 'src/utils/notification_popup.js',
 'src/utils/utils.js',
@@ -57,6 +59,7 @@ jsToLoad.push('src/vote_weight_slider.js');
 jsToLoad.push('src/post_votes_list.js');
 // jsToLoad.push('src/favorite_tags.js');
 jsToLoad.push('src/blog_histogram.js');
+jsToLoad.push('src/followers_table.js');
 jsToLoad.push('src/show_posts_as_grid.js');
 
 jsToLoad.reverse().reduce(function(next, script){

@@ -62,6 +62,8 @@
   var recentClaims;
   var currentUserAccount;
   var votePowerReserveRate;
+  var totalVestingFund;
+  var totalVestingShares;
   function updateSteemVariables() {
     steem.api.getRewardFund("post", function(e, t) {
       rewardBalance = parseFloat(t.reward_balance.replace(" STEEM", ""));
@@ -72,6 +74,8 @@
     });
     steem.api.getDynamicGlobalProperties(function(e, t){
       votePowerReserveRate = t.vote_power_reserve_rate;
+      totalVestingFund = parseFloat(t.total_vesting_fund_steem.replace(" STEEM", ""));
+      totalVestingShares = parseFloat(t.total_vesting_shares.replace(" VESTS", ""));
     });
 
     var loggedUserName = getLoggedUserName()
@@ -111,6 +115,21 @@
       return current_power;
   };
 
+  var getEffectiveVestingSharesPerAccount = function(account) {
+    var effective_vesting_shares = parseFloat(account.vesting_shares.replace(" VESTS", "")) 
+      + parseFloat(account.received_vesting_shares.replace(" VESTS", "")) 
+      - parseFloat(account.delegated_vesting_shares.replace(" VESTS", ""));
+    return effective_vesting_shares;
+  };
+
+  var getSteemPowerPerAccount = function(account) {
+    if(totalVestingFund && totalVestingShares){
+      var vesting_shares = getEffectiveVestingSharesPerAccount(account);
+      var sp = steem.formatter.vestToSteem(vesting_shares, totalVestingShares, totalVestingFund);
+      return sp;
+    }
+  };
+
 
   var getVotingDollarsPerAccount = function(voteWeight, account) {
     if(!account){
@@ -121,9 +140,7 @@
     }
     if(rewardBalance && recentClaims && steemPrice && votePowerReserveRate){
 
-      var effective_vesting_shares = Math.round((parseFloat(account.vesting_shares.replace(" VESTS", "")) 
-        + parseFloat(account.received_vesting_shares.replace(" VESTS", "")) 
-        - parseFloat(account.delegated_vesting_shares.replace(" VESTS", ""))) * 1000000);
+      var effective_vesting_shares = Math.round(getEffectiveVestingSharesPerAccount(account) * 1000000);
       var voting_power = account.voting_power;
       var weight = voteWeight * 100;
       var last_vote_time = new Date((account.last_vote_time) + 'Z');
@@ -274,6 +291,8 @@
     getVotingPowerPerAccount: getVotingPowerPerAccount,
     getVotingDollarsPerAccount: getVotingDollarsPerAccount,
     getVotingDollarsPerShares: getVotingDollarsPerShares,
+    getEffectiveVestingSharesPerAccount: getEffectiveVestingSharesPerAccount,
+    getSteemPowerPerAccount: getSteemPowerPerAccount,
     getUserHistory: getUserHistory,
     getActiveVotes: getActiveVotes,
     getContent: getContent,
