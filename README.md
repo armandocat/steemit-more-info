@@ -1,4 +1,4 @@
-# Steemit More Info 0.9.2 - Chrome Extension + Firefox Extension
+# Steemit More Info 1.0 - Chrome Extension + Firefox Extension
 
 <center>
     
@@ -19,7 +19,7 @@ Because this is a Chrome and Firefox extension that you install on your browser,
 _Please take into consideration that this is a new project that I just started, and the features are limited to just a few so far! I'm planning to add more and more features in the next versions. Every suggestion and idea is very much appreciated!_
 
 
-### This is version 0.9.2 with some bug fixes and a few ![](https://i.imgsafe.org/65/655926ba30.png) features added 
+### This is version 1.0 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
 
 <br>
 
@@ -35,7 +35,7 @@ _Please take into consideration that this is a new project that I just started, 
 
 * A new tab _'Votes'_ is added, where you may see the **latest upvotes done or received** by that user.
   It shows the estimate of the votes in $ too!
-  ![](https://i.imgsafe.org/65/655926ba30.png) You can now filter the votes between _incoming votes_ and _outgoing votes_
+  You can filter the votes between _incoming votes_ and _outgoing votes_
   ![](https://i.imgsafe.org/94/9455d3ba4b.png)
 
 ---
@@ -52,17 +52,26 @@ _Please take into consideration that this is a new project that I just started, 
 
 ---
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) You can see the posts with two different layouts: list (default) and grid! You can change to **grid layout** using on the buttons on the top-right corner of the page. 
+* You can see the posts with two different layouts: list (default) and grid! You can change to **grid layout** using on the buttons on the top-right corner of the page. 
   ![](https://i.imgsafe.org/92/92cdbd3a63.png)
 
 ---
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) On the blog page of an user, you now see **an histogram of the posts of that user** based on the creation date. You can scroll horizontally to go back in time. 
-  ![](https://i.imgsafe.org/ba/ba6848f6a1.png)
+* On the blog page of an user, you now see **an histogram of the posts of that user** based on the creation date. You can scroll horizontally to go back in time. 
+  ![](https://i.imgsafe.org/65/655926ba30.png) Posts made by the user are shown in blue, reposts in green!
+  
+  ![](https://i.imgsafe.org/3b/3b4fee4789.png)
 <br>
   By clicking on one of the bars, you can **open the list of posts made on one specific date**. This makes it easier to look at old posts of an user!
-  ![](https://i.imgsafe.org/ba/ba6845e2c2.png)
+  ![](https://i.imgsafe.org/3b/3b4fda2a17.png)
 
+  ![](https://i.imgsafe.org/65/655926ba30.png) You can choose to **show the histogram automatically on page load** (_default_) or if you prefer to load the histogram on request if you find it to be too invasive. To change this setting, hover on the histogram title and select "On load: hidden"
+
+---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) The **followers and following pages have been updated** to show a table of the followers/following, with more informations (**Reputation, STEEM Power, Upvote Worth**). You can **sort** by the different attributes by clicking on the table's column.
+
+  ![](https://i.imgsafe.org/3b/3b4fd9648b.png)
 
 <br>
 <br>
@@ -71,10 +80,12 @@ _Please take into consideration that this is a new project that I just started, 
 ## Future development
 
 I'm planning to add more features like:
+* Setting page to enable/disable features
 * **COMING SOON: Trending of up to 5 favorite tags in one page.** You select your favorite tags and you'll see the list of the top trending of all the tags combined in one list. I'm not releasing this feature yet because it still has some bugs. 
-* A better follower page, where you can also sort the followers by date they added you.
 * **Notifications**, for instance if somebody replies on one of your posts or comments, if you get an upvote, ...
-* Maybe adding a page with some graphs of the stats of the account 
+* A page with some graphs of the stats of the account 
+* A "witnesses" tab where you can see the witnesses the user is voting for
+* Working on my own API, such as _mentions notification_, _followers by date_ of follow operation, posts _reposted_ by others, ...
 * ...
 
 ## Privacy - Do I steal your data?
@@ -94,7 +105,7 @@ _(Currently you will need to install it yourself)_
 - _If you are using Chrome_
   - Open the Chrome Extentions page by typing `chrome://extensions` in your Chrome Browser.
   - Drag and drop the root folder of the project you just unzipped _(steemit-more-info)_ inside the chrome extension page.
-- ![](https://i.imgsafe.org/65/655926ba30.png) _If you are using Firefox_
+- _If you are using Firefox_
   - Open `about:debugging` in Firefox, click "Load Temporary Add-on" and select any file in the extension's directory.
 - Go to [Steemit](https://www.steemit.com)!
 

@@ -9,8 +9,8 @@
         "128" : "smi.png"
     },
 
-    "version": "0.9.2",
-    "homepage_url": "https://steemit.com/steemdev/@armandocat/steemit-more-info-0-9-2-chrome-extension-firefox-extension",
+    "version": "1.0.0",
+    "homepage_url": "https://steemit.com/steemdev/@armandocat/steemit-more-info-1-0-chrome-extension-firefox-extension",
 
     "content_scripts": [{
         "js": ["document_start.js"],
