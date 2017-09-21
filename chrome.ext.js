@@ -5,7 +5,7 @@ function checkUpdate(){
   var currentVersion = manifestData.version;
   document.body.dataset.SteemitMoreInfoCurrentVersion = currentVersion;
 
-  $.get('https://raw.githubusercontent.com/armandocat/steemit-more-info/master/manifest.json')
+  $.get('https://raw.githubusercontent.com/armandocat/steemit-more-info/master/manifest.json?t=' + new Date().getTime())
     .done(function(data) {
       document.body.dataset.SteemitMoreInfoNewVersionManifest = data;
 
