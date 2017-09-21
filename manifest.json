@@ -34,6 +34,7 @@
         "vendor/Chart.min.js",
         "vendor/remarkable.min.js",
         "vendor/sanitize-html.min.js",
+        "vendor/attrchange.js",
         "vendor/datatables.min.css",
         "vendor/datatables.min.js",
         "vendor/DataTables-1.10.16/images/*",
@@ -51,7 +52,8 @@
         "src/favorite_tags.js",
         "src/blog_histogram.js",
         "src/followers_table.js",
-        "src/show_posts_as_grid.js"
+        "src/show_posts_as_grid.js",
+        "src/post_floating_bottom_bar.js"
     ],
     "permissions": [
         "activeTab",

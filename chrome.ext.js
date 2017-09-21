@@ -47,6 +47,7 @@ var jsToLoad = [
 'vendor/remarkable.min.js',
 'vendor/sanitize-html.min.js',
 'vendor/datatables.min.js',
+'vendor/attrchange.js',
 'src/utils/sanitize.js',
 'src/utils/notification_popup.js',
 'src/utils/utils.js',
@@ -61,6 +62,8 @@ jsToLoad.push('src/post_votes_list.js');
 jsToLoad.push('src/blog_histogram.js');
 jsToLoad.push('src/followers_table.js');
 jsToLoad.push('src/show_posts_as_grid.js');
+jsToLoad.push('src/post_floating_bottom_bar.js');
+
 
 jsToLoad.reverse().reduce(function(next, script){
   return function(){
