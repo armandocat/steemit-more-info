@@ -8,9 +8,40 @@
   var selectedBarBackgroundColor = 'red';
   var selectedBarBorderColor = 'red';
 
+  var getShowHistogram = function() {
+    return window.localStorage && window.localStorage.SteemMoreInfoPostsHistogram || 'show';
+  };
+
+  var setShowHistogram = function(v) {
+    if(window.localStorage){
+      window.localStorage.SteemMoreInfoPostsHistogram = v;
+    }
+  };
+
+
+  var showOrHideHistogram = function(container, show) {
+    container.find('.smi-posts-histogram-title').css('visibility', show ? 'visible' : 'hidden');
+    container.find('.chartWrapper')[show ? 'show' : 'hide']();
+    container.find('.smi-spinner')[show ? 'show' : 'hide']();
+    container.find('.smi-show-posts-histogram').css('visibility', !show ? 'visible' : 'hidden');
+  };
+
 
   var createHistogram = function(name) {
+
+    var showHistogram = getShowHistogram();
+
     var container = $('<div class="smi-posts-histogram-container">\
+      <div class="smi-posts-settings-bar">\
+        <a class="smi-show-posts-histogram" href="#">Show posts histogram</a>\
+        <div class="smi-posts-show-settings">\
+          <label>On load: </label>\
+          <select class="smi-posts-show-select">\
+            <option value="show"' + (showHistogram === 'show' ? ' selected' : '') + '>Show</option>\
+            <option value="hidden"' + (showHistogram !== 'show' ? ' selected' : '') + '>Hidden</option>\
+          </select>\
+        </div>\
+      </div>\
       <h6 class="smi-posts-histogram-title">Posts by @' + name + '</h6>\
       <div class="chartWrapper">\
         <div class="chartAreaWrapper">\
@@ -25,8 +56,20 @@
     var loading = $(window.SteemMoreInfo.Utils.getLoadingHtml({
       center: true
     }));
-
     container.append(loading);
+
+    var showSelect = container.find('.smi-posts-show-select');
+    showSelect.on('change', function() {
+      var v = showSelect.val();
+      setShowHistogram(v);
+      showOrHideHistogram(container, v === 'show');
+    });
+    container.find('.smi-show-posts-histogram').on('click', function(e) {
+      e.preventDefault();
+      showOrHideHistogram(container, true);      
+    });
+    showOrHideHistogram(container, showHistogram === 'show');
+
 
     steem.api.getBlog(name, 0, 500, function(err, data){
       if(err){
@@ -461,6 +504,9 @@
     };
   
     el.find('a').on('click', function(e){
+      if(e.ctrlKey || e.metaKey) {
+        return;
+      }
       e.preventDefault();
       var t = $(e.currentTarget);
       var href = t.attr('href');

@@ -256,6 +256,9 @@
   };
 
   $('body').on('click', 'a.smi-navigate', function(e) {
+    if(e.ctrlKey || e.metaKey) {
+      return;
+    }
     e.preventDefault();
     navigate($(e.currentTarget).attr('href'));
   });

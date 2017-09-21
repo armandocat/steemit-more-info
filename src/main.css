@@ -428,6 +428,32 @@
   padding-bottom: 60px;
 }
 
+.smi-posts-histogram-container .smi-posts-settings-bar {
+  position: absolute;
+  width: 100%;
+}
+.smi-posts-histogram-container .smi-posts-settings-bar .smi-posts-show-settings {
+  right: 0px;
+  top: 0px;
+  position: absolute;
+  display: none;
+}
+.smi-posts-histogram-container .smi-posts-settings-bar:hover .smi-posts-show-settings {
+  display: block;
+}
+.smi-posts-histogram-container .smi-posts-settings-bar .smi-posts-show-settings label {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 12px;
+}
+.smi-posts-histogram-container .smi-posts-settings-bar .smi-posts-show-settings select {
+  height: 28px;
+  font-size: 12px;
+  line-height: 12px;
+  width: 70px;
+}
+
+
 
 
 .smi-followers-table-wrapper .dataTables_length select {
