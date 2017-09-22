@@ -508,3 +508,21 @@
 }
 
 
+
+.UserProfile__top-nav .smi-external-links-menu .menu>li>a {
+  transition: none;
+  -webkit-transform: none;
+  transform: none;
+  padding: .7rem 1rem;
+  color: #333;
+  background-color: transparent;
+}
+.UserProfile__top-nav .smi-external-links-menu .VerticalMenu>li>a:hover {
+  background-color: #f0f0f0;
+}
+.UserProfile__top-nav .smi-external-links-menu .menu>li>a.active {
+  background-color: inherit;
+  color: inherit;
+  font-weight: inherit;
+}
+

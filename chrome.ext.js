@@ -63,6 +63,7 @@ jsToLoad.push('src/blog_histogram.js');
 jsToLoad.push('src/followers_table.js');
 jsToLoad.push('src/show_posts_as_grid.js');
 jsToLoad.push('src/post_floating_bottom_bar.js');
+jsToLoad.push('src/external_links_menu.js');
 
 
 jsToLoad.reverse().reduce(function(next, script){
