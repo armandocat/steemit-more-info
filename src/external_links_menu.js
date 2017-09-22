@@ -4,7 +4,7 @@
   var menuClass = 'smi-external-links-menu';
 
   var externalLinks = [{
-    title: 'steemd.com',
+    title: 'Steemd.com',
     href: function(username) { 
       return 'https://steemd.com/@' + username; 
     }
@@ -14,7 +14,7 @@
       return 'https://steemtracked.com/@' + username; 
     }
   }, {
-    title: 'Followers graph',
+    title: 'Steem Followers',
     href: function(username) { 
       return 'https://steem.makerwannabe.com/@' + username + '/followers/4';
     }
@@ -55,14 +55,15 @@
     window.SteemMoreInfo.Utils.getUserTopMenusForAccountName(name, function(menus){
       var menu = menus.eq(1); // second menu
       var el = menu.find('li.' + menuClass);
-      if(!el.length){
-        el = createMenu(name);
-        el.find('a.smi-open-menu').on('click', function(e) {
-          e.preventDefault();
-          el.find('.dropdown-pane').addClass('is-open');
-        });
-        menu.prepend(el);
+      if(el.length){
+        el.remove();
       }
+      el = createMenu(name);
+      el.find('a.smi-open-menu').on('click', function(e) {
+        e.preventDefault();
+        el.find('.dropdown-pane').addClass('is-open');
+      });
+      menu.prepend(el);
     });
   };
 
