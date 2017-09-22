@@ -487,7 +487,7 @@
 }
 .smi-post-footer.smi-post-floating-footer .smi-post-footer-wrapper-2,
 .smi-post-footer-wrapper-2.smi-post-floating-footer-on-body {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   padding-bottom: 0px;
   padding-top: 2rem;
@@ -498,10 +498,11 @@
   display: block;
   z-index: 350;
 
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
 }
 
-.smi-post-footer.smi-post-floating-footer .DropdownMenu>.VerticalMenu {
+.smi-post-footer.smi-post-floating-footer .DropdownMenu>.VerticalMenu,
+.smi-post-footer-wrapper-2.smi-post-floating-footer-on-body .DropdownMenu>.VerticalMenu {
   top: auto;
   bottom: 100%;
 }

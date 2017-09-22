@@ -9,7 +9,7 @@
       var permlink;
 
       var hentry = votersList.closest('.hentry');
-      if(hentry.is('article')){
+      if(hentry.is('article') || votersList.closest('.smi-post-footer-wrapper-2').length){
         var url = window.location.pathname;
         var match = url.match(/\/[^\/]*\/@([^\/]*)\/(.*)$/);
         author = match[1];
