@@ -8,7 +8,13 @@
   var selectedBarBackgroundColor = 'red';
   var selectedBarBorderColor = 'red';
 
+
   var getShowHistogram = function() {
+    if($('html').hasClass('smi-mobile') && !$('html').hasClass('smi-mobile-tablet')){
+      //always hide by default on mobile, because screen is to small!
+      //users can still click the "show" button to show the histogram
+      return 'hidden';
+    }
     return window.localStorage && window.localStorage.SteemMoreInfoPostsHistogram || 'show';
   };
 
@@ -37,8 +43,8 @@
         <div class="smi-posts-show-settings">\
           <label>On load: </label>\
           <select class="smi-posts-show-select">\
-            <option value="show"' + (showHistogram === 'show' ? ' selected' : '') + '>Show</option>\
-            <option value="hidden"' + (showHistogram !== 'show' ? ' selected' : '') + '>Hidden</option>\
+            <option value="show" ' + (showHistogram === 'show' ? ' selected' : '') + '>Show</option>\
+            <option value="hidden" ' + (showHistogram !== 'show' ? ' selected' : '') + '>Hidden</option>\
           </select>\
         </div>\
       </div>\
@@ -256,21 +262,26 @@
     });
 
     // prevent page scroll if mouse is no top of the list
-    postsList.bind('mousewheel DOMMouseScroll', function (e) {
-      var delta = e.wheelDelta || (e.originalEvent && e.originalEvent.wheelDelta) || -e.detail,
-          bottomOverflow = this.scrollTop + $(this).outerHeight() - this.scrollHeight >= 0,
-          topOverflow = this.scrollTop <= 0;
+    if(!$('html').hasClass('smi-mobile')){
+      postsList.bind('mousewheel DOMMouseScroll', function (e) {
+        var delta = e.wheelDelta || (e.originalEvent && e.originalEvent.wheelDelta) || -e.detail,
+            bottomOverflow = this.scrollTop + $(this).outerHeight() - this.scrollHeight >= 0,
+            topOverflow = this.scrollTop <= 0;
 
-      if ((delta < 0 && bottomOverflow) || (delta > 0 && topOverflow)) {
-          e.preventDefault();
-      }
-    });
+        if ((delta < 0 && bottomOverflow) || (delta > 0 && topOverflow)) {
+            e.preventDefault();
+        }
+      });
+    }
 
     container.append(postsContainer);
+    $('html').addClass('smi-posts-histogram-posts-list-shown');
 
-    $('html, body').animate({
-        scrollTop: $('.smi-posts-histogram-container').offset().top - 100
-    }, 400);
+    if(!$('html').hasClass('smi-mobile')){
+      $('html, body').animate({
+          scrollTop: $('.smi-posts-histogram-container').offset().top - 100
+      }, 400);
+    }
   };
 
   var closePostsList = function(postsContainer) {
@@ -297,6 +308,7 @@
       }
     }
     postsContainer.remove();
+    $('html').removeClass('smi-posts-histogram-posts-list-shown');
   };
 
 

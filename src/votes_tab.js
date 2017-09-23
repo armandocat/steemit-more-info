@@ -175,7 +175,8 @@
       <div class="vote-info">\
         <span class="action">\
           <a class="account" class="smi-navigate" href="/@' + voter + '">' + voter + '</a>\
-          ' + verb +' <a class="smi-navigate" href="/@' + author + '/' + permlink + '" title="@' + author + '/' + permlink + '">@' + author + '/' + permlink + '</a>\
+          ' + verb + ' \
+          <a class="smi-navigate smi-vote-permlink" href="/@' + author + '/' + permlink + '" title="@' + author + '/' + permlink + '">@' + author + '/' + permlink + '</a>\
         </span>\
         <span class="timeago" title="' + timeagoTitle + '">' + timeago + '</span>\
         <span class="vote-weight">\

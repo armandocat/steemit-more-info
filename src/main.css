@@ -127,6 +127,12 @@
 }
 .UserProfile__tab_content_VotesTab .VotesTab .vote .vote-dollar {
 }
+@media screen and (max-width: 500px) {
+  .UserProfile__tab_content_VotesTab .VotesTab .vote .smi-vote-permlink {
+    display: block;
+    margin-top: -7px;
+  }
+}
 
 .Voting__voters_list ul.VerticalMenu {
   max-height: 350px;
@@ -316,8 +322,6 @@
 }
 .switch-field label {
   float: left;
-}
-.switch-field label {
   display: inline-block;
   background-color: white;
   color: rgba(0, 0, 0, 0.6);
@@ -438,8 +442,12 @@
   position: absolute;
   display: none;
 }
+html.smi-mobile .smi-posts-histogram-container .smi-posts-settings-bar .smi-posts-show-settings,
 .smi-posts-histogram-container .smi-posts-settings-bar:hover .smi-posts-show-settings {
   display: block;
+}
+html.smi-mobile:not(.smi-mobile-tablet) .smi-posts-histogram-container .smi-posts-settings-bar .smi-posts-show-settings {
+  display: none;
 }
 .smi-posts-histogram-container .smi-posts-settings-bar .smi-posts-show-settings label {
   display: inline-block;
@@ -453,6 +461,29 @@
   width: 70px;
 }
 
+html.smi-mobile .smi-posts-histogram-posts-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 10px;
+  margin: 0px;
+  background-color: hsla(0, 0%, 59%, .9);
+}
+html.smi-mobile .smi-posts-histogram-posts-container2 {
+  max-height: calc(100vh - 20px);
+}
+html.smi-mobile .smi-posts-histogram-posts-list {
+  max-height: calc(100vh - 120px);
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+}
+html.smi-mobile.smi-posts-histogram-posts-list-shown,
+html.smi-mobile.smi-posts-histogram-posts-list-shown body {
+  overflow-y: hidden;
+  height: 100%;
+}
 
 
 
@@ -506,7 +537,14 @@
   top: auto;
   bottom: 100%;
 }
-
+.smi-post-footer.smi-post-floating-footer .span.Author,
+.smi-post-footer-wrapper-2.smi-post-floating-footer-on-body .span.Author {
+  position: relative;
+}
+.smi-post-footer.smi-post-floating-footer .Author__container,
+.smi-post-footer-wrapper-2.smi-post-floating-footer-on-body .Author__container {
+  bottom: 100%;
+}
 
 
 .UserProfile__top-nav .smi-external-links-menu .menu>li>a {
