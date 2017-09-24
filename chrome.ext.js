@@ -48,6 +48,7 @@ var jsToLoad = [
 'vendor/sanitize-html.min.js',
 'vendor/datatables.min.js',
 'vendor/attrchange.js',
+'vendor/HtmlReady.js',
 'src/utils/sanitize.js',
 'src/utils/notification_popup.js',
 'src/utils/utils.js',
@@ -64,6 +65,7 @@ jsToLoad.push('src/followers_table.js');
 jsToLoad.push('src/show_posts_as_grid.js');
 jsToLoad.push('src/post_floating_bottom_bar.js');
 jsToLoad.push('src/external_links_menu.js');
+jsToLoad.push('src/markdown_editor_beautifier.js');
 
 
 jsToLoad.reverse().reduce(function(next, script){

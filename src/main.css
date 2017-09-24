@@ -564,3 +564,36 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   font-weight: inherit;
 }
 
+
+
+/* Markup editor */
+@media screen and (min-width: 900px) {
+  .SubmitPost > .ReplyEditor {
+    width: 100%;
+    max-width: 100%;
+  }
+  .SubmitPost form.vframe {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+  .SubmitPost form.vframe > div {
+    width: calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+  .SubmitPost form.vframe > div.Preview {
+    position: absolute;
+    top: 28px;
+    left: calc(50% + 5px);
+  }
+  .SubmitPost .ReplyEditor__body textarea {
+    height: calc(100vh - 380px);
+    padding-bottom: calc(100vh - 380px - 80px);
+  }
+  .SubmitPost form.vframe > div.Preview .MarkdownViewer {
+    height: calc(100vh - 380px);  
+    overflow-y: auto;
+  }
+}
+
+

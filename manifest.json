@@ -38,6 +38,7 @@
         "vendor/datatables.min.css",
         "vendor/datatables.min.js",
         "vendor/DataTables-1.10.16/images/*",
+        "vendor/HtmlReady.js",
         "src/utils/notification_popup.js",
         "src/utils/sanitize.js",
         "src/utils/utils.js",
@@ -54,7 +55,8 @@
         "src/followers_table.js",
         "src/show_posts_as_grid.js",
         "src/external_links_menu.js",
-        "src/post_floating_bottom_bar.js"
+        "src/post_floating_bottom_bar.js",
+        "src/markdown_editor_beautifier.js"
     ],
     "permissions": [
         "activeTab",
