@@ -8,7 +8,7 @@
 
     if(tags.length && postFooter.length) {
 
-      if(tags.parent().is('smi-post-footer-wrapper-2')){
+      if(tags.closest('.smi-post-footer-wrapper-2').length){
         return;
       }
 
@@ -104,7 +104,9 @@
   });
 
   window.SteemMoreInfo.Events.addEventListener(window, 'changestate', function() {
-    makePostBottomBarFloating();
+    setTimeout(function() {
+      makePostBottomBarFloating();
+    }, 100);
   });
 
 
