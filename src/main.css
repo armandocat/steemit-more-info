@@ -563,6 +563,14 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   color: inherit;
   font-weight: inherit;
 }
+@media screen and (min-width: 40em) and (max-width: 1300px) {  
+  .UserProfile__top-menu {
+    position: relative;
+  }
+  .UserProfile__top-nav .smi-external-links-menu.not-me .dropdown-pane {
+    right: 0px;
+  }
+}
 
 
 

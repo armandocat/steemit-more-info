@@ -28,8 +28,9 @@
     }).join('');
   };
 
-  var createMenu = function(username) {
-    var menu = $('<li class="' + menuClass + '">\
+  var createMenu = function(menuContainer, username) {
+    var isMe = menuContainer.children().length >= 2;
+    var menu = $('<li class="' + menuClass + (isMe ? '' : ' not-me') + '">\
       <a class="smi-open-menu" aria-haspopup="true">\
         Links\
         <span class="Icon dropdown-arrow" style="display: inline-block; width: 1.12rem; height: 1.12rem;">\
@@ -58,7 +59,7 @@
       if(el.length){
         el.remove();
       }
-      el = createMenu(name);
+      el = createMenu(menu, name);
       el.find('a.smi-open-menu').on('click', function(e) {
         e.preventDefault();
         el.find('.dropdown-pane').addClass('is-open');
