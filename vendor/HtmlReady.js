@@ -232,7 +232,8 @@ window.HtmlReady = function (html, {mutate = true, hideImages = false} = {}) {
         }
         // console.log('state', state)
         if(!mutate) return state
-        return {html: (doc) ? XMLSerializer.serializeToString(doc) : '', ...state}
+        state.html = (doc) ? XMLSerializer.serializeToString(doc) : '';
+        return state;
     }catch(error) {
         // Not Used, parseFromString might throw an error in the future
         console.error(error.toString())
