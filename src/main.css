@@ -602,6 +602,9 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
     height: calc(100vh - 380px);  
     overflow-y: auto;
   }
+  @-moz-document url-prefix() {
+    .SubmitPost .ReplyEditor__body textarea {
+      padding-bottom: 0px;
+    }
+  }
 }
-
-
