@@ -1,37 +1,12 @@
 
-
-function checkUpdate(){
-  var manifestData = chrome.runtime.getManifest();
-  var currentVersion = manifestData.version;
-  document.body.dataset.SteemitMoreInfoCurrentVersion = currentVersion;
-
-  $.get('https://raw.githubusercontent.com/armandocat/steemit-more-info/master/manifest.json?t=' + new Date().getTime())
-    .done(function(data) {
-      document.body.dataset.SteemitMoreInfoNewVersionManifest = data;
-
-      var s = document.createElement('script');
-      s.src = chrome.extension.getURL('src/utils/check_update.js');
-      document.body.appendChild(s);    
-    })
-    .fail(function(err) {
-      console.log('checkUpdate error:', err);
-    });
-}
+/* FILES TO LOAD - START */
 
 
-[
+var cssToLoad = [
 'vendor/datatables.min.css',
 'vendor/toastr.min.css',
 'src/main.css'
-].reverse().reduce(function(next, href){
-  return function(){
-    var s = document.createElement('link');
-    s.href = chrome.extension.getURL(href);
-    s.rel = 'stylesheet';
-    document.body.appendChild(s);
-    next && next();
-  };
-}, null)();
+];
 
 
 var jsToLoad = [
@@ -66,6 +41,42 @@ jsToLoad.push('src/show_posts_as_grid.js');
 jsToLoad.push('src/post_floating_bottom_bar.js');
 jsToLoad.push('src/external_links_menu.js');
 jsToLoad.push('src/markdown_editor_beautifier.js');
+
+
+/* FILES TO LOAD - END */
+
+
+
+function checkUpdate(){
+  var manifestData = chrome.runtime.getManifest();
+  var currentVersion = manifestData.version;
+  document.body.dataset.SteemitMoreInfoCurrentVersion = currentVersion;
+
+  $.get('https://raw.githubusercontent.com/armandocat/steemit-more-info/master/manifest.json?t=' + new Date().getTime())
+    .done(function(data) {
+      document.body.dataset.SteemitMoreInfoNewVersionManifest = data;
+
+      var s = document.createElement('script');
+      s.src = chrome.extension.getURL('src/utils/check_update.js');
+      document.body.appendChild(s);    
+    })
+    .fail(function(err) {
+      console.log('checkUpdate error:', err);
+    });
+}
+
+
+cssToLoad.reverse().reduce(function(next, href){
+  return function(){
+    var s = document.createElement('link');
+    s.href = chrome.extension.getURL(href);
+    s.rel = 'stylesheet';
+    document.body.appendChild(s);
+    next && next();
+  };
+}, null)();
+
+
 
 
 jsToLoad.reverse().reduce(function(next, script){
