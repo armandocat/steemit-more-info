@@ -9,6 +9,11 @@
       return 'https://steemd.com/@' + username; 
     }
   }, {
+    title: 'SteemDB.com',
+    href: function(username) { 
+      return 'https://steemdb.com/@' + username; 
+    }
+  }, {
     title: 'SteemTracked',
     href: function(username) { 
       return 'https://steemtracked.com/@' + username; 
@@ -18,7 +23,18 @@
     href: function(username) { 
       return 'https://steem.makerwannabe.com/@' + username + '/followers/4';
     }
+  }, {
+    title: 'Potential Rewards',
+    href: function(username) { 
+      return 'http://steem.supply/@' + username;
+    }
+  }, {
+    title: 'Steem Whales',
+    href: function(username) { 
+      return 'http://steemwhales.com/' + username;
+    }
   }];
+
 
   var createMenuLinks = function(username) {
     return externalLinks.map(function(link){
@@ -38,6 +54,7 @@
         </span>\
       </a>\
       <div class="dropdown-pane">\
+        <span>@' + username + ':</span>\
         <ul class="VerticalMenu menu vertical">' +
           createMenuLinks(username) +
         '</ul>\

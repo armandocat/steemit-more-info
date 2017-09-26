@@ -547,6 +547,13 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
 }
 
 
+.UserProfile__top-nav .smi-external-links-menu .dropdown-pane > span {
+  padding-left: 15px;
+  font-weight: 600;
+  display: block;
+  padding-top: 3px;
+  font-size: 0.8em;
+}
 .UserProfile__top-nav .smi-external-links-menu .menu>li>a {
   transition: none;
   -webkit-transform: none;
