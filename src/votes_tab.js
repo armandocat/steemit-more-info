@@ -19,6 +19,11 @@
         });
         menu.append(votesLi);
       }
+
+      if(window.location.hash === '#votes'){
+        showVotesTab();
+      }
+
     });
   };
 
@@ -83,6 +88,7 @@
     $('.UserProfile__top-menu ul.menu li a').removeClass('active');
     $('li.menu-votes-tab-li a').addClass('active');
     votesTab.show();
+    window.location.hash = '#votes';
 
     votesTab.find('.VotesTabLoadMore button').on('click', function(){
       var loadMore = $(this).parent();
@@ -240,6 +246,31 @@
       });
     });
   };
+
+
+  // $('.Header__top.header .Header__userpic > a').on('click', function() {
+  //   var userHref = $(this).attr('href');
+  //   setTimeout(function() {
+  //     if($('body > div > div > div.dropdown-pane ul.menu li.smi-votes-tab-li').length){
+  //       return;
+  //     }
+
+  //     var recentRepliesLi = $('body > div > div > div.dropdown-pane ul.menu li').filter(function(){
+  //       var href = $(this).find('a').attr('href'); 
+  //       return href && href.indexOf('recent-replies') !== -1;
+  //     });
+  //     var li = $('<li class="smi-votes-tab-li">\
+  //       <a href="' + userHref + '#votes" class="smi-navigate">\
+  //         <span class="Icon reply" style="display: inline-block; width: 1.12rem; height: 1.12rem;">\
+  //           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><title>reply</title><path d="M14 24.238v7.762l-12-12 12-12v7.932c13.961 0.327 13.362-9.493 9.808-15.932 8.772 9.482 6.909 24.674-9.808 24.238z"></path></svg>\
+  //         </span>\
+  //         Votes\
+  //       </a>\
+  //     </li>');
+
+  //     recentRepliesLi.after(li)
+  //   }, 250);
+  // });
 
 
   window.SteemMoreInfo.Events.addEventListener(window, 'page-account-name', function() {
