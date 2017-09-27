@@ -1,7 +1,40 @@
 
 (function(){
 
+
+  window.SteemMoreInfo.Utils.addSettings({
+    title: 'Floating post\'s Voting Bar',
+    settings: [{
+      title: '',
+      key: 'FloatingBar',
+      defaultValue: 'large',
+      options: [{
+        title: 'Disabled',
+        value: 'disabled'
+      }, {
+        title: 'Large',
+        value: 'large'
+      }, {
+        title: 'Small',
+        value: 'small'
+      }],
+      description: 'While reading a post, this feature keeps the voting bar alwasy visible on the top of the page so that it is easier to upvote and look at more information about the post'
+    }]
+  });
+
+  var floatingBarStyle = function() {
+    var value = window.SteemMoreInfo.Utils.getSettingsValue('FloatingBar');
+    return value;
+  };
+
+
+
   var makePostBottomBarFloating = function() {
+
+    var style = floatingBarStyle();
+    if(style !== 'large' && style !== 'small'){
+      return;
+    }
 
     var tags = $('.TagList__horizontal');
     var postFooter = $('.PostFull__footer');
@@ -27,6 +60,10 @@
       tags.replaceWith(footer);
       footerWrapper.append(tags);
       footerWrapper.append(postFooter);
+
+      if(style === 'small'){
+        footerWrapper.addClass('smi-post-footer-small');
+      }
 
       update();
 

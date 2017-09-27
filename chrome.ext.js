@@ -43,6 +43,9 @@ jsToLoad.push('src/external_links_menu.js');
 jsToLoad.push('src/markdown_editor_beautifier.js');
 jsToLoad.push('src/userpic_zoom.js');
 
+// SETTINGS - LAST ONE
+jsToLoad.push('src/settings.js');
+
 
 /* FILES TO LOAD - END */
 

@@ -546,6 +546,47 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   bottom: 100%;
 }
 
+.smi-post-floating-footer .smi-post-footer-small .TagList__horizontal, 
+.smi-post-footer-small.smi-post-floating-footer-on-body .TagList__horizontal{
+  visibility: hidden;
+}
+.smi-post-footer-small {
+  background: none !important;
+}
+.smi-post-floating-footer .smi-post-footer-small .PostFull__footer,
+.smi-post-footer-small.smi-post-floating-footer-on-body .PostFull__footer {
+  display: block;
+  margin-left: calc(-50vw + 50% + 20px);
+}
+.smi-post-floating-footer .smi-post-footer-small .PostFull__footer > *,
+.smi-post-footer-small.smi-post-floating-footer-on-body .PostFull__footer > * {
+  background: rgba(255, 255, 255, 0.95);
+  display: inline-block;
+  padding-left: 9px;
+  padding-right: 3px !important;
+}
+.smi-post-floating-footer .smi-post-footer-small .PostFull__footer .PostFull__time_author_category > *,
+.smi-post-footer-small.smi-post-floating-footer-on-body .PostFull__footer .PostFull__time_author_category > * {
+  display: none !important;
+}
+.smi-post-floating-footer .smi-post-footer-small .PostFull__footer .PostFull__time_author_category > .author,
+.smi-post-footer-small.smi-post-floating-footer-on-body .PostFull__footer .PostFull__time_author_category > .author {
+  display: inline-block !important;
+}
+
+.smi-post-floating-footer .smi-post-footer-small .PostFull__footer .RightShare__Menu > *,
+.smi-post-footer-small.smi-post-floating-footer-on-body .PostFull__footer .RightShare__Menu > * {
+  display: none !important;
+}
+.smi-post-floating-footer .smi-post-footer-small .PostFull__footer .RightShare__Menu > .PostFull__responses,
+.smi-post-footer-small.smi-post-floating-footer-on-body .PostFull__footer .RightShare__Menu > .PostFull__responses,
+.smi-post-floating-footer .smi-post-footer-small .PostFull__footer .RightShare__Menu > .PostFull__views,
+.smi-post-footer-small.smi-post-floating-footer-on-body .PostFull__footer .RightShare__Menu > .PostFull__views {
+  display: inline-block !important;
+  border-right: none;
+}
+
+
 
 .UserProfile__top-nav .smi-external-links-menu .dropdown-pane > span {
   padding-left: 15px;
@@ -655,3 +696,23 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   height: auto;
 }
 
+
+
+/* SETTINGS */
+.Settings > div:not(:first-child) {
+  margin-bottom: 40px;
+}
+@media print, screen and (max-width: 40em) {
+  .Settings > div:not(:first-child) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+}
+.smi-settings-group .smi-settings-options label {
+  display: inline-block;
+  margin-right: 20px;
+}
+.smi-settings-group p.smi-settings-description {
+  font-size: 0.8em;
+  padding-top: 5px;
+}

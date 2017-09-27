@@ -277,6 +277,41 @@
   };
 
 
+  var Settings = [];
+  var settingsObj;
+  try {
+    var settingsObj = JSON.parse(window.localStorage && window.localStorage.SteemMoreInfoSettings);
+  }catch(err){    
+  }
+  settingsObj = settingsObj || {};
+
+  var addSettings = function(s) {
+    Settings.push(s);
+  };
+
+  var getSettingsValue = function(key) {
+    var value = settingsObj[key];
+    if(!value){
+      Settings.forEach(function(s) {
+        s.settings.forEach(function(s2){
+          if(s2.key === key){
+            value = s2.defaultValue;
+          }
+        });
+      });
+    }
+    return value;
+  };
+
+  var setSettingsValue = function(key, v) {
+    settingsObj[key] = v;
+    if(window.localStorage){
+      window.localStorage.SteemMoreInfoSettings = JSON.stringify(settingsObj);
+    }
+  };
+
+
+
   var Utils = {
     getPageAccountName: getPageAccountName,
     getLoggedUserName: getLoggedUserName,
@@ -301,11 +336,15 @@
     getContent: getContent,
     getLoadingHtml: getLoadingHtml,
     navigate: navigate,
-    findReact: findReact
+    findReact: findReact,
+    addSettings: addSettings,
+    getSettingsValue: getSettingsValue,
+    setSettingsValue: setSettingsValue
   };
 
 
   window.SteemMoreInfo = window.SteemMoreInfo || {};
+  window.SteemMoreInfo.Settings = Settings;
   window.SteemMoreInfo.Utils = Utils;
 
 })();
