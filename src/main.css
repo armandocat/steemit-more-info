@@ -558,6 +558,20 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   display: block;
   margin-left: calc(-50vw + 50% + 20px);
 }
+@media screen and (max-width: 899px) {
+  .smi-post-floating-footer .smi-post-footer-small .PostFull__footer,
+  .smi-post-footer-small.smi-post-floating-footer-on-body .PostFull__footer {
+    display: block;
+    margin-left: 0px;
+    width: 900px;
+  }
+}
+@media screen and (max-width: 499px) {
+  .smi-post-floating-footer .smi-post-footer-small .PostFull__footer .PostFull__time_author_category,
+  .smi-post-footer-small.smi-post-floating-footer-on-body .PostFull__footer .PostFull__time_author_category {
+    display: none !important;
+  }
+}
 .smi-post-floating-footer .smi-post-footer-small .PostFull__footer > *,
 .smi-post-footer-small.smi-post-floating-footer-on-body .PostFull__footer > * {
   background: rgba(255, 255, 255, 0.95);
@@ -716,3 +730,4 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   font-size: 0.8em;
   padding-top: 5px;
 }
+
