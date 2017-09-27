@@ -615,3 +615,43 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
     }
   }
 }
+
+
+
+/* Mobile pull to refresh*/
+.ptr--ptr {
+  margin-top: 91.8px;
+  margin-bottom: -91.8px;
+}
+@media screen and (max-width: 639px) {
+  .ptr--ptr {
+    margin-top: 45.5px;
+    margin-bottom: -49.5px;
+  }
+}
+
+
+
+.smi-userpic-zoom {
+  position: absolute;
+  margin-top: 30px;
+  margin-left: 30px;
+  box-shadow: 1px 1px 5px 0 rgba(50,50,50,.75);
+  border: 1px solid #cacaca;
+  border-radius: 3px;
+  background-color: #fefefe;
+  color: #333;
+  z-index: 9;
+}
+.smi-userpic-zoom.smi-userpic-zoom-loading {
+  width: 200px;
+  height: 200px;
+}
+.smi-userpic-zoom img {
+  max-width: 100vw;
+  max-width: calc(100vw - 60px);
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+}
+

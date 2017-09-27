@@ -56,6 +56,7 @@
         "src/show_posts_as_grid.js",
         "src/external_links_menu.js",
         "src/post_floating_bottom_bar.js",
+        "src/userpic_zoom.js",
         "src/markdown_editor_beautifier.js"
     ],
     "permissions": [

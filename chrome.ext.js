@@ -41,6 +41,7 @@ jsToLoad.push('src/show_posts_as_grid.js');
 jsToLoad.push('src/post_floating_bottom_bar.js');
 jsToLoad.push('src/external_links_menu.js');
 jsToLoad.push('src/markdown_editor_beautifier.js');
+jsToLoad.push('src/userpic_zoom.js');
 
 
 /* FILES TO LOAD - END */
