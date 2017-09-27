@@ -9,7 +9,13 @@
       var permlink;
 
       var hentry = votersList.closest('.hentry');
-      if(hentry.is('article') || votersList.closest('.smi-post-footer-wrapper-2').length){
+      var hrefA = hentry.length && hentry.find('.PostFull__responses a');
+      if(hrefA.length){
+        var url = hrefA.attr('href');
+        var match = url.match(/\/[^\/]*\/@([^\/]*)\/(.*)$/);
+        author = match[1];
+        permlink = match[2];
+      }else if(hentry.is('article') || votersList.closest('.smi-post-footer-wrapper-2').length){
         var url = window.location.pathname;
         var match = url.match(/\/[^\/]*\/@([^\/]*)\/(.*)$/);
         author = match[1];
