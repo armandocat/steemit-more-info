@@ -37,7 +37,7 @@
       weightDisplay.after(weightDollars);
     }
 
-    var dollars = window.SteemMoreInfo.Utils.getVotingDollarsPerAccount(parseInt(weightDisplay.text(), 10));
+    var dollars = window.SteemMoreInfo.Utils.getVotingDollarsPerAccount(parseInt(weightDisplay.text().replace(/ /,''), 10));
     if(typeof dollars === 'undefined'){
       setTimeout(function() {
         tryUpdateVotingSlider();
