@@ -12,6 +12,9 @@
     "version": "1.1.0",
     "homepage_url": "https://steemit.com/steemdev/@armandocat/steemit-more-info-1-1-chrome-extension-firefox-extension",
 
+    "background" : {
+        "scripts" : ["vendor/jquery-3.2.1.min.js","background.js"]
+    },
     "content_scripts": [{
         "js": ["document_start.js"],
         "matches": ["https://steemit.com/*"],
@@ -39,6 +42,9 @@
         "vendor/datatables.min.js",
         "vendor/DataTables-1.10.16/images/*",
         "vendor/HtmlReady.js",
+        "vendor/jquery.justifiedGallery.min.js",
+        "vendor/justifiedGallery.min.css",
+        "src/utils/chrome_addons.js",
         "src/utils/notification_popup.js",
         "src/utils/sanitize.js",
         "src/utils/utils.js",
@@ -58,8 +64,12 @@
         "src/post_floating_bottom_bar.js",
         "src/userpic_zoom.js",
         "src/markdown_editor_beautifier.js",
+        "src/gif_picker.js",
         "src/settings.js"
     ],
+    "externally_connectable": {
+        "matches": ["https://steemit.com/*"]
+    },
     "permissions": [
         "activeTab",
         "webRequest",

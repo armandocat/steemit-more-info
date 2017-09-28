@@ -1,10 +1,17 @@
 
+document.body.dataset.SteemitMoreInfoExtensionId = chrome.runtime.id;
+
+var s = document.createElement('script');
+s.src = chrome.extension.getURL('src/utils/chrome_addons.js');
+document.body.appendChild(s); 
+
 /* FILES TO LOAD - START */
 
 
 var cssToLoad = [
 'vendor/datatables.min.css',
 'vendor/toastr.min.css',
+'vendor/justifiedGallery.min.css',
 'src/main.css'
 ];
 
@@ -24,6 +31,7 @@ var jsToLoad = [
 'vendor/datatables.min.js',
 'vendor/attrchange.js',
 'vendor/HtmlReady.js',
+'vendor/jquery.justifiedGallery.min.js',
 'src/utils/sanitize.js',
 'src/utils/notification_popup.js',
 'src/utils/utils.js',
@@ -42,6 +50,8 @@ jsToLoad.push('src/post_floating_bottom_bar.js');
 jsToLoad.push('src/external_links_menu.js');
 jsToLoad.push('src/markdown_editor_beautifier.js');
 jsToLoad.push('src/userpic_zoom.js');
+jsToLoad.push('src/gif_picker.js');
+
 
 // SETTINGS - LAST ONE
 jsToLoad.push('src/settings.js');
