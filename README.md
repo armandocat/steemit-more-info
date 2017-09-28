@@ -1,4 +1,4 @@
-# Steemit More Info 1.1 - Chrome Extension + Firefox Extension
+# Steemit More Info 1.2 - Chrome Extension + Firefox Extension
 
 <center>
     
@@ -19,7 +19,7 @@ Because this is a Chrome and Firefox extension that you install on your browser,
 _Please take into consideration that this is a new project that I just started, and the features are limited to just a few so far! I'm planning to add more and more features in the next versions. Every suggestion and idea is very much appreciated!_
 
 
-### This is version 1.1 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
+### This is version 1.2 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
 
 <br>
 
@@ -42,7 +42,9 @@ _Please take into consideration that this is a new project that I just started, 
 
 * ![](https://i.imgsafe.org/65/655926ba30.png) Added a **dropdown menu with links to external tools** to get more info about the steem account. Please let me know what tools you'd like to see here ;)
 
-    ![](https://i.imgsafe.org/90/9088d4bec1.png)
+    ![](https://i.imgsafe.org/d8/d85792ac59.png)
+
+---
 
 * When you click upvote and the Vote Weight slider appears, not only you see the percentage of the vote, but you also see **the amount in $ that upvote will be valued**
 
@@ -80,16 +82,34 @@ _Please take into consideration that this is a new project that I just started, 
 
 ---
   
-* ![](https://i.imgsafe.org/65/655926ba30.png) When you read a post, now **there is a floating bar with the tags, date, author and upvotes** of the post, so you can easily access this informations and upvote the post if you like it! 
+* When you read a post, now **there is a floating bar with the tags, date, author and upvotes** of the post, so you can easily access this informations and upvote the post if you like it! 
 
   ![](https://steemitimages.com/DQmevE65xaGzXyMTeQX2T4pyZboXccVHEpYcrGX3njTmdTN/smi.gif)
+
+  ![](https://i.imgsafe.org/65/655926ba30.png) If you prefer a less intrusive way, in the setting you can choose the **small floating bar layout**
+
+  ![](https://steemitimages.com/DQmZbH9NmnvkxLufzK4aMD58toYfxKEGGAFkJQ3wPCGZU9z/gif2.gif)
 
 
 ---
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) The **markdown editor used to write new posts now shows the preview at the right side of the editor.** While you write the post, if you scroll through your textual content, **the preview will automatically scroll** to the right point. _This feature is available for screens with at least 900px width_
+* The **markdown editor used to write new posts now shows the preview at the right side of the editor.** While you write the post, if you scroll through your textual content, **the preview will automatically scroll** to the right point. _This feature is available for screens with at least 900px width_
 
   ![](https://steemitimages.com/DQmNhKFqpeU1kQPSfpoL7o7z4dG5g3WivGYNT4HmYufnRW7/smi2.gif)
+
+
+---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) If you want to better see the avatar of an account, just hover on the user picture to **open a bigger version of the avatar image**
+
+  ![](https://steemitimages.com/DQmQELTQwaayqp2zmQW9i8uipFVoNDRAiQN4kAMD45YqDTs/gif3.gif)
+
+
+---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) **Steemit More Info Settings**. You can now choose to enable or disable each of the features provided by Steemit More Info! Just go in your account settings.
+
+  ![](https://i.imgsafe.org/d8/d84e3cd75e.png)
 
 
 <br>
@@ -99,12 +119,11 @@ _Please take into consideration that this is a new project that I just started, 
 ## Future development
 
 I'm planning to add more features like:
-* Setting page to enable/disable features
 * COMING SOON: Trending of up to 5 favorite tags in one page. You select your favorite tags and you'll see the list of the top trending of all the tags combined in one list. I'm not releasing this feature yet because it still has some bugs. 
 * Notifications, for instance if somebody replies on one of your posts or comments, if you get an upvote, ...
 * A page with some graphs of the stats of the account 
-* A "witnesses" tab where you can see the witnesses the user is voting for
 * Working on my own API, such as _mentions notification_, _followers by date_ of follow operation, posts _reposted_ by others, ...
+* Something about GIF ;)
 * ...
 
 ## Privacy - Do I steal your data?
@@ -135,6 +154,7 @@ _If you prefer, you can choose to install it yourself manually:_
   - Drag and drop the root folder of the project you just unzipped _(steemit-more-info)_ inside the chrome extension page.
 - _If you are using Firefox_
   - Open `about:debugging` in Firefox, click "Load Temporary Add-on" and select any file in the extension's directory.
+  - _You will need to do this each time you close and reopen Firefox_
 - Go to [Steemit](https://www.steemit.com)!
 
 _When a new version of the extension is available, a popup in the top right corner of the page will appear with a link where you can read about the update and download the new version._
