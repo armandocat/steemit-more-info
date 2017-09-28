@@ -27,7 +27,8 @@ var jsToLoad = [
 'src/utils/sanitize.js',
 'src/utils/notification_popup.js',
 'src/utils/utils.js',
-'src/utils/events.js'
+'src/utils/events.js',
+'src/utils/upvote_me_banner.js'
 ];
 
 jsToLoad.push('src/profile_banner.js');

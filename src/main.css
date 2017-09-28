@@ -738,3 +738,77 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
     padding-top: 20px;
 }
 
+.smi-banner-ask-upvote
+.smi-banner-ask-upvote {
+  width: 100%;
+  position: relative;
+}
+.smi-banner-ask-upvote-container {
+  width: 100%;
+  max-width: 56rem;
+  background-color: #f3f71b;
+  margin: 0 auto;
+}
+.smi-banner-ask-upvote {
+  margin-top: 3.5rem;
+  margin-bottom: -2.5rem;
+}
+@media screen and (max-width: 39.9375em) {
+  .smi-banner-ask-upvote {
+    margin-top:1.5rem;
+    margin-bottom: 2rem;
+  }
+}
+@media screen and (min-width: 40em) and (max-width:63.9375em) {
+  .smi-banner-ask-upvote {
+    margin-top:3.5rem;
+    margin-bottom: -2.5rem;
+  }
+}
+@media screen and (min-width: 64.063em) {
+  .smi-banner-ask-upvote {
+    margin-top:3.5rem;
+    margin-bottom: -2.5rem;
+  }
+}
+.mini-header .smi-banner-ask-upvote {
+  margin-top: 0;
+}
+.smi-banner-ask-upvote .title {
+  padding: 0px;
+  margin: 0px;
+  font-weight: bold;
+}
+.smi-banner-ask-upvote .description {
+  font-size: 14px;
+  line-height: 24px;
+  display: inline-block;
+}
+.smi-banner-ask-upvote .description3 {
+  display: block;
+}
+.smi-banner-ask-upvote-container {
+  padding: 8px 25px;
+}
+.smi-banner-ask-upvote .new-line {
+  display: block;
+}
+.smi-banner-ask-upvote .icon {
+  width: 50px;
+  float: left;
+  margin-top: 10px;
+}
+.smi-banner-ask-upvote .text-wrapper {
+  padding-left: 60px;
+}
+.smi-banner-ask-upvote .close-button {
+  position: relative;
+  float: right;
+  right: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 0px;
+  margin-right: -16px !important;
+  margin-top: -8px;
+}
+

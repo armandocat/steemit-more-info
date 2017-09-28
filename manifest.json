@@ -45,6 +45,7 @@
         "src/utils/events.js",
         "src/utils/check_update.js",
         "src/utils/websocket_hook.js",
+        "src/utils/upvote_me_banner.js",
         "src/main.css",
         "src/profile_banner.js",
         "src/votes_tab.js",

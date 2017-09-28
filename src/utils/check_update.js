@@ -56,4 +56,11 @@
 
   }
 
+
+  window.SteemMoreInfo = window.SteemMoreInfo || {};
+  window.SteemMoreInfo.LastPost = newVersionManifest.homepage_url || null;
+
+  $(window).trigger('check-last-post');
+  
+
 })();
