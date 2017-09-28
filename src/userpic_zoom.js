@@ -1,5 +1,29 @@
 
 (function(){
+
+  window.SteemMoreInfo.Utils.addSettings({
+    title: 'Zoom on user profile picture',
+    settings: [{
+      title: '',
+      key: 'ZoomUserPic',
+      defaultValue: 'enabled',
+      options: [{
+        title: 'Disabled',
+        value: 'disabled'
+      }, {
+        title: 'Enabled',
+        value: 'enabled'
+      }],
+      description: 'Hover on an user picture to show a bigger version of the avatar'
+    }]
+  });
+
+  var zoomUserPicEnabled = function() {
+    var value = window.SteemMoreInfo.Utils.getSettingsValue('ZoomUserPic');
+    return value;
+  };
+
+
   
   var userpic;
 
@@ -67,7 +91,10 @@
   };
 
 
-  $('body').on('mouseenter', '.Userpic', function() {    
+  $('body').on('mouseenter', '.Userpic', function() {
+    if(zoomUserPicEnabled() === 'disabled'){
+      return;
+    }
     var $this = $(this);
     var thisUserpic;
     var bigImg;

@@ -1,7 +1,34 @@
 
 (function(){
+
+  window.SteemMoreInfo.Utils.addSettings({
+    title: 'Post\'s votes with dollars amount',
+    settings: [{
+      title: '',
+      key: 'PostVotesList',
+      defaultValue: 'enabled',
+      options: [{
+        title: 'Disabled',
+        value: 'disabled'
+      }, {
+        title: 'Enabled',
+        value: 'enabled'
+      }],
+      description: 'Adds the amount in dollars of the votes a post has received, so that you can see how much each account\'s vote affected the rewards'
+    }]
+  });
+
+  var postVotesListEnabled = function() {
+    var value = window.SteemMoreInfo.Utils.getSettingsValue('PostVotesList');
+    return value;
+  };
+
   
   window.SteemMoreInfo.Events.addEventListener(window, 'voters-list-show', function(e) {
+    if(postVotesListEnabled() === 'disabled'){
+      return;
+    }
+    
     var votersList = e.state;
     if(!votersList.hasClass('smi-voting-info-shown')){
 

@@ -1,6 +1,29 @@
 
 (function(){  
 
+  window.SteemMoreInfo.Utils.addSettings({
+    title: 'Voting weight\'s slider Dollars amount',
+    settings: [{
+      title: '',
+      key: 'VoteWeightSlider',
+      defaultValue: 'enabled',
+      options: [{
+        title: 'Disabled',
+        value: 'disabled'
+      }, {
+        title: 'Enabled',
+        value: 'enabled'
+      }],
+      description: 'Adds the amount in dollars your votes is worth to the voting weight\'s slider (Only for account with enough SP)'
+    }]
+  });
+
+  var votingWeightEnabled = function() {
+    var value = window.SteemMoreInfo.Utils.getSettingsValue('VoteWeightSlider');
+    return value;
+  };
+
+
   var updateVotingSlider = function(weightDisplay) {
 
     weightDisplay.css('margin-top', '-10px');
@@ -34,6 +57,9 @@
 
 
   window.SteemMoreInfo.Events.addEventListener(window, 'voting-weight-change', function(e) {
+    if(votingWeightEnabled() === 'disabled'){
+      return;
+    }
     var weightDisplay = e.state;
     updateVotingSlider(weightDisplay);
   });
