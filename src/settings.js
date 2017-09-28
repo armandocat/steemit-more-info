@@ -80,14 +80,20 @@
   };
 
 
-  //TODO: temp
-
-  setInterval(function(){
+  var checkForSettings = function () {
     var settings = $('.Settings');
     if(settings.length){
       setupSettingsIfNeeded(settings);
     }
-  },100);
+  };
+
+
+  $(window).on('changestate', function(e) {
+    setTimeout(function() {
+      checkForSettings();
+    }, 100);
+  });
+  checkForSettings();
   
   
 })();
