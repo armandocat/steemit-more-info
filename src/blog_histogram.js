@@ -8,6 +8,37 @@
   var selectedBarBackgroundColor = 'red';
   var selectedBarBorderColor = 'red';
 
+  //deprecated
+  if(window.localStorage && window.localStorage.SteemMoreInfoPostsHistogram){
+    window.SteemMoreInfo.Utils.setSettingsValue('PostsHistogram', window.localStorage.SteemMoreInfoPostsHistogram);
+    delete window.localStorage.SteemMoreInfoPostsHistogram;
+  }
+
+  if(!$('html').hasClass('smi-mobile') || $('html').hasClass('smi-mobile-tablet')){
+    
+    window.SteemMoreInfo.Utils.addSettings({
+      title: 'Blog posts histogram',
+      settings: [{
+        title: '',
+        key: 'PostsHistogram',
+        defaultValue: 'show',
+        options: [{
+          title: 'Disabled',
+          value: 'disabled'
+        }, {
+          title: 'Alwasy show',
+          value: 'show'
+        }, {
+          title: 'Show on click',
+          value: 'hidden'
+        }],
+        description: 'Show an histogram of the account posts history on the blog page of an user'
+      }]
+    });
+
+  }
+
+
 
   var getShowHistogram = function() {
     if($('html').hasClass('smi-mobile') && !$('html').hasClass('smi-mobile-tablet')){
@@ -15,14 +46,13 @@
       //users can still click the "show" button to show the histogram
       return 'hidden';
     }
-    return window.localStorage && window.localStorage.SteemMoreInfoPostsHistogram || 'show';
+    return window.SteemMoreInfo.Utils.getSettingsValue('PostsHistogram');
   };
 
   var setShowHistogram = function(v) {
-    if(window.localStorage){
-      window.localStorage.SteemMoreInfoPostsHistogram = v;
-    }
+    window.SteemMoreInfo.Utils.setSettingsValue('PostsHistogram',v);
   };
+
 
 
   var showOrHideHistogram = function(container, show) {
@@ -569,12 +599,12 @@
         console.log('posts list has already histogram but of different account');
         postsList.find('.smi-posts-histogram-container').remove();
       }else{
-      console.log('posts list has already histogram');
-      return true;
-    }
+        console.log('posts list has already histogram');
+        return true;
+      }
     }
     postsList.prepend(createHistogram(name));
-    postsList.addClass('smi-posts-histogram-added');    
+    postsList.addClass('smi-posts-histogram-added');
     postsList.data('histogram-account', name); 
     console.log('histogram added');
     return true;

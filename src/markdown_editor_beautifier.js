@@ -1,6 +1,31 @@
 
 (function(){
 
+  window.SteemMoreInfo.Utils.addSettings({
+    title: 'Post editor preview sync',
+    settings: [{
+      title: '',
+      key: 'PostEditorAdvanced',
+      defaultValue: 'enabled',
+      options: [{
+        title: 'Disabled',
+        value: 'disabled'
+      }, {
+        title: 'Enabled',
+        value: 'enabled'
+      }],
+      description: 'When you create a post, the preview and the editor are side by side and scroll togheter to show you the markup code and the preview of the same area (works only for screen wider than 900px)'
+    }]
+  });
+
+  var advancedEditorEnabled = function() {
+    var value = window.SteemMoreInfo.Utils.getSettingsValue('PostEditorAdvanced');
+    return value;
+  };
+
+
+
+
   var remarkable = new Remarkable({
       html: true, // remarkable renders first then sanitize runs...
       breaks: true,
@@ -304,6 +329,10 @@
 
 
   var makeMarkdownEditorBeautiful = function(submitPost) {
+    if(advancedEditorEnabled() === 'disabled'){
+      return;
+    }
+
     var markdownViewerEl = submitPost.find('.MarkdownViewer');
     var markdownViewerReact = markdownViewerEl.length && window.SteemMoreInfo.Utils.findReact(markdownViewerEl[0]);
     var textarea = submitPost.find('.ReplyEditor__body textarea');
@@ -316,6 +345,8 @@
     }
 
     replaceRenderFunction(markdownViewerReact);
+    submitPost.addClass('smi-advanced-editor');
+
     scrollMap = null;
     
     // default value

@@ -1,6 +1,30 @@
 
 (function(){
 
+  window.SteemMoreInfo.Utils.addSettings({
+    title: 'Sortable Followers and Following tables',
+    settings: [{
+      title: '',
+      key: 'FollowersTable',
+      defaultValue: 'enabled',
+      options: [{
+        title: 'Disabled',
+        value: 'disabled'
+      }, {
+        title: 'Enabled',
+        value: 'enabled'
+      }],
+      description: 'Replace the followers and following page with a table based list of followers/following accounts, showing more informations and making the list sortable'
+    }]
+  });
+
+  var followersTableEnabled = function() {
+    var value = window.SteemMoreInfo.Utils.getSettingsValue('FollowersTable');
+    return value;
+  };
+
+
+
   var getFollowersAccounts = function(names, callback) {
     var chunks = _.chunk(names, 100);
 
@@ -156,6 +180,10 @@
   var followerPageRegexp = /\/@([a-z0-9\-\.]*)\/(followers|followed)$/;
 
   var checkForFollowerPage = function() {
+    if(followersTableEnabled() === 'disabled'){
+      return;
+    }
+
     var match = (window.location.pathname || '').match(followerPageRegexp);
     if(match) {
       var name = match[1];

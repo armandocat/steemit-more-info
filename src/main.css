@@ -638,34 +638,34 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
 
 /* Markup editor */
 @media screen and (min-width: 900px) {
-  .SubmitPost > .ReplyEditor {
+  .SubmitPost.smi-advanced-editor > .ReplyEditor {
     width: 100%;
     max-width: 100%;
   }
-  .SubmitPost form.vframe {
+  .SubmitPost.smi-advanced-editor form.vframe {
     width: 100%;
     max-width: 100%;
     position: relative;
   }
-  .SubmitPost form.vframe > div {
+  .SubmitPost.smi-advanced-editor form.vframe > div {
     width: calc(50% - 10px);
     max-width: calc(50% - 10px);
   }
-  .SubmitPost form.vframe > div.Preview {
+  .SubmitPost.smi-advanced-editor form.vframe > div.Preview {
     position: absolute;
     top: 28px;
     left: calc(50% + 5px);
   }
-  .SubmitPost .ReplyEditor__body textarea {
+  .SubmitPost.smi-advanced-editor .ReplyEditor__body textarea {
     height: calc(100vh - 380px);
     padding-bottom: calc(100vh - 380px - 80px);
   }
-  .SubmitPost form.vframe > div.Preview .MarkdownViewer {
+  .SubmitPost.smi-advanced-editor form.vframe > div.Preview .MarkdownViewer {
     height: calc(100vh - 380px);  
     overflow-y: auto;
   }
   @-moz-document url-prefix() {
-    .SubmitPost .ReplyEditor__body textarea {
+    .SubmitPost.smi-advanced-editor .ReplyEditor__body textarea {
       padding-bottom: 0px;
     }
   }
@@ -729,5 +729,8 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
 .smi-settings-group p.smi-settings-description {
   font-size: 0.8em;
   padding-top: 5px;
+}
+.smi-settings-group {
+    padding-top: 20px;
 }
 
