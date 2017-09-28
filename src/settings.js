@@ -25,6 +25,9 @@
         if(s.description){
           group.append('<p class="smi-settings-description">' + s.description + '</p>');
         }
+        if(s.onChange) {
+          group.find('input').data('onChangeFunction', s.onChange);
+        }
       });
 
       list.append(group);
@@ -39,6 +42,10 @@
       var newValue = $this.val();
       var key = $this.attr('name');
       window.SteemMoreInfo.Utils.setSettingsValue(key, newValue);
+      var callback = $this.data('onChangeFunction');
+      if(callback){
+        callback();
+      }
     });
 
     return container;

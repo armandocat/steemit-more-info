@@ -1,11 +1,48 @@
 
 (function(){
+
+  var addOrRemoveAfterSettingsChange = function() {
+    if(votesTabEnabled() === 'disabled'){
+      $('li.menu-votes-tab-li').remove();
+    }else{
+      addVotesMenuButton();
+    }
+  };
+
+  window.SteemMoreInfo.Utils.addSettings({
+    title: 'Votes Tab',
+    settings: [{
+      title: '',
+      key: 'VotesTab',
+      defaultValue: 'enabled',
+      options: [{
+        title: 'Disabled',
+        value: 'disabled'
+      }, {
+        title: 'Enabled',
+        value: 'enabled'
+      }],
+      description: 'Adds a tab where you can see the incoming and outgoing votes of an account',
+      onChange: addOrRemoveAfterSettingsChange
+    }]
+  });
+
+  var votesTabEnabled = function() {
+    var value = window.SteemMoreInfo.Utils.getSettingsValue('VotesTab');
+    return value;
+  };
+
+
   
   var addVotesMenuButton = function() {
+    if(votesTabEnabled() === 'disabled'){
+      return;
+    }
+
     var name = window.SteemMoreInfo.Utils.getPageAccountName();
     if(!name){
       return;
-    }
+    }    
     console.log('Adding votes menu: ' + name);
 
     window.SteemMoreInfo.Utils.getUserTopMenusForAccountName(name, function(menus){
