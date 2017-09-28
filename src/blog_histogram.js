@@ -565,11 +565,17 @@
       return false;
     }
     if(postsList.hasClass('smi-posts-histogram-added')){
+      if(postsList.data('histogram-account') !== name){
+        console.log('posts list has already histogram but of different account');
+        postsList.find('.smi-posts-histogram-container').remove();
+      }else{
       console.log('posts list has already histogram');
       return true;
     }
+    }
     postsList.prepend(createHistogram(name));
     postsList.addClass('smi-posts-histogram-added');    
+    postsList.data('histogram-account', name); 
     console.log('histogram added');
     return true;
   };
