@@ -166,6 +166,18 @@ _When a new version of the extension is available, a popup in the top right corn
 
 <br>
 
+
+## Manually Force Google Chrome to Update Extensions
+
+* Head to chrome://extensions by either right-clicking on an extension and choosing Manage extensions, or just typing it into the location bar.
+* Check the Developer mode box on the right-hand side.
+* Click the "Update extensions now" button.
+
+_Source: https://www.howtogeek.com/64525/how-to-manually-force-google-chrome-to-update-extensions/_
+
+
+<br>
+
 ## Bugs and new features requests
 
 Please feel free to comment here or contact me on steemit.chat if you have suggestions or features requests!
