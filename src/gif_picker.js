@@ -2,6 +2,29 @@
 (function () {
   
 
+  window.SteemMoreInfo.Utils.addSettings({
+    title: 'GIF picker',
+    settings: [{
+      title: '',
+      key: 'GifPicker',
+      defaultValue: 'enabled',
+      options: [{
+        title: 'Disabled',
+        value: 'disabled'
+      }, {
+        title: 'Enabled',
+        value: 'enabled'
+      }],
+      description: 'Tool to easily add GIF from <a href="https://giphy.com/" target="_blank">giphy.com</a> to posts and comments'
+    }]
+  });
+
+  var isGifPickerEnabled = function() {
+    var value = window.SteemMoreInfo.Utils.getSettingsValue('GifPicker');
+    return value === 'enabled';
+  };
+
+
 
 
   var addGifToTextArea = function(textarea, gif) {
@@ -206,6 +229,10 @@
 
 
   var setupGifPickerIfNeeded = function(textarea) {
+    if(!isGifPickerEnabled()){
+      return;
+    }
+
     if(textarea.hasClass('smi-gif-picker-textarea')){
       return;
     }
