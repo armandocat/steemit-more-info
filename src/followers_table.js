@@ -68,6 +68,8 @@
 
     var followersNames = window.SteemMoreInfo.Utils.findReact(userList[0]).props.users.toArray().sort();
 
+    var tableIdForDataTableStorage = 'DataTables_' + (isFollowers ? 'Follower': 'Following') + '_Table';
+
     var table = container.find('table.dataTable');
     var dataTable = table.DataTable({
       columns: [{
@@ -129,7 +131,28 @@
       order: [[0, 'asc']],
       dom: 'lfrtip',//"frtip",
       responsive: true,
-      deferRender: true
+      deferRender: true,
+      stateSave: true,
+      stateSaveCallback: function(settings,data) {
+        var d = {};
+        if(data && data.length) {
+          d.length = data.length;
+        }
+        d.start = 0;
+        d.time = data.time;
+        d.order = data.order;
+        if(window.localStorage){
+          window.localStorage.setItem( tableIdForDataTableStorage, JSON.stringify(d) );
+        }
+      },
+      stateLoadCallback: function(settings) {
+        var d;
+        try{
+          d = JSON.parse( window.localStorage.getItem( tableIdForDataTableStorage ) );
+        }catch(err){
+        }
+        return d || {};
+      }
     });
 
     followersNames.forEach(function(followerName) {
