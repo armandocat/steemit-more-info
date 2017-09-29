@@ -15,7 +15,7 @@
         title: 'Enabled',
         value: 'enabled'
       }],
-      description: 'Tool to easily add GIF from <a href="https://giphy.com/" target="_blank">giphy.com</a> to posts and comments'
+      description: 'Tool to easily add GIF from <a href="https://giphy.com/" target="_blank">giphy.com</a> to posts and comments <img src="https://i.imgsafe.org/e6/e67c07abe2.png">'
     }]
   });
 
