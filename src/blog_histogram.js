@@ -41,12 +41,16 @@
 
 
   var getShowHistogram = function() {
+    var v = window.SteemMoreInfo.Utils.getSettingsValue('PostsHistogram');
+    if(v === 'disabled'){
+      return v;
+    }
     if($('html').hasClass('smi-mobile') && !$('html').hasClass('smi-mobile-tablet')){
       //always hide by default on mobile, because screen is to small!
       //users can still click the "show" button to show the histogram
       return 'hidden';
     }
-    return window.SteemMoreInfo.Utils.getSettingsValue('PostsHistogram');
+    return v;
   };
 
   var setShowHistogram = function(v) {
@@ -74,7 +78,7 @@
           <label>On load: </label>\
           <select class="smi-posts-show-select">\
             <option value="show" ' + (showHistogram === 'show' ? ' selected' : '') + '>Show</option>\
-            <option value="hidden" ' + (showHistogram !== 'show' ? ' selected' : '') + '>Hidden</option>\
+            <option value="hidden" ' + (showHistogram === 'hidden' ? ' selected' : '') + '>Hidden</option>\
           </select>\
         </div>\
       </div>\
@@ -587,6 +591,10 @@
 
 
   var checkHistogram = function(postsList, name) {
+    if(getShowHistogram() === 'disabled'){
+      return true;
+    }
+
     if(!postsList.length){
       if($('.UserProfile__tab_content .callout').length){
         //no posts for this user..
