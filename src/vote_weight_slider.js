@@ -42,9 +42,51 @@
       setTimeout(function() {
         tryUpdateVotingSlider();
       }, 100);
-      return;
+    }else{
+      weightDollars.text(dollars.toFixed(2) + '$');
     }
-    weightDollars.text(dollars.toFixed(2) + '$');
+
+    var votingEl = weightDisplay.closest('.Voting');
+    var flagInfo = votingEl.find('.Voting__about-flag');
+    if(flagInfo.length) {
+        
+      var pendingPayout;
+      var isComment = false;
+      var reactEl = votingEl.closest('.PostSummary, .Comment, .PostFull');
+      if(reactEl.is('.Comment')){
+        isComment = true;
+        reactEl = reactEl.find('.FormattedAsset');
+        pendingPayout = parseFloat(reactEl.text().replace('$',''));
+      }else if(reactEl.is('.PostFull')){
+        reactEl = reactEl.find('.FormattedAsset');
+        if(!reactEl.length){
+          reactEl = $('.smi-post-footer-wrapper-2 .FormattedAsset');
+        }
+        pendingPayout = parseFloat(reactEl.text().replace('$',''));        
+      }else{
+        var reactObj = window.SteemMoreInfo.Utils.findReact(reactEl[0]);
+        pendingPayout = parseFloat(reactObj.props.pending_payout.replace(' SBD', ''));
+      }
+
+      voteTotal = flagInfo.find('.smi-vote-total');
+      if(!voteTotal.length){
+        voteTotal = $('<p class="smi-vote-total"></p>');
+        flagInfo.prepend(voteTotal);
+        var html = 'After your downvote the total reward for <br> this ' + (isComment ? 'comment' : 'post') + ' will be: <span class="after-downvote-total-dollar">' + window.SteemMoreInfo.Utils.getLoadingHtml({
+          text: true,
+          backgroundColor: '#8a8a8a'
+        }) + '</span>';
+        voteTotal.html(html);
+      }
+      var voteTotalDollars = voteTotal.find('.after-downvote-total-dollar');
+
+      if(typeof dollars !== 'undefined'){
+        var v = pendingPayout + dollars;
+        voteTotalDollars.text(v.toFixed(2) + '$');
+      }
+
+
+    }
 
   };
 

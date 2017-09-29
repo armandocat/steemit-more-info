@@ -65,6 +65,15 @@
   margin-left: 0;
   margin-top: 6px;
 }
+p.smi-vote-total {
+  padding-top: 20px;
+  font-style: italic;
+}
+span.after-downvote-total-dollar {
+  font-weight: bold;
+  font-style: normal;
+}
+
 
 .UserProfile__tab_content_VotesTab {
   padding-bottom: 60px;

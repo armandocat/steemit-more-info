@@ -83,7 +83,7 @@
     var votingButton = $(this);
     console.log('Voting button clicked: ', votingButton);
     setTimeout(function() {
-      var adjustWeight = votingButton.parent().find('.Voting__adjust_weight');
+      var adjustWeight = votingButton.parent().find('.Voting__adjust_weight, .Voting__adjust_weight_down');
       var weightDisplay = adjustWeight.find('.weight-display');
       if(weightDisplay && weightDisplay.length){
         triggerEvent(window, 'voting-weight-change', weightDisplay);

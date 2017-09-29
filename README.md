@@ -50,6 +50,11 @@ _Please take into consideration that this is a new project that I just started, 
 
   ![](https://i.imgsafe.org/29/29bcda41b5.png)
 
+<br>
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) For downvotes, it shows also the total reward of the post after your downvote
+  ![](https://i.imgsafe.org/d9/d97ed70a6b.png)
+
 ---
 
 * When you are looking at a post or comment and you click "votes" to see the **list of people that voted that post**, you now also see what was **their contribute to the total reward**!
