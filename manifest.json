@@ -66,6 +66,7 @@
         "src/userpic_zoom.js",
         "src/markdown_editor_beautifier.js",
         "src/gif_picker.js",
+        "src/post_boost_button.js",
         "src/settings.js"
     ],
     "externally_connectable": {

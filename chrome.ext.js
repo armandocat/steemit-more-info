@@ -52,6 +52,7 @@ jsToLoad.push('src/external_links_menu.js');
 jsToLoad.push('src/markdown_editor_beautifier.js');
 jsToLoad.push('src/userpic_zoom.js');
 jsToLoad.push('src/gif_picker.js');
+jsToLoad.push('src/post_boost_button.js');
 
 
 // SETTINGS - LAST ONE

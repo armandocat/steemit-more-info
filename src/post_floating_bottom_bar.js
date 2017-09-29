@@ -38,6 +38,7 @@
 
     var tags = $('.TagList__horizontal');
     var postFooter = $('.PostFull__footer');
+    var promoteButton = $('.Promote__button');
 
     if(tags.length && postFooter.length) {
 
@@ -58,6 +59,7 @@
       var footerWrapper = footer.find('.smi-post-footer-wrapper-2');
 
       tags.replaceWith(footer);
+      footerWrapper.append(promoteButton);
       footerWrapper.append(tags);
       footerWrapper.append(postFooter);
 

@@ -544,7 +544,18 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
 
   background: rgba(255, 255, 255, 0.95);
 }
-
+@media screen and (min-width: 640px) and (max-width: 840px) {
+  .smi-post-footer.smi-post-floating-footer .smi-post-footer-wrapper-2,
+  .smi-post-footer-wrapper-2.smi-post-floating-footer-on-body {
+    padding-right: 30px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .smi-post-footer.smi-post-floating-footer .smi-post-footer-wrapper-2,
+  .smi-post-footer-wrapper-2.smi-post-floating-footer-on-body {
+    padding-right: 20px;
+  }
+}
 .smi-post-footer.smi-post-floating-footer .DropdownMenu>.VerticalMenu,
 .smi-post-footer-wrapper-2.smi-post-floating-footer-on-body .DropdownMenu>.VerticalMenu {
   top: auto;
@@ -957,4 +968,28 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   a.still .caption{
     opacity: 1 !important;
   }
+
+
+
+.button.smi-boost-button {
+  color: #4d1599;
+  border-color: #4d1599;
+  /*background-color: #f6f968;*/
+}
+.button.smi-boost-button:focus,
+.button.smi-boost-button:hover {
+  color: #4d1599;
+  border-color: #4d1599;
+  background-color: #f6f968;
+}
+@media print, screen and (max-width: 700px) {
+  .button.smi-boost-button {
+    margin-bottom: -5px;
+    margin-top: -25px;
+  }
+  .button.smi-promote-button {
+    margin-bottom: -10px;
+    margin-top: 10px;
+  }
+}
 
