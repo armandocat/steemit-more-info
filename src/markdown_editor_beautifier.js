@@ -536,6 +536,8 @@
     }, 100);
   });
 
-  checkSubmitPostPage();
+  setTimeout(function() {
+    checkSubmitPostPage();
+  }, 100);
 
 })();

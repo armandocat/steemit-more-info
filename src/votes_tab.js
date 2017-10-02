@@ -213,7 +213,7 @@
 
     var el = $('<div class="vote ' + voteType + '">\
       <a class="smi-navigate" href="/@' + voter + '">\
-        <img class="Userpic" src="https://img.steemconnect.com/@' + voter + '?s=48" alt="' + voter + '">\
+        <img class="Userpic" src="https://img.busy.org/@' + voter + '?s=48" alt="' + voter + '">\
       </a>\
       <div class="vote-info">\
         <span class="action">\

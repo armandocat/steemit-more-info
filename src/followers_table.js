@@ -77,7 +77,7 @@
         data: 'name',
         render: function ( data, type, row, meta ) {
           return type === 'display' ?
-            '<a class="smi-navigate" href="/@' + data + '"> <img class="Userpic" src="https://img.steemconnect.com/@' + data + '?s=32" alt="' + data + '">' + data + '</a>' :
+            '<a class="smi-navigate" href="/@' + data + '"> <img class="Userpic" src="https://img.busy.org/@' + data + '?s=32" alt="' + data + '">' + data + '</a>' :
             data;
         }
       },{
