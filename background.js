@@ -27,7 +27,7 @@ chrome.webRequest.onHeadersReceived.addListener(onHeadersReceived, filter, [
 
 
 
-chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
+var onMessage = function(request, sender, sendResponse) {
   console.log('Received request: ', request);
   if (request.type == 'ajax'){
     var ajax = request.ajax;
@@ -57,4 +57,8 @@ chrome.runtime.onMessageExternal.addListener(function(request, sender, sendRespo
   }else{
     sendResponse({});
   }
-});
+};
+
+chrome.runtime.onMessage.addListener(onMessage);
+chrome.runtime.onMessageExternal.addListener(onMessage);
+

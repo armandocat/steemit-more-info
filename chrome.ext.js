@@ -1,9 +1,33 @@
 
 document.body.dataset.SteemitMoreInfoExtensionId = chrome.runtime.id;
 
+/*
+Listen for messages from the page. For Firefox!
+*/
+window.addEventListener("message", function(event) {
+  if (event.source == window &&
+      event.data &&
+      event.data.direction == "from-page-script") {
+    var index = event.data.index;
+    if(!index){
+      return;
+    }
+    var message = event.data.message;
+    chrome.runtime.sendMessage(chrome.runtime.id, message, function(response) {
+      window.postMessage({
+        direction: "from-content-script",
+        index: index,
+        message: response
+      }, '*');
+    });
+
+  }
+});
+
 var s = document.createElement('script');
 s.src = chrome.extension.getURL('src/utils/chrome_addons.js');
 document.body.appendChild(s); 
+
 
 /* FILES TO LOAD - START */
 

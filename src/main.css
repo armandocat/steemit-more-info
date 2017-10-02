@@ -922,6 +922,9 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
 .smi-gif-picker-container .res-container-wrapper {
   margin: -13px;
 }
+.smi-gif-picker-container .res-container .results {
+  min-height: 100px;
+}
 /* https://codepen.io/badwolf7/pen/xOxBEx?page=2 */
 .smi-gif-picker-container .res-container {
   transition: all 0.4s ease;

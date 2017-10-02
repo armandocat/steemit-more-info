@@ -1,7 +1,7 @@
 (function () {
 
   var eid = $('body').data('SteemitMoreInfoExtensionId');
-  chrome.runtime.sendMessage(eid, {type:'manifest'}, function(response) {
+  var onResponse = function(response) {
     if(response.error){
       console.log('SMI manifest error: ', response.error);
     }else{
@@ -71,6 +71,30 @@
 
 
     }
-  });
+  };
+
+
+  if(typeof chrome !== 'undefined') {
+    chrome.runtime.sendMessage(eid, {type:'manifest'}, onResponse);
+  }else{
+    window.postMessage({
+      direction: "from-page-script",
+      index: 'check_update',
+      message: {type:'manifest'}
+    }, "*");
+
+    window.addEventListener("message", function(event) {
+      if (event.source == window &&
+          event.data &&
+          event.data.direction == "from-content-script" &&
+          event.data.index === 'check_update') {
+
+        var response = event.data.message;
+        onResponse(response);
+
+      }
+    });
+
+  }
   
 })();
