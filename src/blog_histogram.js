@@ -373,8 +373,6 @@
     var votes = post.net_votes;
     var comments = post.children;
 
-    absRshare = parseFloat(post.abs_rshares)
-    var rshare = post.total_vote_weight < 0 ? -absRshare : absRshare;
     var dollars;
     var dollarsAuthor;
     var dollarsCurators;
@@ -386,6 +384,10 @@
       cashout_time = moment(cashout_time + 'Z');
       payoutDateString = cashout_time.format('DD/MM/YYYY hh:mm A');
       payoutDateString2 = cashout_time.fromNow();
+
+      // absRshare = parseFloat(post.abs_rshares);
+      // var rshare = post.total_vote_weight < 0 ? -absRshare : absRshare;
+      var rshare = parseFloat(post.net_rshares);
 
       var dollars = window.SteemMoreInfo.Utils.getVotingDollarsPerShares(rshare);
       if(typeof dollars === 'undefined'){
