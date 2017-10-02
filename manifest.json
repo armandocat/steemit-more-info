@@ -44,6 +44,7 @@
         "vendor/HtmlReady.js",
         "vendor/jquery.justifiedGallery.min.js",
         "vendor/justifiedGallery.min.css",
+        "src/utils/steem-config.js",
         "src/utils/chrome_addons.js",
         "src/utils/notification_popup.js",
         "src/utils/sanitize.js",
@@ -75,6 +76,8 @@
     "permissions": [
         "activeTab",
         "webRequest",
+        "webRequestBlocking",
+        "https://steemit.com/*",
         "https://raw.githubusercontent.com/armandocat/steemit-more-info/master/manifest.json"
     ]
 }

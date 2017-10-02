@@ -111,7 +111,7 @@
     showOrHideHistogram(container, showHistogram === 'show');
 
 
-    steem.api.getBlog(name, 0, 500, function(err, data){
+    window.SteemMoreInfo.Utils.getBlog(name, 0, 500, function(err, data){
       if(err){
         return;
       }

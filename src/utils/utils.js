@@ -221,6 +221,19 @@
   };
 
 
+  var getBlog = function(name, start, length, cb){
+    steem.api.getBlog(name, start, length, cb);
+  };
+
+  var getAccounts = function(names, cb){
+    steem.api.getAccounts(names, cb);
+  };
+
+  var getAccountVotes = function(name, cb){
+    steem.api.getAccountVotes(name, cb);
+  }
+
+
   var getLoadingHtml = function(options) {
     var divClass = 'smi-spinner';
     var style = '';
@@ -335,6 +348,9 @@
     getUserHistory: getUserHistory,
     getActiveVotes: getActiveVotes,
     getContent: getContent,
+    getBlog: getBlog,
+    getAccounts: getAccounts,
+    getAccountVotes: getAccountVotes,
     getLoadingHtml: getLoadingHtml,
     navigate: navigate,
     findReact: findReact,

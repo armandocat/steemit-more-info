@@ -30,7 +30,7 @@
 
     _.each(chunks, function(chunk, index) {
       console.log('getting accounts at ' + index);
-      steem.api.getAccounts(chunk, function(err, accounts){
+      window.SteemMoreInfo.Utils.getAccounts(chunk, function(err, accounts){
         if(err){
           callback(err);
           return;

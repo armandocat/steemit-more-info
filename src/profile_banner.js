@@ -7,7 +7,7 @@
     }
     console.log('Adding info for user: ' + name);
 
-    steem.api.getAccounts([name], function(err, result){
+    window.SteemMoreInfo.Utils.getAccounts([name], function(err, result){
       window.SteemMoreInfo.Utils.getUserProfileBannerForAccountName(name, function(banner){
 
         var votingPower = window.SteemMoreInfo.Utils.getVotingPowerPerAccount(result[0]) / 100;
@@ -61,7 +61,7 @@
       });
     });
 
-    steem.api.getAccountVotes(name, function(err, result) {
+    window.SteemMoreInfo.Utils.getAccountVotes(name, function(err, result) {
       window.SteemMoreInfo.Utils.getUserProfileBannerForAccountName(name, function(banner){
 
         var insertVotes = banner.find('.UserProfile__stats')[0];

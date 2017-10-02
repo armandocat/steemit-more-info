@@ -32,6 +32,7 @@ var jsToLoad = [
 'vendor/attrchange.js',
 'vendor/HtmlReady.js',
 'vendor/jquery.justifiedGallery.min.js',
+'src/utils/steem-config.js',
 'src/utils/sanitize.js',
 'src/utils/notification_popup.js',
 'src/utils/utils.js',
