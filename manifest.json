@@ -44,6 +44,8 @@
         "vendor/HtmlReady.js",
         "vendor/jquery.justifiedGallery.min.js",
         "vendor/justifiedGallery.min.css",
+        "vendor/jquery.fancybox.min.js",
+        "vendor/jquery.fancybox.min.css",
         "src/utils/steem-config.js",
         "src/utils/chrome_addons.js",
         "src/utils/notification_popup.js",
@@ -68,6 +70,7 @@
         "src/markdown_editor_beautifier.js",
         "src/gif_picker.js",
         "src/post_boost_button.js",
+        "src/image-gallery.js",
         "src/settings.js"
     ],
     "externally_connectable": {

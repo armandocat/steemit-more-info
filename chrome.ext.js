@@ -12,6 +12,7 @@ var cssToLoad = [
 'vendor/datatables.min.css',
 'vendor/toastr.min.css',
 'vendor/justifiedGallery.min.css',
+'vendor/jquery.fancybox.min.css',
 'src/main.css'
 ];
 
@@ -32,6 +33,7 @@ var jsToLoad = [
 'vendor/attrchange.js',
 'vendor/HtmlReady.js',
 'vendor/jquery.justifiedGallery.min.js',
+'vendor/jquery.fancybox.min.js',
 'src/utils/steem-config.js',
 'src/utils/sanitize.js',
 'src/utils/notification_popup.js',
@@ -54,6 +56,7 @@ jsToLoad.push('src/markdown_editor_beautifier.js');
 jsToLoad.push('src/userpic_zoom.js');
 jsToLoad.push('src/gif_picker.js');
 jsToLoad.push('src/post_boost_button.js');
+jsToLoad.push('src/image-gallery.js');
 
 
 // SETTINGS - LAST ONE
