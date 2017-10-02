@@ -44,7 +44,7 @@
   var createMenuLinks = function(username) {
     return externalLinks.map(function(link){
       return '<li>\
-        <a href="' + link.href(username) + '" target="_blank">' + link.title + '</a>\
+        <a href="' + link.href(username) + '" target="_blank" rel="noopener">' + link.title + '</a>\
       </li>';
     }).join('');
   };
