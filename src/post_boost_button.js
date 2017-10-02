@@ -40,7 +40,12 @@
           <form lpformnum="4">\
             <div>\
               <div class="row">\
-                <div class="column small-12">XXXXXXXXXX</div>\
+                <div class="column small-12">\
+                The boost functionality is provided by <a href="/@armandocat" target="_blank">@armandocat</a>\
+                with the support of the <a href="/@minnowbooster" target="_blank">@minnowbooster</a> team.\
+                We don\'t have access to your private key, and the payment is made through SteemConnect.\
+                <br>\
+                </div>\
               </div>\
               <br>\
             </div>\
