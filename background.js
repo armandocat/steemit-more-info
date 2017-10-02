@@ -42,6 +42,18 @@ chrome.runtime.onMessageExternal.addListener(function(request, sender, sendRespo
       }
     });
     return true;
+  }else if (request.type == 'manifest'){
+    var manifestData = chrome.runtime.getManifest();
+    var currentVersion = manifestData.version;
+
+    $.get('https://raw.githubusercontent.com/armandocat/steemit-more-info/master/manifest.json?t=' + new Date().getTime())
+    .done(function(data) {
+      sendResponse({
+        currentVersion: currentVersion,
+        newManifest: data
+      });
+    });
+    return true;
   }else{
     sendResponse({});
   }

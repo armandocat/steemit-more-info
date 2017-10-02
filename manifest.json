@@ -77,7 +77,6 @@
         "activeTab",
         "webRequest",
         "webRequestBlocking",
-        "https://steemit.com/*",
-        "https://raw.githubusercontent.com/armandocat/steemit-more-info/master/manifest.json"
+        "https://steemit.com/*"
     ]
 }
