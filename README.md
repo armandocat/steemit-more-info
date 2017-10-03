@@ -1,4 +1,4 @@
-# Steemit More Info 1.2 - Chrome Extension + Firefox Extension
+# Steemit More Info 1.3 - Chrome Extension + Firefox Extension
 
 <center>
     
@@ -19,7 +19,7 @@ Because this is a Chrome and Firefox extension that you install on your browser,
 _Please take into consideration that this is a new project that I just started, and the features are limited to just a few so far! I'm planning to add more and more features in the next versions. Every suggestion and idea is very much appreciated!_
 
 
-### This is version 1.2 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
+### This is version 1.3 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
 
 <br>
 
@@ -40,7 +40,7 @@ _Please take into consideration that this is a new project that I just started, 
 
 ---
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) Added a **dropdown menu with links to external tools** to get more info about the steem account. Please let me know what tools you'd like to see here ;)
+* Added a **dropdown menu with links to external tools** to get more info about the steem account. Please let me know what tools you'd like to see here ;)
 
     ![](https://i.imgsafe.org/d8/d85792ac59.png)
 
@@ -52,7 +52,7 @@ _Please take into consideration that this is a new project that I just started, 
 
 <br>
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) For downvotes, it shows also the total reward of the post after your downvote
+* For downvotes, it shows also the total reward of the post after your downvote
   ![](https://i.imgsafe.org/d9/d97ed70a6b.png)
 
 ---
@@ -91,7 +91,7 @@ _Please take into consideration that this is a new project that I just started, 
 
   ![](https://steemitimages.com/DQmevE65xaGzXyMTeQX2T4pyZboXccVHEpYcrGX3njTmdTN/smi.gif)
 
-  ![](https://i.imgsafe.org/65/655926ba30.png) If you prefer a less intrusive way, in the setting you can choose the **small floating bar layout**
+  If you prefer a less intrusive way, in the setting you can choose the **small floating bar layout**
 
   ![](https://steemitimages.com/DQmZbH9NmnvkxLufzK4aMD58toYfxKEGGAFkJQ3wPCGZU9z/gif2.gif)
 
@@ -105,14 +105,34 @@ _Please take into consideration that this is a new project that I just started, 
 
 ---
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) If you want to better see the avatar of an account, just hover on the user picture to **open a bigger version of the avatar image**
+* If you want to better see the avatar of an account, just hover on the user picture to **open a bigger version of the avatar image**
 
   ![](https://steemitimages.com/DQmQELTQwaayqp2zmQW9i8uipFVoNDRAiQN4kAMD45YqDTs/gif3.gif)
 
 
 ---
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) **Steemit More Info Settings**. You can now choose to enable or disable each of the features provided by Steemit More Info! Just go in your account settings.
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) **GIF Picker** for your posts and comments! You can search by keywords or see the trending gifs of the moment. Powered by Giphy
+
+  ![](https://steemitimages.com/DQma6kD2jYLqs9trSPwg77TuyaDKHuCLfQ8z76ht65UdmiH/gif5.gif)
+
+
+---
+
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) Boost your posts easily with the **Boost button** next to the "Promote" button. You will be able to easily transfer SBD to @minnowbooster for an upvote of the whale!
+  ![](https://i.imgsafe.org/2a/2aa7a7e07a.png)
+  
+  You will be prompted with a confirmation form where **you will see the estimated worth of the upvote you will receive**. _No more copy and paste of the url in the memo field of the transfer and risks of sending a wrong transaction_
+  
+  ![](https://i.imgsafe.org/2a/2aa7a9d280.png)
+
+  Special thanks to @reggaemuffin and the @minnowbooster team for the support in making this feature possible! 
+
+---
+
+* **Steemit More Info Settings**. You can now choose to enable or disable each of the features provided by Steemit More Info! Just go in your account settings.
 
   ![](https://i.imgsafe.org/d8/d84e3cd75e.png)
 
@@ -125,13 +145,12 @@ _Please take into consideration that this is a new project that I just started, 
 
 I'm planning to add more features like:
 * COMING SOON: Trending of up to 5 favorite tags in one page. You select your favorite tags and you'll see the list of the top trending of all the tags combined in one list. I'm not releasing this feature yet because it still has some bugs. 
-* Notifications, for instance if somebody replies on one of your posts or comments, if you get an upvote, ...
+* Notifications, for instance if somebody replies on one of your posts or comments, if you get an upvote, ... 
 * A page with some graphs of the stats of the account 
-* Working on my own API, such as _mentions notification_, _followers by date_ of follow operation, posts _reposted_ by others, ...
-* Something about GIF ;)
 * ...
 
-## Privacy - Do I steal your data?
+
+## Privacy and security - Do I steal your data?
 
 **I do not access your private keys**. The only way I could do it, is if you go to your wallet page and click on "show private key". But I don't do it!
 Should you trust me? Well, I believe is better not to trust anyone. That's why the source code of the extension is available on github and you can (and you are encourage to) look and study it!
@@ -139,6 +158,37 @@ Should you trust me? Well, I believe is better not to trust anyone. That's why t
 The way it works is by scraping the webpage and the url of the page you are looking at to extract your username and the username of the user you are looking at. Then it uses steem-js to get informations about that user. 
 This process doesn't involve any private key! In fact, you can see informations of other users as well, even if you obbiuvsly don't know their private keys.
 
+
+### Code audit
+
+@reggaemuffin made a full code audit of this version of the extension looking for bugs or security problems.
+Here's a summary of his review:
+
+> There was a possible issue with the way the presence of a new update was checked that could have allowed **if @armandocat github account** were compromised to inject a string into the html page. However, the code would not have been executed so no malware could have been injected in the page. Code has been updated and now use a normal ajax call
+
+> /vendor/* contains javascript files unchanged from the last release of the libraries used
+
+>  src/post_boost_button.js is doing ajax requests to the minnowbooster api and these submit the author and permlink of the post you are viewing and your username to minnowbooster.net (to check your minnowbooster limits for your convenience). This happens only when you click on the "boost" button, so if you prefer not to send this information to minnowbooster just disable the feature and don't click on the "boost" button.
+
+> src/markdown_editor_beautifier.js will load a few iframes in your markdown editor if you include them. Iframes are sanetized before being embedded. Still this is to be kept in mind. Images are loaded automatically and are checked, but you can probably hack yourself by adding an image tag that links to a malicious script. Link tags are opened in a new tab and have noopener set, which **prevents** a security issue: https://mathiasbynens.github.io/rel-noopener/
+
+> src/gif_picker.js: found a few cases where rel-noopener was not applied and these were **fixed before release to the users**. This will call the giphy.com api and search for gifs. 
+
+> src/followers_table.js will call img.busy.org to retrieve profile images.
+
+> src/external_links_menu.js: all external links were subject to rel-noopener. **Fixed in this version**
+
+> src/utils/utils.js: this is doing all the heavy work and has the strongest focus in this review. All methods that interact with the blockchain are read only and safe.
+
+
+The bugs expressed have already been fixed prior to the release of this version.
+
+Thanks to @reggaemuffin for his effort in checking the code for potential vulnerabilities. He will confirm shortly this analysis by commenting on this post.
+**Please consider adding @reggaemuffin to your witnesses list!**
+
+
+<br>
+<br>
 
 ## Installation
 

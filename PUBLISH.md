@@ -1,7 +1,7 @@
 
 # NEW VERSION PUBLISH STEPS
 
-1) Update version in the manifest and change url to "https://steemit.com/@armandocat"
+1) Update version in the manifest
 
 2) Create extension package
 ./dist.sh
