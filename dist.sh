@@ -2,7 +2,7 @@
 
 NAME="SteemitMoreInfo"
 
-FILES="manifest.json chrome.ext.js document_start.js LICENSE README.md smi.png smi16.png smi48.png src/* vendor/*"
+FILES="manifest.json chrome.ext.js document_start.js background.js LICENSE README.md smi.png smi16.png smi48.png src/* vendor/*"
 
 mkdir -p dist
 rm -f "dist/${NAME}.zip"

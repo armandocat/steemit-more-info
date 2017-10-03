@@ -9,7 +9,7 @@
         "128" : "smi.png"
     },
 
-    "version": "1.3.0",
+    "version": "1.3.1",
     "homepage_url": "https://steemit.com/steemdev/@armandocat/steemit-more-info-1-3-chrome-extension-firefox-extension",
 
     "background" : {
