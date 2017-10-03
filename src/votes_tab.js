@@ -222,7 +222,7 @@
           <a class="smi-navigate smi-vote-permlink" href="/@' + author + '/' + permlink + '" title="@' + author + '/' + permlink + '">@' + author + '/' + permlink + '</a>\
         </span>\
         <span class="timeago" title="' + timeagoTitle + '">' + timeago + '</span>\
-        <span class="vote-weight">\
+        <span class="vote-weight" data-weight="' + tx.op[1].weight + '">\
           Weight: ' + weight + '%\
           <span class="vote-dollar"></span>\
         </span>\
@@ -271,11 +271,18 @@
           }
           _.each(result.active_votes, function(vote) {
             var voter = vote.voter;
+            var weight = vote.percent;
             var voteDollar = vote.voteDollar;
-            if(voteDollar){
+            if(typeof voteDollar !== 'undefined'){
               var voteEls = target.voteEls[voter];
               _.each(voteEls, function(voteEl) {
-                voteEl.find('.vote-dollar').text(' ≈ ' + voteDollar + '$');
+                var thisWeight = voteEl.find('.vote-weight').data('weight');
+                if(thisWeight == 0){
+                  vd = 0;
+                }else{
+                  vd = voteDollar * thisWeight / weight;
+                }
+                voteEl.find('.vote-dollar').text(' ≈ ' + vd.toFixed(2) + '$');
               });
             }
           });

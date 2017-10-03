@@ -102,7 +102,7 @@
           var voter = vote.voter;
           var voteDollar = vote.voteDollar;
           var votePercent = Math.round(vote.percent / 100);
-          if(voteDollar){
+          if(typeof voteDollar !== 'undefined'){
             var voteEls = voteElsByVoter[voter] || [];
             if(!voteEls.length){
               var newEl = $('<li>' +
@@ -118,7 +118,7 @@
             }
             _.each(voteEls, function(voteEl) {
               voteEl.find('.vote-weight').text(votePercent + '%');
-              voteEl.find('.vote-dollar').text('≈ ' + voteDollar + '$');
+              voteEl.find('.vote-dollar').text('≈ ' + voteDollar.toFixed(2) + '$');
             });
           }
         });

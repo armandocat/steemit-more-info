@@ -193,7 +193,7 @@
             var rshares = vote.rshares;
             var voteValue = window.SteemMoreInfo.Utils.getVotingDollarsPerShares(rshares);
             if(typeof voteValue !== 'undefined') {
-              vote.voteDollar = voteValue.toFixed(2);
+              vote.voteDollar = voteValue;
             }
           });
         }else{
@@ -212,7 +212,7 @@
             var voter = vote.voter;
             var rshares = vote.rshares;
             var voteValue = totalDollars * rshares / totalShares;
-            vote.voteDollar = voteValue.toFixed(2);
+            vote.voteDollar = voteValue;
           });
         }
       }
