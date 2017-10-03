@@ -29,7 +29,7 @@
 
 
   var createTransferUI = function(category, author, permlink) {
-    var link = window.location.origin + '/' + category + '/' + author + '/' + permlink;
+    var link = window.location.origin + '/' + category + '/@' + author + '/' + permlink;
 
     var modal = $('<div role="dialog" style="bottom: 0px; left: 0px; overflow-y: scroll; position: fixed; right: 0px; top: 0px;">\
       <div class="reveal-overlay fade in" style="display: block;"></div>\
