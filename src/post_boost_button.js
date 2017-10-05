@@ -239,7 +239,7 @@
         var validate = function() {
           var amount = transferUI.find('input[name="amount"]').val();
           var error = true;
-          amount = amount && parseInt(amount);
+          amount = amount && parseFloat(amount);
           if(typeof amount === 'number' && min <= amount && max >= amount){
             error = false;
           }
