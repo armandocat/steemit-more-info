@@ -20,8 +20,15 @@
         a.append(img);
       });
 
-      post.find('a.smi-post-img').fancybox({
-        loop: true
+      var fb = post.find('a.smi-post-img').fancybox({
+        loop: true,
+
+        beforeClose: function(instance, current, event){
+          if(event && event.stopPropagation){
+            event.stopPropagation();
+          }
+        }
+
       });
 
     }
