@@ -47,6 +47,8 @@
         "vendor/linkify.min.js",
         "vendor/linkify-string.min.js",
         "vendor/linkify-plugin-mention.min.js",
+        "vendor/jquery.fancybox.min.js",
+        "vendor/jquery.fancybox.min.css",
         "src/utils/steem-config.js",
         "src/utils/chrome_addons.js",
         "src/utils/notification_popup.js",
@@ -72,6 +74,7 @@
         "src/gif_picker.js",
         "src/post_boost_button.js",
         "src/wallet_transfer_filter.js",
+        "src/image-gallery.js",
         "src/settings.js"
     ],
     "externally_connectable": {

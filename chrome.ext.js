@@ -36,6 +36,7 @@ var cssToLoad = [
 'vendor/datatables.min.css',
 'vendor/toastr.min.css',
 'vendor/justifiedGallery.min.css',
+'vendor/jquery.fancybox.min.css',
 'src/main.css'
 ];
 
@@ -59,6 +60,7 @@ var jsToLoad = [
 'vendor/linkify.min.js',
 'vendor/linkify-string.min.js',
 'vendor/linkify-plugin-mention.min.js',
+'vendor/jquery.fancybox.min.js',
 'src/utils/steem-config.js',
 'src/utils/sanitize.js',
 'src/utils/notification_popup.js',
@@ -82,6 +84,7 @@ jsToLoad.push('src/userpic_zoom.js');
 jsToLoad.push('src/gif_picker.js');
 jsToLoad.push('src/post_boost_button.js');
 jsToLoad.push('src/wallet_transfer_filter.js');
+jsToLoad.push('src/image-gallery.js');
 
 
 // SETTINGS - LAST ONE
