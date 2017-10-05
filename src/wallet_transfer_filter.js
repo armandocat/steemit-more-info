@@ -10,7 +10,7 @@
   //AMOUNT
   //Minimum amount SBD/STEEM
 
-  //Accounts
+  //Search
   //textual filter 
 
 

@@ -94,7 +94,7 @@
       },
       formatHref: {
         mention: function (href) {
-          return 'https://github.com' + href;
+          return 'https://steemit.com/@' + href.substring(1);
         }
       } 
     });
