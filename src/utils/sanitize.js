@@ -51,7 +51,7 @@
 
   var postBodyShort = function(body) {
     var body2 = remarkableStripper.render(body);
-    desc = sanitizeHtml(body2, {allowedTags: []})// remove all html, leaving text
+    var desc = sanitizeHtml(body2, {allowedTags: []})// remove all html, leaving text
     desc = htmlDecode(desc)
 
     // Strip any raw URLs from preview text
@@ -74,8 +74,41 @@
     return desc;
   };
 
+
+  var sanitizeMemo = function(memo) {
+    // remove existing < and > 
+    memo = memo.replace(/[<>]/g, function(ch) {
+      if(ch == '<'){
+        return '&lt;';
+      }else{
+        return '&gt;';
+      }
+    });
+
+    // add links
+    memo = linkifyStr(memo, {
+      target: '_blank', 
+      defaultProtocol: 'https', 
+      attributes: {
+        rel: 'nofollow'
+      },
+      formatHref: {
+        mention: function (href) {
+          return 'https://github.com' + href;
+        }
+      } 
+    });
+
+    memo = sanitizeHtml(memo, {allowedTags: ['a']}); // remove all html, leaving text and a added
+    memo = htmlDecode(memo);
+
+    return memo;
+  };
+
+
   var Sanitize = {
-    postBodyShort: postBodyShort
+    postBodyShort: postBodyShort,
+    sanitizeMemo: sanitizeMemo
   };
 
 

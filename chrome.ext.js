@@ -56,6 +56,9 @@ var jsToLoad = [
 'vendor/attrchange.js',
 'vendor/HtmlReady.js',
 'vendor/jquery.justifiedGallery.min.js',
+'vendor/linkify.min.js',
+'vendor/linkify-string.min.js',
+'vendor/linkify-plugin-mention.min.js',
 'src/utils/steem-config.js',
 'src/utils/sanitize.js',
 'src/utils/notification_popup.js',
@@ -78,6 +81,7 @@ jsToLoad.push('src/markdown_editor_beautifier.js');
 jsToLoad.push('src/userpic_zoom.js');
 jsToLoad.push('src/gif_picker.js');
 jsToLoad.push('src/post_boost_button.js');
+jsToLoad.push('src/wallet_transfer_filter.js');
 
 
 // SETTINGS - LAST ONE

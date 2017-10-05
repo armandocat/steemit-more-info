@@ -996,3 +996,43 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   }
 }
 
+
+.Trans.smi-transaction-filtered-out {
+  display: none;
+}
+table tbody tr.Trans.smi-transaction-filtered-in:nth-of-type(2n+1) {
+  border-bottom: initial;
+  background-color: initial;
+}
+table tbody tr.Trans.smi-transaction-filtered-in:nth-of-type(2n) {
+  border-bottom: 0;
+  background-color: #f1f1f1;
+}
+.smi-transaction-table-filters > div {
+  display: inline-block;
+  vertical-align: top;
+}
+.smi-transaction-table-type-filter {
+  margin:4px;
+  background-color:#EFEFEF;
+  border-radius:4px;
+  border:1px solid #D0D0D0;
+  overflow:auto;
+  float:left;
+}
+.smi-transaction-table-type-filter label {
+  float:left;
+}
+.smi-transaction-table-type-filter label span {
+  text-align:center;
+  padding: 0px 6px;
+  display:block;
+}
+.smi-transaction-table-type-filter label input {
+  display: none;
+}
+.smi-transaction-table-type-filter input:checked + span {
+  background-color: #1a5099;
+  color: #fff;
+}
+
