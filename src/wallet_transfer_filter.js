@@ -237,13 +237,16 @@
 
   };
 
-  var updateRows = function() {
+
+  var _updateRows = function() {
     var txTr = $('.UserWallet table .Trans');
     txTr.each(function() {
       var r = window.SteemMoreInfo.Utils.findReact(this);
       r.forceUpdate();
     });
   };
+
+  var updateRows = _.debounce(_updateRows, 100);
 
 
   var createTypeFiltersUI = function() {
@@ -260,7 +263,7 @@
   var createMinAssetUI = function(asset) {
     return '<div class="smi-transaction-table-asset-value-filter">\
       <label>\
-        <span>Minimum amount of ' + asset + ':</span>\
+        <span>Min amount: ' + asset + '</span>\
         <input type="number" value="' + minAmountForAsset(asset).toFixed(3) + '" lang="en-150" step="0.001" min="0" data-asset="' + asset + '">\
       </label>\
     </div>';
@@ -282,16 +285,18 @@
     }
 
     var filters = $('<div class="smi-transaction-table-filters">\
-      <div class="small-12 medium-6 large-4 column">' +
+      <div class="smi-transaction-table-filters-type">' +
       createTypeFiltersUI() +
       '</div>\
-      <div class="small-12 medium-6 large-4 column">' +
-      createMinAssetUI('SBD') +
-      '</div>\
-      <div class="small-12 medium-6 large-4 column">' +
-      createMinAssetUI('STEEM') +
-      '</div>\
-      <div class="small-12 medium-6 large-4 column">' +
+      <div class="smi-transaction-table-filters-assets">\
+        <div class="">' +
+        createMinAssetUI('SBD') +
+        '</div>\
+        <div class="">' +
+        createMinAssetUI('STEEM') +
+        '</div>\
+      </div>\
+      <div class="smi-transaction-table-filters-search">' +
       createSearchUI() +
       '</div>\
     </div>');
