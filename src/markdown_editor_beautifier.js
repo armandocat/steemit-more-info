@@ -326,6 +326,7 @@
 
 
   var scrollMap;
+  var checkSubmitPostPage;
 
 
   var makeMarkdownEditorBeautiful = function(submitPost) {
@@ -336,7 +337,15 @@
     var markdownViewerEl = submitPost.find('.MarkdownViewer');
     var markdownViewerReact = markdownViewerEl.length && window.SteemMoreInfo.Utils.findReact(markdownViewerEl[0]);
     var textarea = submitPost.find('.ReplyEditor__body textarea');
+
     if(!markdownViewerReact || !textarea.length){
+
+      textarea.one('input', function(){
+        setTimeout(function(){
+          checkSubmitPostPage();
+        }, 100);
+      });
+
       return;
     }
 
@@ -520,12 +529,16 @@
 
   var submitPostPageRegexp = /^\/submit\.html/;
 
-  var checkSubmitPostPage = function() {
+  checkSubmitPostPage = function() {
     var isSubmitPage = submitPostPageRegexp.test(window.location.pathname || '');
     if(isSubmitPage) {
       var sp = $('.SubmitPost');
       if(sp.length){
         makeMarkdownEditorBeautiful(sp);
+      }else{
+        setTimeout(function() {
+          checkSubmitPostPage();
+        }, 100);
       }
     }
   };
