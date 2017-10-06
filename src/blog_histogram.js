@@ -59,57 +59,8 @@
 
 
 
-  var showOrHideHistogram = function(container, show) {
-    container.find('.smi-posts-histogram-title').css('visibility', show ? 'visible' : 'hidden');
-    container.find('.chartWrapper')[show ? 'show' : 'hide']();
-    container.find('.smi-spinner')[show ? 'show' : 'hide']();
-    container.find('.smi-show-posts-histogram').css('visibility', !show ? 'visible' : 'hidden');
-  };
 
-
-  var createHistogram = function(name) {
-
-    var showHistogram = getShowHistogram();
-
-    var container = $('<div class="smi-posts-histogram-container">\
-      <div class="smi-posts-settings-bar">\
-        <a class="smi-show-posts-histogram" href="#">Show posts histogram</a>\
-        <div class="smi-posts-show-settings">\
-          <label>On load: </label>\
-          <select class="smi-posts-show-select">\
-            <option value="show" ' + (showHistogram === 'show' ? ' selected' : '') + '>Show</option>\
-            <option value="hidden" ' + (showHistogram === 'hidden' ? ' selected' : '') + '>Hidden</option>\
-          </select>\
-        </div>\
-      </div>\
-      <h6 class="smi-posts-histogram-title">Posts by @' + name + '</h6>\
-      <div class="chartWrapper">\
-        <div class="chartAreaWrapper">\
-          <div class="chartAreaWrapper2">\
-            <canvas class="smi-posts-histogram"></canvas>\
-          </div>\
-        </div>\
-        <canvas class="smi-posts-histogram-axis" width="0"></canvas>\
-      </div>\
-    </div>');
-
-    var loading = $(window.SteemMoreInfo.Utils.getLoadingHtml({
-      center: true
-    }));
-    container.append(loading);
-
-    var showSelect = container.find('.smi-posts-show-select');
-    showSelect.on('change', function() {
-      var v = showSelect.val();
-      setShowHistogram(v);
-      showOrHideHistogram(container, v === 'show');
-    });
-    container.find('.smi-show-posts-histogram').on('click', function(e) {
-      e.preventDefault();
-      showOrHideHistogram(container, true);      
-    });
-    showOrHideHistogram(container, showHistogram === 'show');
-
+  var setupHistogram = function(name, container) {
 
     window.SteemMoreInfo.Utils.getBlog(name, 0, 500, function(err, data){
       if(err){
@@ -197,6 +148,7 @@
 
       chartAreaWrapper.scrollLeft(chartAreaWrapper[0].scrollWidth - chartAreaWrapper[0].clientWidth);
 
+      var loading = container.find('.smi-spinner');
       loading.remove();      
 
       var chart = new Chart(ctx, {
@@ -267,6 +219,66 @@
       histogram.data('chart', chart);
 
     });
+
+  }; // end setupHistogram
+
+
+
+  var showOrHideHistogram = function(name, container, show) {
+    container.find('.smi-posts-histogram-title').css('visibility', show ? 'visible' : 'hidden');
+    container.find('.chartWrapper')[show ? 'show' : 'hide']();
+    container.find('.smi-spinner')[show ? 'show' : 'hide']();
+    container.find('.smi-show-posts-histogram').css('visibility', !show ? 'visible' : 'hidden');
+
+    if(show && !container.hasClass('smi-posts-histogram-setup-done')){
+      setupHistogram(name, container);
+      container.addClass('smi-posts-histogram-setup-done');
+    }
+  };
+
+
+  var createHistogram = function(name) {
+
+    var showHistogram = getShowHistogram();
+
+    var container = $('<div class="smi-posts-histogram-container">\
+      <div class="smi-posts-settings-bar">\
+        <a class="smi-show-posts-histogram" href="#">Show posts histogram</a>\
+        <div class="smi-posts-show-settings">\
+          <label>On load: </label>\
+          <select class="smi-posts-show-select">\
+            <option value="show" ' + (showHistogram === 'show' ? ' selected' : '') + '>Show</option>\
+            <option value="hidden" ' + (showHistogram === 'hidden' ? ' selected' : '') + '>Hidden</option>\
+          </select>\
+        </div>\
+      </div>\
+      <h6 class="smi-posts-histogram-title">Posts by @' + name + '</h6>\
+      <div class="chartWrapper">\
+        <div class="chartAreaWrapper">\
+          <div class="chartAreaWrapper2">\
+            <canvas class="smi-posts-histogram"></canvas>\
+          </div>\
+        </div>\
+        <canvas class="smi-posts-histogram-axis" width="0"></canvas>\
+      </div>\
+    </div>');
+
+    var loading = $(window.SteemMoreInfo.Utils.getLoadingHtml({
+      center: true
+    }));
+    container.append(loading);
+
+    var showSelect = container.find('.smi-posts-show-select');
+    showSelect.on('change', function() {
+      var v = showSelect.val();
+      setShowHistogram(v);
+      showOrHideHistogram(name, container, v === 'show');
+    });
+    container.find('.smi-show-posts-histogram').on('click', function(e) {
+      e.preventDefault();
+      showOrHideHistogram(name, container, true);      
+    });
+    showOrHideHistogram(name, container, showHistogram === 'show');
 
 
     return container;
