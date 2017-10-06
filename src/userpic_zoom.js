@@ -43,6 +43,22 @@
     }
     zoom.css('left', cssLeft);
     zoom.css('margin-left', (left-pLeft) + 'px');
+
+    //check height
+    // zoom.css('bottom', 'auto');
+    zoom.css('margin-top', 'auto');
+    var zoomH = zoom.height();
+    var sp = zoom.scrollParent();
+    var maxTop = $(window).height() - zoomH - 30;
+    if(sp.is($(document))){
+      maxTop += sp.scrollTop();
+    }
+    var zTop = zoom.offset().top;
+    if(zTop > maxTop) {
+      // zoom.css('bottom', '0px');
+      zoom.css('margin-top', (-zoomH) + 'px');
+
+    }
   };
 
 

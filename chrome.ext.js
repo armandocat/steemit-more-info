@@ -61,6 +61,7 @@ var jsToLoad = [
 'vendor/linkify-string.min.js',
 'vendor/linkify-plugin-mention.min.js',
 'vendor/jquery.fancybox.min.js',
+'vendor/jquery.scrollparent.js',
 'src/utils/steem-config.js',
 'src/utils/sanitize.js',
 'src/utils/notification_popup.js',

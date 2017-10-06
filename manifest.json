@@ -49,6 +49,7 @@
         "vendor/linkify-plugin-mention.min.js",
         "vendor/jquery.fancybox.min.js",
         "vendor/jquery.fancybox.min.css",
+        "vendor/jquery.scrollparent.js",
         "src/utils/steem-config.js",
         "src/utils/chrome_addons.js",
         "src/utils/notification_popup.js",
