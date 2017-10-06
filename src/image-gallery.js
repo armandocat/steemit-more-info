@@ -2,9 +2,22 @@
 (function () {
 
   
-  var addImageGallery = function(post) {
+  var addImageGallery = function() {
+    var post = $('.PostFull__body');
 
     if(post.length && !post.hasClass('smi-img-gallery')) {
+
+      var mk = post.find('.MarkdownViewer');
+      if(!mk.length || !mk.children().length){
+
+        // not loaded yet, try later
+        setTimeout(function() {
+          addImageGallery();
+        }, 100);
+
+        return;
+      }
+
       console.log('POST: ', post);
       post.addClass('smi-img-gallery');
 
@@ -36,14 +49,26 @@
   };
 
 
-//TODO: TEMP
-  setInterval(function(){
 
-    var post = $('.PostFull__body');
-    addImageGallery(post);
+  $('body').attrchange(function(attrName) {
+    if(attrName === 'class'){
+      if($('body').hasClass('with-post-overlay')) {
 
-  },100);
+        addImageGallery();
 
+      }
+    }
+  });
+
+  window.SteemMoreInfo.Events.addEventListener(window, 'changestate', function() {
+    setTimeout(function() {
+
+      addImageGallery();
+
+    }, 100);
+  });
+
+  addImageGallery();
 
 
 })();
