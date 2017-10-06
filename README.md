@@ -147,6 +147,7 @@ I'm planning to add more features like:
 * COMING SOON: Trending of up to 5 favorite tags in one page. You select your favorite tags and you'll see the list of the top trending of all the tags combined in one list. I'm not releasing this feature yet because it still has some bugs. 
 * Notifications, for instance if somebody replies on one of your posts or comments, if you get an upvote, ... 
 * A page with some graphs of the stats of the account 
+* Image resizing in the post editor
 * ...
 
 
