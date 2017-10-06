@@ -211,7 +211,7 @@
 
   var renderChanged = false;
 
-  var walletRegexp = /https:\/\/steemit.com\/@([a-z0-9\-\.]*)\/(transfers|author-rewards|curation-rewards)([\/\#].*)?$/;
+  var walletRegexp = /^\/@([a-z0-9\-\.]*)\/(transfers|author-rewards|curation-rewards)([\/\#].*)?$/;
 
 
   var setupTransferHistoryRowRender = function(txTr) {
@@ -323,7 +323,7 @@
   var setupFilters = function() {
     var tableRows = $('.UserWallet table .Trans');
     if(!tableRows.length){
-      if(walletRegexp.test(window.location.href)){
+      if(walletRegexp.test(window.location.pathname)){
         setTimeout(function() {
           setupFilters();
         }, 100);
