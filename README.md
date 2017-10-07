@@ -1,4 +1,4 @@
-# Steemit More Info 1.3 - Chrome Extension + Firefox Extension
+# Steemit More Info 1.4 - Chrome Extension + Firefox Extension
 
 <center>
     
@@ -19,7 +19,7 @@ Because this is a Chrome and Firefox extension that you install on your browser,
 _Please take into consideration that this is a new project that I just started, and the features are limited to just a few so far! I'm planning to add more and more features in the next versions. Every suggestion and idea is very much appreciated!_
 
 
-### This is version 1.3 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
+### This is version 1.4 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
 
 <br>
 
@@ -113,7 +113,7 @@ _Please take into consideration that this is a new project that I just started, 
 ---
 
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) **GIF Picker** for your posts and comments! You can search by keywords or see the trending gifs of the moment. Powered by Giphy
+* **GIF Picker** for your posts and comments! You can search by keywords or see the trending gifs of the moment. Powered by Giphy
 
   ![](https://steemitimages.com/DQma6kD2jYLqs9trSPwg77TuyaDKHuCLfQ8z76ht65UdmiH/gif5.gif)
 
@@ -121,7 +121,7 @@ _Please take into consideration that this is a new project that I just started, 
 ---
 
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) Boost your posts easily with the **Boost button** next to the "Promote" button. You will be able to easily transfer SBD to @minnowbooster for an upvote of the whale!
+* Boost your posts easily with the **Boost button** next to the "Promote" button. You will be able to easily transfer SBD to @minnowbooster for an upvote of the whale!
   ![](https://i.imgsafe.org/2a/2aa7a7e07a.png)
   
   You will be prompted with a confirmation form where **you will see the estimated worth of the upvote you will receive**. _No more copy and paste of the url in the memo field of the transfer and risks of sending a wrong transaction_
@@ -131,6 +131,20 @@ _Please take into consideration that this is a new project that I just started, 
   Special thanks to @reggaemuffin and the @minnowbooster team for the support in making this feature possible! 
 
 ---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) **Filter wallet history** by selecting the type _(transfers, power up/down, rewards, conversions)_, minimum amount, or by textual search.
+  You can now **click on a link or mention in the transaction _memo_ field!**
+
+  ![](https://i.imgsafe.org/8f/8fb128a3a7.png)
+
+---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) You can open a **gallery of images in a post** by clicking on an image. 
+  
+  ![gif6.gif](https://steemitimages.com/DQmepeZ4sHuukkYj9SHps9FLnVcKHYGt8FhDXw4E58Kjt75/gif6.gif)
+
+---
+
 
 * **Steemit More Info Settings**. You can now choose to enable or disable each of the features provided by Steemit More Info! Just go in your account settings.
 
