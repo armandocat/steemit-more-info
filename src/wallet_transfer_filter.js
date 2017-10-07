@@ -94,7 +94,7 @@
       }
       return true;
     }
-    if(!text || text.indexOf(search) === -1){
+    if(!text || text.toLowerCase().indexOf(search.toLowerCase()) === -1){
       return false;
     }
     return true;
