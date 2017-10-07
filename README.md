@@ -148,6 +148,7 @@ I'm planning to add more features like:
 * Notifications, for instance if somebody replies on one of your posts or comments, if you get an upvote, ... 
 * A page with some graphs of the stats of the account 
 * Image resizing in the post editor
+* Better search
 * ...
 
 

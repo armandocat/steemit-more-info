@@ -9,6 +9,10 @@
 
     window.SteemMoreInfo.Utils.getAccounts([name], function(err, result){
       window.SteemMoreInfo.Utils.getUserProfileBannerForAccountName(name, function(banner){
+        if(banner.hasClass('smi-profile-banner-1')){
+          return;
+        }
+        banner.addClass('smi-profile-banner-1');
 
         var votingPower = window.SteemMoreInfo.Utils.getVotingPowerPerAccount(result[0]) / 100;
         var votingDollars;
@@ -63,6 +67,10 @@
 
     window.SteemMoreInfo.Utils.getAccountVotes(name, function(err, result) {
       window.SteemMoreInfo.Utils.getUserProfileBannerForAccountName(name, function(banner){
+        if(banner.hasClass('smi-profile-banner-2')){
+          return;
+        }
+        banner.addClass('smi-profile-banner-2');
 
         var insertVotes = banner.find('.UserProfile__stats')[0];
   
@@ -94,6 +102,10 @@
     $('#Rep__percent').remove();
     $('#Vote__time').remove();
     $('.voting_weight_dollars').remove();
+
+    var banner = $('.UserProfile__banner');
+    banner.removeClass('smi-profile-banner-1');
+    banner.removeClass('smi-profile-banner-2');
 
     var name = window.SteemMoreInfo.Utils.getPageAccountName();
     addBannerInfo(name);
