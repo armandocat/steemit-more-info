@@ -1,6 +1,30 @@
 
 (function () {
   
+
+  window.SteemMoreInfo.Utils.addSettings({
+    title: 'Wallet history filters',
+    settings: [{
+      title: '',
+      key: 'WalletTransferFilter',
+      defaultValue: 'enabled',
+      options: [{
+        title: 'Disabled',
+        value: 'disabled'
+      }, {
+        title: 'Enabled',
+        value: 'enabled'
+      }],
+      description: 'Adds the ability to filter the transaction in the wallet history'
+    }]
+  });
+
+  var isWalletTransferFilterEnabled = function() {
+    var value = window.SteemMoreInfo.Utils.getSettingsValue('WalletTransferFilter');
+    return value === 'enabled';
+  };
+
+
   //FILTERS:
   //Transfer
   //Power up/down
@@ -123,6 +147,9 @@
 
   var newTransferHistoryRowRender = function() {
     var result = oldTransferHistoryRowRender.apply(this, arguments);
+    if(!isWalletTransferFilterEnabled()){
+      return result;
+    }
 
     const {op, context, curation_reward, author_reward, benefactor_reward, powerdown_vests, reward_vests} = this.props;
     // context -> account perspective
@@ -326,6 +353,10 @@
 
 
   var setupFilters = function() {
+    if(!isWalletTransferFilterEnabled()){
+      return;
+    }
+
     var tableRows = $('.UserWallet table .Trans');
     if(!tableRows.length){
       if(walletRegexp.test(window.location.pathname)){

@@ -1,8 +1,34 @@
 
 (function () {
 
+  window.SteemMoreInfo.Utils.addSettings({
+    title: 'Post\'s image gallery',
+    settings: [{
+      title: '',
+      key: 'PostImageGallery',
+      defaultValue: 'enabled',
+      options: [{
+        title: 'Disabled',
+        value: 'disabled'
+      }, {
+        title: 'Enabled',
+        value: 'enabled'
+      }],
+      description: 'Open an image gallery by clickin on an image in a post'
+    }]
+  });
+
+  var isPostImageGalleryEnabled = function() {
+    var value = window.SteemMoreInfo.Utils.getSettingsValue('PostImageGallery');
+    return value === 'enabled';
+  };
+
   
   var addImageGallery = function() {
+    if(!isPostImageGalleryEnabled()){
+      return;
+    }
+
     var post = $('.PostFull__body');
 
     if(post.length && !post.hasClass('smi-img-gallery')) {
