@@ -86,6 +86,7 @@ jsToLoad.push('src/gif_picker.js');
 jsToLoad.push('src/post_boost_button.js');
 jsToLoad.push('src/wallet_transfer_filter.js');
 jsToLoad.push('src/image-gallery.js');
+jsToLoad.push('src/search.js');
 
 
 // SETTINGS - LAST ONE

@@ -76,6 +76,7 @@
         "src/post_boost_button.js",
         "src/wallet_transfer_filter.js",
         "src/image-gallery.js",
+        "src/search.js",
         "src/settings.js"
     ],
     "externally_connectable": {
