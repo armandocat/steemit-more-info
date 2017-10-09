@@ -231,6 +231,37 @@
       __html: makeMemoHtml(memo)
     };
 
+    // // in curation and author reward tabs also the second column can contain links!
+    // if( type === 'curation_reward' || type === 'author_reward') {
+
+    //   var rewardTd = result.props.children[1];
+    //   if(rewardTd.props.children.length === 3 && !rewardTd.props.children[1] && typeof rewardTd.props.children[0] === 'string') {
+    //     var m = rewardTd.props.children[0].match('(.*[ ]+for[ ]+)(.*)$');
+    //     if(m){
+    //       var txt = m[1];
+    //       var path = m[2];
+    //       rewardTd.props.children[0] = txt;
+    //       rewardTd.props.children[1] = {
+    //         type: 'span',
+    //         props: {
+    //           dangerouslySetInnerHTML: {
+    //            __html: '<a href="' + path + '">' + path + '</a>'
+    //           }
+    //         }            
+    //       };
+    //     }
+    //   }
+    //   // var textChildren = rewardTd.props.children;
+    //   // var txt = textChildren.props.text;
+    //   // delete textChildren.props.text;
+    //   // textChildren.type = 'span';
+    //   // textChildren.props.dangerouslySetInnerHTML = {
+    //   //   __html: makeMemoHtml(txt)
+    //   // };
+
+    // }
+    
+
     return result;
   };
 
