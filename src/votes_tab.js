@@ -3,9 +3,9 @@
 
   var addOrRemoveAfterSettingsChange = function() {
     if(votesTabEnabled() === 'disabled'){
-      $('li.menu-votes-tab-li').remove();
+      window.SteemMoreInfo.Tabs.disableTab('votes');
     }else{
-      addVotesMenuButton();
+      window.SteemMoreInfo.Tabs.enableTab('votes');
     }
   };
 
@@ -33,59 +33,9 @@
   };
 
 
-  
-  var addVotesMenuButton = function() {
-    if(votesTabEnabled() === 'disabled'){
-      return;
-    }
 
-    var name = window.SteemMoreInfo.Utils.getPageAccountName();
-    if(!name){
-      return;
-    }    
-    console.log('Adding votes menu: ' + name);
 
-    window.SteemMoreInfo.Utils.getUserTopMenusForAccountName(name, function(menus){
-      var menu = menus.eq(0); // first menu
-      var votesLi = menu.find('li.menu-votes-tab-li');
-      if(!votesLi.length){
-        votesLi = $('<li class="smi-menu-li menu-votes-tab-li"><a href="#">Votes</a></li>');
-        votesLi.find('a').on('click', function(e) {
-          e.preventDefault();
-          showVotesTab();
-        });
-        menu.append(votesLi);
-      }
-
-      if(window.location.hash === '#votes'){
-        showVotesTab();
-      }
-
-    });
-  };
-
-  var showVotesTab = function() {
-    var container = $('.UserProfile');
-    var divs = container.children();
-    var realSelectedTab;
-    var otherTabs = [];
-    var votesTab;
-    for (var i = divs.length - 1; i >= 0; i--) {
-      var tab = $(divs[i]);
-      if(!tab.hasClass('smi-tabs-div')){
-        realSelectedTab = tab;
-        otherTabs.push(tab);
-        break;
-      }else if(tab.hasClass('smi-votes-tab')){
-        votesTab = tab;
-      }else{
-        otherTabs.push(tab);
-      }
-    }
-    if(!votesTab){
-      votesTab = $('<div class="smi-tabs-div smi-votes-tab"></div>');
-      container.append(votesTab);
-    }
+  var createVotesTab = function(votesTab) {
     votesTab.html('<div class="row">\
        <div class="UserProfile__tab_content UserProfile__tab_content_smi UserProfile__tab_content_VotesTab column">\
           <div class="VotesTab" style="display: none;">\
@@ -119,14 +69,7 @@
           </center>\
        </div>\
     </div>');
-    otherTabs.forEach(function(otherTab){
-      otherTab.hide();
-    });
-    $('.UserProfile__top-menu ul.menu li a').removeClass('active');
-    $('li.menu-votes-tab-li a').addClass('active');
-    votesTab.show();
-    window.location.hash = '#votes';
-
+    
     votesTab.find('.VotesTabLoadMore button').on('click', function(){
       var loadMore = $(this).parent();
       loadMore.hide();
@@ -152,42 +95,6 @@
 
     getVotes(votesTab, window.SteemMoreInfo.Utils.getPageAccountName());
   };  
-
-  var onMenuItemClick = function() {
-    var li = $(this).parent();
-    if(!li.hasClass('smi-menu-li')){
-      if(li.is('li') && li.find('a').attr('aria-haspopup') == 'true'){
-        return;
-      }
-      var container = $('.UserProfile');
-      var divs = container.children();
-      var realSelectedTab;
-      var otherTabs = [];
-      for (var i = divs.length - 1; i >= 0; i--) {
-        var tab = $(divs[i]);
-        if(!tab.hasClass('smi-tabs-div')){
-          realSelectedTab = tab;
-          otherTabs.push(tab);
-          break;
-        }else{
-          otherTabs.push(tab);
-        }
-      }
-      otherTabs.forEach(function(otherTab){
-        otherTab.hide();
-      });
-      if(realSelectedTab){
-        realSelectedTab.show();
-        $('.UserProfile__top-menu ul.menu li a').removeClass('active');
-        if(li.is('li')){
-          li.find('a').addClass('active');
-        }
-      }
-    }
-  };
-  $('body').on('click', '.UserProfile__top-menu ul.menu li a', onMenuItemClick);
-  $('body').on('click', '.dropdown-pane.is-open .VerticalMenu.menu.vertical li a', onMenuItemClick);
-  $('body').on('click', '.UserProfile__stats span a', onMenuItemClick);
 
 
   var createVoteEl = function(tx) {
@@ -292,35 +199,14 @@
   };
 
 
-  // $('.Header__top.header .Header__userpic > a').on('click', function() {
-  //   var userHref = $(this).attr('href');
-  //   setTimeout(function() {
-  //     if($('body > div > div > div.dropdown-pane ul.menu li.smi-votes-tab-li').length){
-  //       return;
-  //     }
 
-  //     var recentRepliesLi = $('body > div > div > div.dropdown-pane ul.menu li').filter(function(){
-  //       var href = $(this).find('a').attr('href'); 
-  //       return href && href.indexOf('recent-replies') !== -1;
-  //     });
-  //     var li = $('<li class="smi-votes-tab-li">\
-  //       <a href="' + userHref + '#votes" class="smi-navigate">\
-  //         <span class="Icon reply" style="display: inline-block; width: 1.12rem; height: 1.12rem;">\
-  //           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><title>reply</title><path d="M14 24.238v7.762l-12-12 12-12v7.932c13.961 0.327 13.362-9.493 9.808-15.932 8.772 9.482 6.909 24.674-9.808 24.238z"></path></svg>\
-  //         </span>\
-  //         Votes\
-  //       </a>\
-  //     </li>');
-
-  //     recentRepliesLi.after(li)
-  //   }, 250);
-  // });
-
-
-  window.SteemMoreInfo.Events.addEventListener(window, 'page-account-name', function() {
-    addVotesMenuButton();
+  window.SteemMoreInfo.Tabs.createTab({
+    id: 'votes',
+    title: 'Votes',
+    enabled: (votesTabEnabled() !== 'disabled'),
+    createTab: createVotesTab
   });
 
-  addVotesMenuButton();
+
 
 })();

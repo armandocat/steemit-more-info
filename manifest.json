@@ -61,6 +61,7 @@
         "src/utils/upvote_me_banner.js",
         "src/main.css",
         "src/profile_banner.js",
+        "src/base_tab.js",
         "src/votes_tab.js",
         "src/vote_weight_slider.js",
         "src/post_votes_list.js",
