@@ -165,7 +165,7 @@ span.after-downvote-total-dollar {
 .smi-show-as-grid-buttons {
   display: none;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 840px) {
   .smi-show-as-grid-buttons {
     display: block;
   }
@@ -623,6 +623,11 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   display: inline-block !important;
   border-right: none;
 }
+.smi-post-floating-footer-on-body.smi-post-footer-small .smi-boost-button,
+.smi-post-floating-footer-on-body.smi-post-footer-small .smi-promote-button {
+  display: none;
+}
+
 
 
 
