@@ -175,34 +175,6 @@ The way it works is by scraping the webpage and the url of the page you are look
 This process doesn't involve any private key! In fact, you can see informations of other users as well, even if you obbiuvsly don't know their private keys.
 
 
-### Code audit
-
-@reggaemuffin made a full code audit of this version of the extension looking for bugs or security problems.
-Here's a summary of his review:
-
-> There was a possible issue with the way the presence of a new update was checked that could have allowed **if @armandocat github account** were compromised to inject a string into the html page. However, the code would not have been executed so no malware could have been injected in the page. Code has been updated and now use a normal ajax call
-
-> /vendor/* contains javascript files unchanged from the last release of the libraries used
-
->  src/post_boost_button.js is doing ajax requests to the minnowbooster api and these submit the author and permlink of the post you are viewing and your username to minnowbooster.net (to check your minnowbooster limits for your convenience). This happens only when you click on the "boost" button, so if you prefer not to send this information to minnowbooster just disable the feature and don't click on the "boost" button.
-
-> src/markdown_editor_beautifier.js will load a few iframes in your markdown editor if you include them. Iframes are sanetized before being embedded. Still this is to be kept in mind. Images are loaded automatically and are checked, but you can probably hack yourself by adding an image tag that links to a malicious script. Link tags are opened in a new tab and have noopener set, which **prevents** a security issue: https://mathiasbynens.github.io/rel-noopener/
-
-> src/gif_picker.js: found a few cases where rel-noopener was not applied and these were **fixed before release to the users**. This will call the giphy.com api and search for gifs. 
-
-> src/followers_table.js will call img.busy.org to retrieve profile images.
-
-> src/external_links_menu.js: all external links were subject to rel-noopener. **Fixed in this version**
-
-> src/utils/utils.js: this is doing all the heavy work and has the strongest focus in this review. All methods that interact with the blockchain are read only and safe.
-
-
-The bugs expressed have already been fixed prior to the release of this version.
-
-Thanks to @reggaemuffin for his effort in checking the code for potential vulnerabilities. He will confirm shortly this analysis by commenting on this post.
-**Please consider adding @reggaemuffin to your witnesses list!**
-
-
 <br>
 <br>
 
@@ -214,6 +186,11 @@ https://chrome.google.com/webstore/detail/steemit-more-info/dcbpmclnlapbkgkddhen
 
 ![](https://i.imgsafe.org/65/655926ba30.png) **The extension is now available on the Firefox Extension Store** 
 https://addons.mozilla.org/en-US/firefox/addon/steemit-more-info/
+
+![](https://i.imgsafe.org/65/655926ba30.png) **You can now have these features on mobile as well!** Look here for more information:
+**SteemApp - Android** _(iOS coming soon)_
+https://steemit.com/steemdev/@armandocat/steemapp-1-1-android-beta
+
 
 <br>
 
