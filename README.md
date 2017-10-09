@@ -42,7 +42,7 @@ _Please take into consideration that this is a new project that I just started, 
 
 * Added a **dropdown menu with links to external tools** to get more info about the steem account. Please let me know what tools you'd like to see here ;)
 
-    ![](https://i.imgsafe.org/d8/d85792ac59.png)
+    ![](https://i.imgsafe.org/ba/ba38a51f39.png)
 
 ---
 
