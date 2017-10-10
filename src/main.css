@@ -1064,3 +1064,23 @@ table tbody tr.Trans.smi-transaction-filtered-in:nth-of-type(2n) {
   color: #fff;
 }
 
+
+.UserProfile__tab_content_MentionsTab {
+  padding-bottom: 60px;
+}
+.UserProfile__tab_content_MentionsTab .MentionsTab {
+  padding-bottom: 20px;
+}
+.UserProfile__tab_content_MentionsTab .MentionsTabLoadMore button {
+  background-color: transparent;
+  border-radius: 6px;
+  border: 1px solid rgb(220, 220, 220);
+  display: inline-block;
+  cursor: pointer;
+  color: rgb(119, 119, 119);
+  font-size: 17px;
+  padding: 10px 24px;
+  text-decoration: none;
+}
+
+

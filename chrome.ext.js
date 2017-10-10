@@ -71,7 +71,9 @@ var jsToLoad = [
 ];
 
 jsToLoad.push('src/profile_banner.js');
+jsToLoad.push('src/base_tab.js');
 jsToLoad.push('src/votes_tab.js');
+jsToLoad.push('src/mentions_tab.js');
 jsToLoad.push('src/vote_weight_slider.js');
 jsToLoad.push('src/post_votes_list.js');
 // jsToLoad.push('src/favorite_tags.js');
