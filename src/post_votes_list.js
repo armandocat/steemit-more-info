@@ -96,7 +96,7 @@
         }
         var newElCount = 0;
         var active_votes = _.sortBy(result.active_votes, function(v){
-          return -parseInt(v.rshares);
+          return -Math.abs(parseInt(v.rshares));
         });
         _.each(active_votes, function(vote) {
           var voter = vote.voter;

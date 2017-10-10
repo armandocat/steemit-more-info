@@ -29,6 +29,16 @@
       return 'http://steem.supply/@' + username;
     }
   }, {
+    title: 'Mentions',
+    href: function(username) { 
+      return 'http://steemistry.com/steemit-mentions-tool/?mention=@' + username;
+    }
+  }, {
+    title: 'SteemWorld',
+    href: function(username) {
+      return 'https://steemworld.org/@' + username
+    }
+  }, {
     title: 'Steem Whales',
     href: function(username) { 
       return 'http://steemwhales.com/' + username;

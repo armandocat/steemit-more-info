@@ -1,4 +1,4 @@
-# Steemit More Info 1.3 - Chrome Extension + Firefox Extension
+# Steemit More Info 1.4 - Chrome Extension + Firefox Extension
 
 <center>
     
@@ -19,7 +19,7 @@ Because this is a Chrome and Firefox extension that you install on your browser,
 _Please take into consideration that this is a new project that I just started, and the features are limited to just a few so far! I'm planning to add more and more features in the next versions. Every suggestion and idea is very much appreciated!_
 
 
-### This is version 1.3 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
+### This is version 1.4 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
 
 <br>
 
@@ -42,7 +42,7 @@ _Please take into consideration that this is a new project that I just started, 
 
 * Added a **dropdown menu with links to external tools** to get more info about the steem account. Please let me know what tools you'd like to see here ;)
 
-    ![](https://i.imgsafe.org/d8/d85792ac59.png)
+    ![](https://i.imgsafe.org/ba/ba38a51f39.png)
 
 ---
 
@@ -113,7 +113,7 @@ _Please take into consideration that this is a new project that I just started, 
 ---
 
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) **GIF Picker** for your posts and comments! You can search by keywords or see the trending gifs of the moment. Powered by Giphy
+* **GIF Picker** for your posts and comments! You can search by keywords or see the trending gifs of the moment. Powered by Giphy
 
   ![](https://steemitimages.com/DQma6kD2jYLqs9trSPwg77TuyaDKHuCLfQ8z76ht65UdmiH/gif5.gif)
 
@@ -121,7 +121,7 @@ _Please take into consideration that this is a new project that I just started, 
 ---
 
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) Boost your posts easily with the **Boost button** next to the "Promote" button. You will be able to easily transfer SBD to @minnowbooster for an upvote of the whale!
+* Boost your posts easily with the **Boost button** next to the "Promote" button. You will be able to easily transfer SBD to @minnowbooster for an upvote of the whale!
   ![](https://i.imgsafe.org/2a/2aa7a7e07a.png)
   
   You will be prompted with a confirmation form where **you will see the estimated worth of the upvote you will receive**. _No more copy and paste of the url in the memo field of the transfer and risks of sending a wrong transaction_
@@ -131,6 +131,20 @@ _Please take into consideration that this is a new project that I just started, 
   Special thanks to @reggaemuffin and the @minnowbooster team for the support in making this feature possible! 
 
 ---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) **Filter wallet history** by selecting the type _(transfers, power up/down, rewards, conversions)_, minimum amount, or by textual search.
+  You can now **click on a link or mention in the transaction _memo_ field!**
+
+  ![](https://i.imgsafe.org/8f/8fb128a3a7.png)
+
+---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) You can open a **gallery of images in a post** by clicking on an image. 
+  
+  ![gif6.gif](https://steemitimages.com/DQmepeZ4sHuukkYj9SHps9FLnVcKHYGt8FhDXw4E58Kjt75/gif6.gif)
+
+---
+
 
 * **Steemit More Info Settings**. You can now choose to enable or disable each of the features provided by Steemit More Info! Just go in your account settings.
 
@@ -161,34 +175,6 @@ The way it works is by scraping the webpage and the url of the page you are look
 This process doesn't involve any private key! In fact, you can see informations of other users as well, even if you obbiuvsly don't know their private keys.
 
 
-### Code audit
-
-@reggaemuffin made a full code audit of this version of the extension looking for bugs or security problems.
-Here's a summary of his review:
-
-> There was a possible issue with the way the presence of a new update was checked that could have allowed **if @armandocat github account** were compromised to inject a string into the html page. However, the code would not have been executed so no malware could have been injected in the page. Code has been updated and now use a normal ajax call
-
-> /vendor/* contains javascript files unchanged from the last release of the libraries used
-
->  src/post_boost_button.js is doing ajax requests to the minnowbooster api and these submit the author and permlink of the post you are viewing and your username to minnowbooster.net (to check your minnowbooster limits for your convenience). This happens only when you click on the "boost" button, so if you prefer not to send this information to minnowbooster just disable the feature and don't click on the "boost" button.
-
-> src/markdown_editor_beautifier.js will load a few iframes in your markdown editor if you include them. Iframes are sanetized before being embedded. Still this is to be kept in mind. Images are loaded automatically and are checked, but you can probably hack yourself by adding an image tag that links to a malicious script. Link tags are opened in a new tab and have noopener set, which **prevents** a security issue: https://mathiasbynens.github.io/rel-noopener/
-
-> src/gif_picker.js: found a few cases where rel-noopener was not applied and these were **fixed before release to the users**. This will call the giphy.com api and search for gifs. 
-
-> src/followers_table.js will call img.busy.org to retrieve profile images.
-
-> src/external_links_menu.js: all external links were subject to rel-noopener. **Fixed in this version**
-
-> src/utils/utils.js: this is doing all the heavy work and has the strongest focus in this review. All methods that interact with the blockchain are read only and safe.
-
-
-The bugs expressed have already been fixed prior to the release of this version.
-
-Thanks to @reggaemuffin for his effort in checking the code for potential vulnerabilities. He will confirm shortly this analysis by commenting on this post.
-**Please consider adding @reggaemuffin to your witnesses list!**
-
-
 <br>
 <br>
 
@@ -200,6 +186,11 @@ https://chrome.google.com/webstore/detail/steemit-more-info/dcbpmclnlapbkgkddhen
 
 ![](https://i.imgsafe.org/65/655926ba30.png) **The extension is now available on the Firefox Extension Store** 
 https://addons.mozilla.org/en-US/firefox/addon/steemit-more-info/
+
+![](https://i.imgsafe.org/65/655926ba30.png) **You can now have these features on mobile as well!** Look here for more information:
+**SteemApp - Android** _(iOS coming soon)_
+https://steemit.com/steemdev/@armandocat/steemapp-1-1-android-beta
+
 
 <br>
 

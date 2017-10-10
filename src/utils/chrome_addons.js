@@ -11,12 +11,13 @@ if(typeof chrome !== 'undefined'){
     });
   };
 }else{
-  var SMI_AJAX_MAP = {};
-  var SMI_AJAX_NEXT_INDEX = 1;
+  var SMI_R_MAP = {};
+  var SMI_R_NEXT_INDEX = 1;
 
   window.SMI_AJAX = function(ajax) {
-    var index = SMI_AJAX_NEXT_INDEX++;
-    SMI_AJAX_MAP[index] = {
+    var index = SMI_R_NEXT_INDEX++;
+    SMI_R_MAP[index] = {
+      type: 'ajax',
       success: ajax.success,
       error: ajax.error
     };
@@ -36,17 +37,19 @@ if(typeof chrome !== 'undefined'){
         event.data.direction == "from-content-script") {
 
       var index = event.data.index;
-      var ajax = SMI_AJAX_MAP[index];
-      if(!ajax){
+      var r = SMI_R_MAP[index];
+      if(!r){
         return;
       }
-      var response = event.data.message;
-      if(response.error){
-        ajax.error(response.error);
-      }else{
-        ajax.success(response.data);
+      if(r.type === 'ajax') {
+        var response = event.data.message;
+        if(response.error){
+          r.error(response.error);
+        }else{
+          r.success(response.data);
+        }
       }
-      delete SMI_AJAX_MAP[index];
+      delete SMI_R_MAP[index];
     }
   });
 

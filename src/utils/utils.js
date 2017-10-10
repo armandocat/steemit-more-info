@@ -254,6 +254,258 @@
   };
 
 
+  var createPostSummary_remarkable = new Remarkable({ html: true, linkify: false })
+
+  var createPostSummary = function(post, name) {
+    var author = post.author;
+    var permlink = post.permlink;
+    var category = post.category;
+    var descr = window.SteemMoreInfo.Sanitize.postBodyShort(post.body);
+    var title = post.title;
+    var url = `@${author}/${permlink}`;
+    if(post.parent_author){ //comment
+      title = title || ('RE: ' + post.root_title);
+      url = `@${post.parent_author}/${post.parent_permlink}#` + url;
+    }
+
+    url = (category ? `/${category}/` : '/') + url;
+
+    var imgUrl;
+    try{
+      var json_metadata = (typeof post.json_metadata === 'object' ? post.json_metadata : JSON.parse(post.json_metadata));
+      if(typeof json_metadata == 'string') {
+          // At least one case where jsonMetadata was double-encoded: #895
+          json_metadata = JSON.parse(json_metadata)
+      }
+      if(json_metadata && json_metadata.image && Array.isArray(json_metadata.image)){
+        imgUrl = json_metadata.image[0] || null;
+      }
+    }catch(err){      
+    }
+
+    // If nothing found in json metadata, parse body and check images/links
+    if(!imgUrl) {
+        var isHtml = /^<html>([\S\s]*)<\/html>$/.test(post.body)
+        var htmlText = isHtml ? post.body : createPostSummary_remarkable.render(post.body.replace(/<!--([\s\S]+?)(-->|$)/g, '(html comment removed: $1)'))
+        var rtags = HtmlReady(htmlText, {mutate: false})
+
+        imgUrl = Array.from(rtags.images)[0] || null;
+    }
+
+    var date = moment(post.created + 'Z');
+    if(!date.isValid()){
+      date = moment(post.created);
+    }
+    var dateString = date.format('DD/MM/YYYY hh:mm A');
+    var dateString2 = date.fromNow();
+
+    var votes = post.net_votes;
+    var comments = post.children;
+
+    var dollars;
+    var dollarsAuthor;
+    var dollarsCurators;
+
+    var last_payout = post.last_payout;
+    var cashout_time, payoutDateString, payoutDateString2;
+    if(last_payout === '1970-01-01T00:00:00' || last_payout === 'Thu, 01 Jan 1970 00:00:00 GMT'){
+      var cashout_time = moment(post.cashout_time + 'Z');
+      if(!cashout_time.isValid()){
+        cashout_time = moment(post.cashout_time);
+      }
+
+      payoutDateString = cashout_time.format('DD/MM/YYYY hh:mm A');
+      payoutDateString2 = cashout_time.fromNow();
+
+      // absRshare = parseFloat(post.abs_rshares);
+      // var rshare = post.total_vote_weight < 0 ? -absRshare : absRshare;
+      var rshare = parseFloat(post.net_rshares);
+
+      var dollars = window.SteemMoreInfo.Utils.getVotingDollarsPerShares(rshare);
+      if(typeof dollars === 'undefined'){
+        dollars = '?.??';
+      }else{
+        dollars = '' + dollars.toFixed(2);
+      }
+    }else{
+      var total_payout_value = typeof post.total_payout_value === 'object' ? post.total_payout_value.amount : parseFloat(post.total_payout_value.replace(' SBD', ''));
+      var curator_payout_value = typeof post.curator_payout_value === 'object' ? post.curator_payout_value.amount : parseFloat(post.curator_payout_value.replace(' SBD', ''));
+      dollarsAuthor = total_payout_value;
+      dollarsCurators = curator_payout_value;
+      dollars = dollarsAuthor + dollarsCurators;
+      dollars = '' + dollars.toFixed(2);
+      dollarsCurators = '' + dollarsCurators.toFixed(2);
+      dollarsAuthor = '' + dollarsAuthor.toFixed(2);
+    }
+
+    var dsplit = dollars.split('.');
+    var dollarsInteger = dsplit[0];
+    var dollarsDecimal = dsplit[1];
+
+    var isRepost = name && name !== author;
+
+    var vcard = '<span class="vcard">\
+      <a href="' + url + '">\
+        <span title="' + dateString + '" class="updated"><span>' + dateString2 + '</span></span>\
+      </a>\
+      by\
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">\
+        <strong>\
+          <a href="/@' + author + '">' + author + '</a>\
+        </strong>' +
+        // don't know the reputation :(
+        // '<span class="Reputation" title="Reputation">' + reputation + '</span>' +
+      '</span>\
+      in\
+      <strong>\
+        <a href="/trending/' + category + '">' + category + '</a>\
+      </strong>\
+    </span>';
+
+    var el = $('<li>\
+      <article class="PostSummary hentry' + (imgUrl ? ' with-image' : '') + '" itemscope="" itemtype="http://schema.org/blogPost">' +
+        (isRepost ? '<div class="PostSummary__reblogged_by">\
+          <span class="Icon reblog" style="display: inline-block; width: 1.12rem; height: 1.12rem;">\
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path d="M448,192l-128,96v-64H128v128h248c4.4,0,8,3.6,8,8v48c0,4.4-3.6,8-8,8H72c-4.4,0-8-3.6-8-8V168c0-4.4,3.6-8,8-8h248V96 L448,192z"></path></svg>\
+          </span>\
+          Resteemed\
+        </div>' : '') +
+        '<div class="PostSummary__header show-for-small-only">\
+          <h3 class="entry-title">\
+            <a href="' + url + '">' + title + '</a>\
+          </h3>\
+        </div>\
+        <div class="PostSummary__time_author_category_small show-for-small-only">\
+          ' + vcard + '\
+        </div>' + 
+        (imgUrl ? '<span class="PostSummary__image" style="background-image: url(\'https://steemitimages.com/256x512/' + encodeURI(imgUrl) + '\');"></span>' : '') +
+        '<div class="PostSummary__content">\
+          <div class="PostSummary__header show-for-medium">\
+            <h3 class="entry-title">\
+              <a href="' + url + '">' + title + '</a>\
+            </h3>\
+          </div>\
+          <div class="PostSummary__body entry-content">\
+            <a href="' + url + '">' + descr + '</a>\
+          </div>\
+          <div class="PostSummary__footer">\
+            <span class="Voting">\
+              <span class="Voting__inner">' +
+                // can't vote.. so can't put a voting button here :( 
+                // '<span class="Voting__button Voting__button-up Voting__button--upvoted">\
+                //   <a href="#" title="Remove Vote">\
+                //     <span class="Icon chevron-up-circle" style="display: inline-block; width: 1.12rem; height: 1.12rem;">\
+                //       <svg enable-background="new 0 0 33 33" version="1.1" viewBox="0 0 33 33" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Chevron_Up_Circle"><circle cx="16" cy="16" r="15" stroke="#121313" fill="none"></circle><path d="M16.699,11.293c-0.384-0.38-1.044-0.381-1.429,0l-6.999,6.899c-0.394,0.391-0.394,1.024,0,1.414 c0.395,0.391,1.034,0.391,1.429,0l6.285-6.195l6.285,6.196c0.394,0.391,1.034,0.391,1.429,0c0.394-0.391,0.394-1.024,0-1.414 L16.699,11.293z" fill="#121313"></path></g></svg>\
+                //     </span>\
+                //   </a>\
+                // </span>' + 
+                '<div class="DropdownMenu">\
+                  <a href="#">\
+                    <span>\
+                      <span class="FormattedAsset ">\
+                        <span class="prefix">$</span><span class="integer">' + dollarsInteger + '</span><span class="decimal">.' + dollarsDecimal + '</span>\
+                      </span>\
+                      <span class="Icon dropdown-arrow" style="display: inline-block; width: 1.12rem; height: 1.12rem;">\
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><g><polygon points="128,90 256,218 384,90"></polygon></g></svg>\
+                      </span>\
+                    </span>\
+                  </a>' +
+                  (cashout_time ?
+                    '<ul class="VerticalMenu menu vertical VerticalMenu">\
+                      <li>\
+                        <span>\
+                          Potential Payout $' + dollars + '\
+                        </span>\
+                      </li>\
+                      <li>\
+                        <span>\
+                          <span title="' + payoutDateString + '">\
+                            <span>' + payoutDateString2 + '</span>\
+                          </span>\
+                        </span>\
+                      </li>\
+                    </ul>'
+                  :
+                    '<ul class="VerticalMenu menu vertical VerticalMenu">\
+                      <li>\
+                        <span>\
+                          Past Payouts $' + dollars + '\
+                        </span>\
+                      </li>\
+                      <li>\
+                        <span>\
+                          - Author: $' + dollarsAuthor + '\
+                        </span>\
+                      </li>\
+                      <li>\
+                        <span>\
+                          - Curators: $' + dollarsCurators + '\
+                        </span>\
+                      </li>\
+                    </ul>'
+                  ) +
+                '</div>\
+              </span>\
+            </span>\
+            <span class="VotesAndComments">\
+              <span class="VotesAndComments__votes" title="' + votes + (votes === 1 ? ' vote' : ' votes') + '">\
+                <span class="Icon chevron-up-circle Icon_1x" style="display: inline-block; width: 1.12rem; height: 1.12rem;">\
+                  <svg enable-background="new 0 0 33 33" version="1.1" viewBox="0 0 33 33" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Chevron_Up_Circle"><circle cx="16" cy="16" r="15" stroke="#121313" fill="none"></circle><path d="M16.699,11.293c-0.384-0.38-1.044-0.381-1.429,0l-6.999,6.899c-0.394,0.391-0.394,1.024,0,1.414 c0.395,0.391,1.034,0.391,1.429,0l6.285-6.195l6.285,6.196c0.394,0.391,1.034,0.391,1.429,0c0.394-0.391,0.394-1.024,0-1.414 L16.699,11.293z" fill="#121313"></path></g></svg>\
+                </span>\
+                &nbsp;' + votes + '\
+              </span>\
+              <span class="VotesAndComments__comments">\
+                <a title="' + comments + (comments === 1 ? ' response' : ' responses') + '. Click to respond." href="' + url + '#comments">\
+                  <span class="Icon chatboxes" style="display: inline-block; width: 1.12rem; height: 1.12rem;">\
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve"><g><path d="M294.1,365.5c-2.6-1.8-7.2-4.5-17.5-4.5H160.5c-34.7,0-64.5-26.1-64.5-59.2V201h-1.8C67.9,201,48,221.5,48,246.5v128.9 c0,25,21.4,40.6,47.7,40.6H112v48l53.1-45c1.9-1.4,5.3-3,13.2-3h89.8c23,0,47.4-11.4,51.9-32L294.1,365.5z"></path><path d="M401,48H183.7C149,48,128,74.8,128,107.8v69.7V276c0,33.1,28,60,62.7,60h101.1c10.4,0,15,2.3,17.5,4.2L384,400v-64h17 c34.8,0,63-26.9,63-59.9V107.8C464,74.8,435.8,48,401,48z"></path></g></svg>\
+                  </span>\
+                  &nbsp;' + comments + '\
+                </a>\
+              </span>\
+            </span>\
+            <span class="PostSummary__time_author_category">' +
+              (isRepost ? '<span class="Reblog__button Reblog__button-active">\
+                <a href="#" title="Resteem">\
+                  <span class="Icon reblog" style="display: inline-block; width: 1.12rem; height: 1.12rem;">\
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path d="M448,192l-128,96v-64H128v128h248c4.4,0,8,3.6,8,8v48c0,4.4-3.6,8-8,8H72c-4.4,0-8-3.6-8-8V168c0-4.4,3.6-8,8-8h248V96 L448,192z"></path></svg>\
+                  </span>\
+                </a>\
+              </span>' : '') + 
+              '<span class="show-for-medium">\
+                ' + vcard + '\
+              </span>\
+            </span>\
+          </div>\
+        </div>\
+      </article>\
+    </li>');
+
+    var openPost = function(url) {
+      var PostList = window.SteemMoreInfo.Utils.findReact($('#posts_list')[0]);
+      PostList.onPostClick(author + '/' + permlink, url);
+    };
+  
+    el.find('a').on('click', function(e){
+      if(e.ctrlKey || e.metaKey) {
+        return;
+      }
+      e.preventDefault();
+      var t = $(e.currentTarget);
+      var href = t.attr('href');
+      if(href === '#'){
+        return;
+      }
+      openPost(href);
+    });
+    el.find('.PostSummary__image').on('click', function(e){
+      e.preventDefault();
+      openPost(url);
+    });
+
+    return el;
+  };
+
+
 
   var navigate = function(url) {
     //hack to use react to navigate 
@@ -352,6 +604,7 @@
     getAccounts: getAccounts,
     getAccountVotes: getAccountVotes,
     getLoadingHtml: getLoadingHtml,
+    createPostSummary: createPostSummary,
     navigate: navigate,
     findReact: findReact,
     addSettings: addSettings,

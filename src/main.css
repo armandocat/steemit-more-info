@@ -165,7 +165,7 @@ span.after-downvote-total-dollar {
 .smi-show-as-grid-buttons {
   display: none;
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 840px) {
   .smi-show-as-grid-buttons {
     display: block;
   }
@@ -623,6 +623,11 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   display: inline-block !important;
   border-right: none;
 }
+.smi-post-floating-footer-on-body.smi-post-footer-small .smi-boost-button,
+.smi-post-floating-footer-on-body.smi-post-footer-small .smi-promote-button {
+  display: none;
+}
+
 
 
 
@@ -1060,6 +1065,26 @@ table tbody tr.Trans.smi-transaction-filtered-in:nth-of-type(2n) {
 }
 
 
+
+.UserProfile__tab_content_MentionsTab {
+  padding-bottom: 60px;
+}
+.UserProfile__tab_content_MentionsTab .MentionsTab {
+  padding-bottom: 20px;
+}
+.UserProfile__tab_content_MentionsTab .MentionsTabLoadMore button {
+  background-color: transparent;
+  border-radius: 6px;
+  border: 1px solid rgb(220, 220, 220);
+  display: inline-block;
+  cursor: pointer;
+  color: rgb(119, 119, 119);
+  font-size: 17px;
+  padding: 10px 24px;
+  text-decoration: none;
+}
+
+
 .smi-header-search > a {
   display: none !important;
 }
@@ -1098,5 +1123,3 @@ table tbody tr.Trans.smi-transaction-filtered-in:nth-of-type(2n) {
   height: 100%;
   border: none;
 }
-
-
