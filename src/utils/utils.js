@@ -256,15 +256,18 @@
 
 
   var createPostSummary = function(post, name) {
-    var title = post.title;
     var author = post.author;
+    var permlink = post.permlink;
     var category = post.category;
     var descr = window.SteemMoreInfo.Sanitize.postBodyShort(post.body);
-    var permlink = post.permlink;
-    var url = `/@${author}/${permlink}`;
-    if (category){
-      url = `/${category}${url}`;
+    var title = post.title;
+    var url = `@${author}/${permlink}`;
+    if(post.parent_author){ //comment
+      title = title || ('RE: ' + post.root_title);
+      url = `@${post.parent_author}/${post.parent_permlink}#` + url;
     }
+
+    url = (category ? `/${category}/` : '/') + url;
 
     var imgUrl;
     try{
@@ -275,7 +278,11 @@
     }catch(err){      
     }
 
+
     var date = moment(post.created + 'Z');
+    if(!date.isValid()){
+      date = moment(post.created);
+    }
     var dateString = date.format('DD/MM/YYYY hh:mm A');
     var dateString2 = date.fromNow();
 
@@ -288,9 +295,12 @@
 
     var last_payout = post.last_payout;
     var cashout_time, payoutDateString, payoutDateString2;
-    if(last_payout === '1970-01-01T00:00:00'){
-      var cashout_time = post.cashout_time;
-      cashout_time = moment(cashout_time + 'Z');
+    if(last_payout === '1970-01-01T00:00:00' || last_payout === 'Thu, 01 Jan 1970 00:00:00 GMT'){
+      var cashout_time = moment(post.cashout_time + 'Z');
+      if(!cashout_time.isValid()){
+        cashout_time = moment(post.cashout_time);
+      }
+
       payoutDateString = cashout_time.format('DD/MM/YYYY hh:mm A');
       payoutDateString2 = cashout_time.fromNow();
 
@@ -305,8 +315,10 @@
         dollars = '' + dollars.toFixed(2);
       }
     }else{
-      dollarsAuthor = parseFloat(post.total_payout_value.replace(' SBD', ''));
-      dollarsCurators = parseFloat(post.curator_payout_value.replace(' SBD', ''));
+      var total_payout_value = typeof post.total_payout_value === 'object' ? post.total_payout_value.amount : parseFloat(post.total_payout_value.replace(' SBD', ''));
+      var curator_payout_value = typeof post.curator_payout_value === 'object' ? post.curator_payout_value.amount : parseFloat(post.curator_payout_value.replace(' SBD', ''));
+      dollarsAuthor = total_payout_value;
+      dollarsCurators = curator_payout_value;
       dollars = dollarsAuthor + dollarsCurators;
       dollars = '' + dollars.toFixed(2);
       dollarsCurators = '' + dollarsCurators.toFixed(2);
@@ -317,7 +329,7 @@
     var dollarsInteger = dsplit[0];
     var dollarsDecimal = dsplit[1];
 
-    var isRepost = name !== author;
+    var isRepost = name && name !== author;
 
     var vcard = '<span class="vcard">\
       <a href="' + url + '">\
@@ -338,7 +350,7 @@
     </span>';
 
     var el = $('<li>\
-      <article class="PostSummary hentry with-image " itemscope="" itemtype="http://schema.org/blogPost">' +
+      <article class="PostSummary hentry' + (imgUrl ? ' with-image' : '') + '" itemscope="" itemtype="http://schema.org/blogPost">' +
         (isRepost ? '<div class="PostSummary__reblogged_by">\
           <span class="Icon reblog" style="display: inline-block; width: 1.12rem; height: 1.12rem;">\
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path d="M448,192l-128,96v-64H128v128h248c4.4,0,8,3.6,8,8v48c0,4.4-3.6,8-8,8H72c-4.4,0-8-3.6-8-8V168c0-4.4,3.6-8,8-8h248V96 L448,192z"></path></svg>\
@@ -352,9 +364,9 @@
         </div>\
         <div class="PostSummary__time_author_category_small show-for-small-only">\
           ' + vcard + '\
-        </div>\
-        <span class="PostSummary__image" style="' + (imgUrl ? 'background-image: url(\'https://steemitimages.com/256x512/' + encodeURI(imgUrl) + '\');' : '') + '"></span>\
-        <div class="PostSummary__content">\
+        </div>' + 
+        (imgUrl ? '<span class="PostSummary__image" style="background-image: url(\'https://steemitimages.com/256x512/' + encodeURI(imgUrl) + '\');"></span>' : '') +
+        '<div class="PostSummary__content">\
           <div class="PostSummary__header show-for-medium">\
             <h3 class="entry-title">\
               <a href="' + url + '">' + title + '</a>\
@@ -479,6 +491,7 @@
 
     return el;
   };
+
 
 
   var navigate = function(url) {
