@@ -254,6 +254,7 @@
   };
 
 
+  var createPostSummary_remarkable = new Remarkable({ html: true, linkify: false })
 
   var createPostSummary = function(post, name) {
     var author = post.author;
@@ -271,13 +272,25 @@
 
     var imgUrl;
     try{
-      var json_metadata = JSON.parse(post.json_metadata);
-      if(json_metadata && json_metadata.image){
+      var json_metadata = (typeof post.json_metadata === 'object' ? post.json_metadata : JSON.parse(post.json_metadata));
+      if(typeof json_metadata == 'string') {
+          // At least one case where jsonMetadata was double-encoded: #895
+          json_metadata = JSON.parse(json_metadata)
+      }
+      if(json_metadata && json_metadata.image && Array.isArray(json_metadata.image)){
         imgUrl = json_metadata.image[0] || null;
       }
     }catch(err){      
     }
 
+    // If nothing found in json metadata, parse body and check images/links
+    if(!imgUrl) {
+        var isHtml = /^<html>([\S\s]*)<\/html>$/.test(post.body)
+        var htmlText = isHtml ? post.body : createPostSummary_remarkable.render(post.body.replace(/<!--([\s\S]+?)(-->|$)/g, '(html comment removed: $1)'))
+        var rtags = HtmlReady(htmlText, {mutate: false})
+
+        imgUrl = Array.from(rtags.images)[0] || null;
+    }
 
     var date = moment(post.created + 'Z');
     if(!date.isValid()){
