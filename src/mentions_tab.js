@@ -38,7 +38,18 @@
     mentionsTab.html('<div class="row">\
        <div class="UserProfile__tab_content UserProfile__tab_content_smi UserProfile__tab_content_MentionsTab column">\
           <div class="MentionsTab" style="display: none;">\
-            <div id="posts_list" class="PostsList">\
+            <h4 class="uppercase">\
+              Mentions\
+              <div class="switch-field" style="margin-bottom: -4px; margin-left: 20px;">\
+                <input type="radio" id="mentions-type-posts" name="mentions-type" class="mentions-type" value="0" checked/>\
+                <label for="mentions-type-posts">Posts</label>\
+                <input type="radio" id="mentions-type-comments" name="mentions-type"- class="mentions-type" value="1" />\
+                <label for="mentions-type-comments">Comments</label>\
+                <input type="radio" id="mentions-type-both" name="mentions-type" class="mentions-type" value="2" />\
+                <label for="mentions-type-both">Both</label>\
+              </div>\
+            </h4>\
+            <div id="posts_list" class="PostsList" style="margin-top: 30px;">\
               <ul class="PostsList__summaries hfeed" itemscope="" itemtype="http://schema.org/blogPosts">\
               </ul>\
             </div>\
@@ -72,7 +83,8 @@
   var getPosts = function(mentionsTab, name, fromOrNull) {
     fromOrNull = fromOrNull || 0;
     window.SMI_AJAX({
-      url: 'https://webapi.steemdata.com/Comments?where={"$text":{"$search":"\\"@' + name + '\\""}}&sort=-created&page=' + (fromOrNull+1),
+      // url: 'https://webapi.steemdata.com/Comments?where={"$text":{"$search":"\\"@' + name + '\\""}}&sort=-created&page=' + (fromOrNull+1),
+      url: 'https://webapi.steemdata.com/Posts?where={"$text":{"$search":"\\"@' + name + '\\""}}&sort=-created&page=' + (fromOrNull+1),
       type: 'GET',
       error: function(err){
         console.log(err);
