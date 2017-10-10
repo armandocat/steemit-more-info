@@ -3,6 +3,7 @@
 
 
   var iframeStyle = `
+    body, html { height: 100vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     .top-bar.header { display:none; }
     div.search-content { margin-top: -25px; }
     form.gsc-search-box { display:none; }
@@ -94,6 +95,25 @@
     input.on('input', function() {
       openSearch(container, input.val());
     });
+
+        // prevent page scroll if mouse is no top of the list
+    if(!$('html').hasClass('smi-mobile')){
+      var s = { insideIframe: false };
+
+      container.find('iframe').mouseenter(function() {
+          s.insideIframe = true;
+          s.scrollX = window.scrollX;
+          s.scrollY = window.scrollY;
+      }).mouseleave(function() {
+          s.insideIframe = false;
+      });
+
+      $(document).scroll(function() {
+        if (s.insideIframe){
+          window.scrollTo(s.scrollX, s.scrollY);
+        }
+      });
+    }
 
     return container;
   };
