@@ -1123,3 +1123,14 @@ html.smi-header-search .show-for-medium.Header__search > a {
   height: 100%;
   border: none;
 }
+
+
+
+ /*FIX condenser bug about header height and content margin top */
+@media screen and (max-width: 839px) {
+  .App__content {
+    margin-top: 2rem;
+  }
+}
+
+
