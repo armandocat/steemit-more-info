@@ -44,6 +44,11 @@
       return 'http://steemwhales.com/' + username;
     }
   }, {
+    title: 'Steemit Board',
+    href: function(username) { 
+      return 'http://steemitboard.com/board.html?user=' + username;
+    }
+  }, {
     title: 'SteemReports <small style="padding-left: 5px;">Top Voters</small>',
     href: function(username) { 
       return 'http://www.steemreports.com/top-voters/@' + username;
