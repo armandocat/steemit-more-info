@@ -67,6 +67,7 @@ var jsToLoad = [
 'src/utils/notification_popup.js',
 'src/utils/utils.js',
 'src/utils/events.js',
+'src/utils/easterEgg.js',
 'src/utils/upvote_me_banner.js'
 ];
 
