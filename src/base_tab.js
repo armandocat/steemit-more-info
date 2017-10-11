@@ -116,6 +116,26 @@
   };
 
 
+  var removeSMITabs = function(){
+    var container = $('.UserProfile');
+    var divs = container.children();
+    var realSelectedTab;
+    for (var i = divs.length - 1; i >= 0; i--) {
+      var div = $(divs[i]);
+      if(div.is('.UserProfile__top-nav + div')){
+        break
+      }else if(!div.hasClass('smi-tabs-div')){
+        realSelectedTab = div;
+        break;
+      }
+    }
+    $('.smi-tabs-div').remove();
+    if(realSelectedTab){
+      realSelectedTab.show();
+    }
+    $('.UserProfile__top-menu ul.menu li a').removeClass('active');
+  };
+
 
   var onMenuItemClick = function() {
     var li = $(this).parent();
@@ -123,25 +143,9 @@
       if(li.is('li') && li.find('a').attr('aria-haspopup') == 'true'){
         return;
       }
-      var container = $('.UserProfile');
-      var divs = container.children();
-      var realSelectedTab;
-      for (var i = divs.length - 1; i >= 0; i--) {
-        var div = $(divs[i]);
-        if(div.is('.UserProfile__top-nav + div')){
-          break
-        }else if(!div.hasClass('smi-tabs-div')){
-          realSelectedTab = div;
-          break;
-        }
-      }
-      $('.smi-tabs-div').remove();
-      if(realSelectedTab){
-        realSelectedTab.show();
-        $('.UserProfile__top-menu ul.menu li a').removeClass('active');
-        if(li.is('li')){
-          li.find('a').addClass('active');
-        }
+      removeSMITabs();
+      if(li.is('li')){
+        li.find('a').addClass('active');
       }
     }
   };
@@ -153,6 +157,19 @@
 
   window.SteemMoreInfo.Events.addEventListener(window, 'page-account-name', function() {
     updateMenu();
+  });
+
+  window.SteemMoreInfo.Events.addEventListener(window, 'changestate', function() {
+    var shown = false;
+    tabs.forEach(function(tab) {
+      if(window.location.hash === '#' + tab.id){
+        showTab(tab.id);
+        shown = true;
+      }
+    });
+    if(!shown) {
+      removeSMITabs();
+    }
   });
 
   updateMenu(true);
