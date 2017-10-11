@@ -139,13 +139,13 @@
       return;
     }
 
-    if(searchEl.hasClass('smi-header-search')) {
+    if($('html').hasClass('smi-header-search')) {
       return;
     }
 
     var ui = createSearchUI();
 
-    searchEl.addClass('smi-header-search')
+    $('html').addClass('smi-header-search')
     searchEl.append(ui);
   };
 

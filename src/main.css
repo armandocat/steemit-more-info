@@ -1085,7 +1085,7 @@ table tbody tr.Trans.smi-transaction-filtered-in:nth-of-type(2n) {
 }
 
 
-.smi-header-search > a {
+html.smi-header-search .show-for-medium.Header__search > a {
   display: none !important;
 }
 .smi-search-container {
