@@ -48,6 +48,9 @@
                 <input type="radio" id="mentions-type-both" name="mentions-type" class="mentions-type" value="2" />\
                 <label for="mentions-type-both">Both</label>\
               </div>\
+              <div class="thanks-furion">\
+                Thanks <a href="/@furion" class="smi-navigate">@furion</a> for the SteemData API\
+              </div>\
             </h4>\
             <div id="posts_list" class="PostsList" style="margin-top: 30px;">\
               <ul class="PostsList__summaries hfeed" itemscope="" itemtype="http://schema.org/blogPosts">\
