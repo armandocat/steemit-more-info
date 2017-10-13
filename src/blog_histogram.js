@@ -304,7 +304,9 @@
 
     postsList = postsContainer.find('.smi-posts-histogram-posts-list');
     posts.forEach(function(post){
-      postsList.append(window.SteemMoreInfo.Utils.createPostSummary(post, name));
+      postsList.append(window.SteemMoreInfo.Utils.createPostSummary(post, {
+        accountName: name
+      }));
     });
 
     // prevent page scroll if mouse is no top of the list

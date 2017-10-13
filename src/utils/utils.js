@@ -256,7 +256,7 @@
 
   var createPostSummary_remarkable = new Remarkable({ html: true, linkify: false })
 
-  var createPostSummary = function(post, name) {
+  var createPostSummary = function(post, options) {
     var author = post.author;
     var permlink = post.permlink;
     var category = post.category;
@@ -342,7 +342,7 @@
     var dollarsInteger = dsplit[0];
     var dollarsDecimal = dsplit[1];
 
-    var isRepost = name && name !== author;
+    var isRepost = options && options.accountName && options.accountName !== author;
 
     var vcard = '<span class="vcard">\
       <a href="' + url + '">\
@@ -479,8 +479,8 @@
         </div>\
       </article>\
     </li>');
-
-    var openPost = function(url) {
+    
+    var openPost = (options && options.openPost) || function(url) {
       var PostList = window.SteemMoreInfo.Utils.findReact($('#posts_list')[0]);
       PostList.onPostClick(author + '/' + permlink, url);
     };

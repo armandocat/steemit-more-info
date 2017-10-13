@@ -187,6 +187,13 @@
   };
 
 
+  var openPost = function(url) {
+    var postWindow = window.open();
+    postWindow.opener = null;
+    postWindow.location = url;
+  };
+
+
   var getPostsAndComments = function(mentionsTab, name, reset) {
     var v = mentionsTab.find('.mentions-type:checked').val();
     var whats;
@@ -219,7 +226,9 @@
       if(postsList.length){
         for (var i = postsFrom; i < posts.length; i++) {
           var post = posts[i]
-          var el = window.SteemMoreInfo.Utils.createPostSummary(post);
+          var el = window.SteemMoreInfo.Utils.createPostSummary(post, {
+            openPost: openPost
+          });
           postsList.append(el);
         }
 
