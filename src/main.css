@@ -904,15 +904,15 @@ html.smi-mobile.smi-posts-histogram-posts-list-shown body {
   top: -3px;
   right: -8px;
 }
-.smi-gif-picker-container2 form {
+.smi-gif-picker-container2 .gif-form {
   flex-grow: 0;
   flex-shrink: 0;
   padding-bottom: 10px;
 }
-.smi-gif-picker-container form label p {
+.smi-gif-picker-container .gif-form label p {
   margin-bottom: 2px;
 }
-.smi-gif-picker-container form label p a.button {
+.smi-gif-picker-container .gif-form label p a.button {
   padding: 3px;
   margin: 0px;
   outline: none;

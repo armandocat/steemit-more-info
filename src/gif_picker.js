@@ -71,7 +71,7 @@
     var pickerContainer = $('<div class="smi-gif-picker-container">\
       <div class="smi-gif-picker-container2">\
         <button class="close-button" type="button"><span aria-hidden="true" class="">×</span></button>\
-        <form class="row">\
+        <div class="gif-form row">\
           <div class="small-8 medium-9 large-10 columns">\
             <label>\
               <p>Search: <a class="button trending">Trending</a></p>\
@@ -91,7 +91,7 @@
               </select>\
             </label>\
           </div>\
-        </form>\
+        </div>\
         <section class="res-container">\
           <p class="title"></p>\
           <div class="res-container-wrapper">\
@@ -179,11 +179,9 @@
       }
       
       timeout = setTimeout(function(){
-        var params;
-        if(pickerContainer.find('.rating').val() === ''){
-          params = pickerContainer.find('form input').serialize();
-        }else{
-          params = pickerContainer.find('form').serialize();
+        var params = pickerContainer.find('.gif-form input').serialize();
+        if(pickerContainer.find('.rating').val()){
+          params += '&' + pickerContainer.find('.rating').serialize();
         }
         
         var ajax = {
@@ -212,10 +210,6 @@
 
       pickerContainer.find('.title').text(selection);
       ajaxQuery(ajax);
-    });
-
-    pickerContainer.find('form').submit(function(e){
-      e.preventDefault();
     });
 
     pickerContainer.find('.close-button').on('click', function() {
