@@ -549,6 +549,12 @@
     }, 100);
   });
 
+  $('body').on('click', '.SubmitPost form.vframe .float-right.secondary a', function() {
+    setTimeout(function() {
+      checkSubmitPostPage();
+    }, 100);
+  });
+
   setTimeout(function() {
     checkSubmitPostPage();
   }, 100);
