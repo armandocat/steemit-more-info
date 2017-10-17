@@ -1,4 +1,4 @@
-# Steemit More Info 1.4 - Chrome Extension + Firefox Extension
+# Steemit More Info 1.5 - Chrome Extension + Firefox Extension
 
 <center>
     
@@ -8,28 +8,44 @@
 
 A simple Steemit extension that shows more info on steemit.com
 
-If you use steemit.com, you may have notice that it is lacking a lot of functionalities.
-That's why you need to use tools like https://steemd.com/, https://steemdb.com/, https://steemstats.com/, https://www.steemnow.com/, ...
-A lot of tools!
-
-**_So why another tool???_**
-Because this is a Chrome and Firefox extension that you install on your browser, and then **all the informations you need will be available to you directly on steemit.com!**
-
-
-_Please take into consideration that this is a new project that I just started, and the features are limited to just a few so far! I'm planning to add more and more features in the next versions. Every suggestion and idea is very much appreciated!_
-
-
-### This is version 1.4 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
+### This is version 1.5 with some bug fixes and a few ![new](https://i.imgsafe.org/65/655926ba30.png) features added 
 
 <br>
 
-## Features
+
+## New features
+
+<br>
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) **Search on steemit directly in the navigation bar!**
+
+  ![gif7.gif](https://steemitimages.com/DQmTm4QcqQpozqoY32sepS2kWtobj3kQfuYrVm2fBWs2nKn/gif7.gif)
+
+<br>
+
+---
+
+* ![](https://i.imgsafe.org/65/655926ba30.png) **Mentions tab!** You can easily find posts or comments where users tagged your name. Thanks @furion for the SteemData API.
+
+![](https://i.imgsafe.org/5b/5b4406d163.png)
+
+<br>
+<br>
+
+
+
+## Other features
+
+<br>
+
 
 * In the profile page of any account, you will see a **Vote Power indicator** on top (next to the name and the reputation), with the reward that a 100% vote from that user will give in SBD ($)
 
 * In the profile page of any account, you will see the **number of votes that user has done today**
 
   ![](https://i.imgsafe.org/29/299a199a65.png)
+
+<br>
 
 ---
 
@@ -38,11 +54,14 @@ _Please take into consideration that this is a new project that I just started, 
   You can filter the votes between _incoming votes_ and _outgoing votes_
   ![](https://i.imgsafe.org/94/9455d3ba4b.png)
 
+<br>
+
 ---
 
 * Added a **dropdown menu with links to external tools** to get more info about the steem account. Please let me know what tools you'd like to see here ;)
 
-    ![](https://i.imgsafe.org/ba/ba38a51f39.png)
+    ![](https://i.imgsafe.org/5b/5b1ac00888.png)
+
 
 ---
 
@@ -55,16 +74,22 @@ _Please take into consideration that this is a new project that I just started, 
 * For downvotes, it shows also the total reward of the post after your downvote
   ![](https://i.imgsafe.org/d9/d97ed70a6b.png)
 
+<br>
+
 ---
 
 * When you are looking at a post or comment and you click "votes" to see the **list of people that voted that post**, you now also see what was **their contribute to the total reward**!
   ![](https://i.imgsafe.org/79/79a7ceb140.png)
   ![](https://i.imgsafe.org/79/79a7ce65ef.png)
 
+<br>
+
 ---
 
 * You can see the posts with two different layouts: list (default) and grid! You can change to **grid layout** using on the buttons on the top-right corner of the page. 
   ![](https://i.imgsafe.org/92/92cdbd3a63.png)
+
+<br>
 
 ---
 
@@ -78,15 +103,18 @@ _Please take into consideration that this is a new project that I just started, 
 
   You can choose to **show the histogram automatically on page load** (_default_) or if you prefer to load the histogram on request if you find it to be too invasive. To change this setting, hover on the histogram title and select "On load: hidden"
 
+<br>
+
 ---
 
 * The **followers and following pages have been updated** to show a table of the followers/following, with more informations (**Reputation, STEEM Power, Upvote Worth**). You can **sort** by the different attributes by clicking on the table's column.
 
   ![](https://i.imgsafe.org/3b/3b4fd9648b.png)
 
+<br>
 
 ---
-  
+
 * When you read a post, now **there is a floating bar with the tags, date, author and upvotes** of the post, so you can easily access this informations and upvote the post if you like it! 
 
   ![](https://steemitimages.com/DQmevE65xaGzXyMTeQX2T4pyZboXccVHEpYcrGX3njTmdTN/smi.gif)
@@ -96,12 +124,15 @@ _Please take into consideration that this is a new project that I just started, 
   ![](https://steemitimages.com/DQmZbH9NmnvkxLufzK4aMD58toYfxKEGGAFkJQ3wPCGZU9z/gif2.gif)
 
 
+<br>
+
 ---
 
 * The **markdown editor used to write new posts now shows the preview at the right side of the editor.** While you write the post, if you scroll through your textual content, **the preview will automatically scroll** to the right point. _This feature is available for screens with at least 900px width_
 
   ![](https://steemitimages.com/DQmNhKFqpeU1kQPSfpoL7o7z4dG5g3WivGYNT4HmYufnRW7/smi2.gif)
 
+<br>
 
 ---
 
@@ -109,6 +140,7 @@ _Please take into consideration that this is a new project that I just started, 
 
   ![](https://steemitimages.com/DQmQELTQwaayqp2zmQW9i8uipFVoNDRAiQN4kAMD45YqDTs/gif3.gif)
 
+<br>
 
 ---
 
@@ -117,9 +149,9 @@ _Please take into consideration that this is a new project that I just started, 
 
   ![](https://steemitimages.com/DQma6kD2jYLqs9trSPwg77TuyaDKHuCLfQ8z76ht65UdmiH/gif5.gif)
 
+<br>
 
 ---
-
 
 * Boost your posts easily with the **Boost button** next to the "Promote" button. You will be able to easily transfer SBD to @minnowbooster for an upvote of the whale!
   ![](https://i.imgsafe.org/2a/2aa7a7e07a.png)
@@ -130,25 +162,29 @@ _Please take into consideration that this is a new project that I just started, 
 
   Special thanks to @reggaemuffin and the @minnowbooster team for the support in making this feature possible! 
 
+<br>
+
 ---
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) **Filter wallet history** by selecting the type _(transfers, power up/down, rewards, conversions)_, minimum amount, or by textual search.
+* **Filter wallet history** by selecting the type _(transfers, power up/down, rewards, conversions)_, minimum amount, or by textual search.
   You can now **click on a link or mention in the transaction _memo_ field!**
 
   ![](https://i.imgsafe.org/8f/8fb128a3a7.png)
 
+<br>
+
 ---
 
-* ![](https://i.imgsafe.org/65/655926ba30.png) You can open a **gallery of images in a post** by clicking on an image. 
+* You can open a **gallery of images in a post** by clicking on an image. 
   
   ![gif6.gif](https://steemitimages.com/DQmepeZ4sHuukkYj9SHps9FLnVcKHYGt8FhDXw4E58Kjt75/gif6.gif)
 
+
+<br>
+
 ---
 
-
 * **Steemit More Info Settings**. You can now choose to enable or disable each of the features provided by Steemit More Info! Just go in your account settings.
-
-  ![](https://i.imgsafe.org/d8/d84e3cd75e.png)
 
 
 <br>
@@ -158,11 +194,9 @@ _Please take into consideration that this is a new project that I just started, 
 ## Future development
 
 I'm planning to add more features like:
-* COMING SOON: Trending of up to 5 favorite tags in one page. You select your favorite tags and you'll see the list of the top trending of all the tags combined in one list. I'm not releasing this feature yet because it still has some bugs. 
+* Trending of up to 5 favorite tags in one page. You select your favorite tags and you'll see the list of the top trending of all the tags combined in one list. I'm not releasing this feature yet because it still has some bugs. 
 * Notifications, for instance if somebody replies on one of your posts or comments, if you get an upvote, ... 
-* A page with some graphs of the stats of the account 
 * Image resizing in the post editor
-* Better search
 * ...
 
 
