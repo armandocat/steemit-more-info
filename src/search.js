@@ -52,13 +52,22 @@
         var doc = $(iframeDoc);
         setupIframe(iframeWindow, doc);
 
-        var input = doc.find('input.gsc-input');
-        var submit = doc.find('.gsc-search-button input'); 
-        if(input.length && submit.length){
-          input.val(search);
-          submit.click();
+        if(search){
+          var input = doc.find('input.gsc-input');
+          var submit = doc.find('.gsc-search-button input'); 
+          if(input.length && submit.length){
+            input.val(search);
+            submit.click();
+          }
         }
 
+      }else{
+        $( iframeDoc ).ready(function() {
+
+          var doc = $(iframeDoc);
+          setupIframe(iframeWindow, doc);
+
+        });
       }
     }
   };
@@ -147,6 +156,9 @@
 
     $('html').addClass('smi-header-search')
     searchEl.append(ui);
+
+    openSearch(ui); //initialize
+
   };
 
 
